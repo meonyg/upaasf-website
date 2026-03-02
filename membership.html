@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join UPAASF | UP Alumni Membership in San Francisco Bay Area</title>
+    <meta name="description" content="Become a UPAASF member and connect with 500+ UP alumni. Enjoy networking, mentoring opportunities, cultural events, and give back to UP. Membership from $50/year.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            color: #8B0000;
+            font-weight: 800;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: #0A3B1A;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #8B0000;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #8B0000 0%, #660000 50%, #0A3B1A 100%);
+            color: white;
+            padding: 140px 5% 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '🤝';
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .content-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h3 {
+            font-size: 2.5rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid #8B0000;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border-left-color: #FFD700;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.6rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .benefit-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefit-card li {
+            color: #666;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0A3B1A;
+            font-weight: 700;
+        }
+
+        .tiers-section {
+            background: #f8f9fa;
+            padding: 6rem 5%;
+        }
+
+        .tiers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tier-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .tier-card.featured {
+            border-color: #FFD700;
+            transform: scale(1.05);
+            box-shadow: 0 8px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .tier-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .tier-badge {
+            display: inline-block;
+            background: #8B0000;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .tier-card.featured .tier-badge {
+            background: #FFD700;
+            color: #8B0000;
+        }
+
+        .tier-name {
+            font-size: 1.8rem;
+            color: #8B0000;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .tier-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-period {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .tier-features li {
+            color: #666;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .tier-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0A3B1A;
+            font-weight: 700;
+        }
+
+        .tier-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #8B0000;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .tier-button:hover {
+            background: #660000;
+            transform: translateY(-2px);
+        }
+
+        .testimonials-section {
+            background: white;
+            padding: 6rem 5%;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 5px solid #FFD700;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .author-info h5 {
+            color: #8B0000;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .faq-section {
+            background: #f8f9fa;
+            padding: 6rem 5%;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #8B0000;
+            background: #f8f9fa;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: #8B0000;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 1.5rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .form-section {
+            background: white;
+            padding: 6rem 5%;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B0000;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1.1rem 2.8rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #8B0000;
+            color: white;
+            box-shadow: 0 6px 25px rgba(139, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #660000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(139, 0, 0, 0.4);
+        }
+
+        .value-prop {
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            color: white;
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .value-prop h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-prop p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .value-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+
+        .value-stat {
+            padding: 2rem;
+        }
+
+        .value-stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #FFD700;
+            display: block;
+        }
+
+        .value-stat-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .tiers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tier-card.featured {
+                transform: scale(1);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">UP</div>
+                <div class="logo-text">
+                    <h1>UPAASF</h1>
+                    <p>University of the Philippines Alumni</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+				<!--
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/programs">Programs</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/membership" style="color: #8B0000;">Membership</a></li>
+                <li><a href="/contact">Contact</a></li>
+				-->
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./programs.html">Programs</a></li>
+                <li><a href="./events.html">Events</a></li>
+                <li><a href="./membership.html" style="color: #8B0000;">Membership</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h2>Join the Bay Area's Premier UP Alumni Community</h2>
+            <p>Connect with fellow iskolar ng bayan, give back to UP, and celebrate Filipino heritage</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-header">
+            <h3>Discover the Value of UPAASF Membership</h3>
+            <p>When you join UPAASF, you're not just joining an organization—you're joining a family of UP alumni committed to excellence, service, and community.</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h4>🤝 Professional Networking & Career Growth</h4>
+                <ul>
+                    <li>Exclusive networking events and professional mixers</li>
+                    <li>Access to member-only job board and opportunities</li>
+                    <li>Mentorship from experienced professionals</li>
+                    <li>Career development workshops and speaker series</li>
+                    <li>LinkedIn alumni network</li>
+                    <li>Referrals from fellow Iskolar ng Bayan</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <h4>🎓 Support Current UP Students</h4>
+                <ul>
+                    <li>Serve as a mentor in our Alumni Mentoring Program</li>
+                    <li>Contribute to scholarship funds</li>
+                    <li>Support UP campus improvement projects</li>
+                    <li>Provide career guidance and internship opportunities</li>
+                    <li>Help students navigate their professional journeys</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <h4>🎭 Filipino Cultural Connection</h4>
+                <ul>
+                    <li>Exclusive access to Filipino Cultural Immersion Camp</li>
+                    <li>Traditional holiday celebrations</li>
+                    <li>Cultural events with Filipino arts, music, and dance</li>
+                    <li>Filipino food festivals and culinary experiences</li>
+                    <li>Language preservation programs</li>
+                    <li>Connection to Philippine history and traditions</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <h4>💼 Give Back to UP</h4>
+                <ul>
+                    <li>Contribute to UP campus renovations (like Kalayaan Hall)</li>
+                    <li>Support Philippine disaster relief efforts</li>
+                    <li>Fund student scholarships and financial aid</li>
+                    <li>Provide resources for academic programs</li>
+                    <li>Strengthen UP's global reputation</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <h4>🌟 Exclusive Member Benefits</h4>
+                <ul>
+                    <li>Discounted tickets to all UPAASF events</li>
+                    <li>Priority registration for programs and activities</li>
+                    <li>Free quarterly newsletter with alumni updates</li>
+                    <li>Access to exclusive member directory</li>
+                    <li>UPAASF member merchandise and apparel</li>
+                    <li>Voting rights on association matters</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <h4>👨‍👩‍👧‍👦 Family & Social Community</h4>
+                <ul>
+                    <li>Quarterly social mixers and gatherings</li>
+                    <li>Family-friendly events throughout the year</li>
+                    <li>Sports leagues and recreational activities</li>
+                    <li>Holiday parties and celebrations</li>
+                    <li>Virtual events for distant members</li>
+                    <li>Lifelong friendships with fellow UP alumni</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="tiers-section">
+        <div class="tiers-container">
+            <div class="section-header">
+                <h3>Choose Your Membership Level</h3>
+                <p>Select the membership tier that's right for you</p>
+            </div>
+
+            <div class="tiers-grid">
+                <div class="tier-card">
+                    <div class="tier-badge">STUDENT</div>
+                    <h4 class="tier-name">Student Member</h4>
+                    <div class="tier-price">$25</div>
+                    <div class="tier-period">per year</div>
+                    <ul class="tier-features">
+                        <li>Full access to all events</li>
+                        <li>Member directory access</li>
+                        <li>Newsletter subscription</li>
+                        <li>Networking opportunities</li>
+                        <li>Valid student ID required</li>
+                    </ul>
+                    <button class="tier-button">Join Now</button>
+                </div>
+
+                <div class="tier-card featured">
+                    <div class="tier-badge">MOST POPULAR</div>
+                    <h4 class="tier-name">Individual Member</h4>
+                    <div class="tier-price">$50</div>
+                    <div class="tier-period">per year</div>
+                    <ul class="tier-features">
+                        <li>All standard benefits</li>
+                        <li>Discounted event tickets</li>
+                        <li>Priority registration</li>
+                        <li>Mentorship opportunities</li>
+                        <li>Member merchandise</li>
+                        <li>Voting rights</li>
+                    </ul>
+                    <button class="tier-button">Join Now</button>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-badge">FAMILY</div>
+                    <h4 class="tier-name">Family Membership</h4>
+                    <div class="tier-price">$75</div>
+                    <div class="tier-period">per year</div>
+                    <ul class="tier-features">
+                        <li>Coverage for 2 adults</li>
+                        <li>Children under 18 included</li>
+                        <li>All individual benefits</li>
+                        <li>Family event discounts</li>
+                        <li>Cultural camp priority</li>
+                    </ul>
+                    <button class="tier-button">Join Now</button>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-badge">PATRON</div>
+                    <h4 class="tier-name">Patron</h4>
+                    <div class="tier-price">$250</div>
+                    <div class="tier-period">per year</div>
+                    <ul class="tier-features">
+                        <li>Enhanced benefits</li>
+                        <li>Recognition at events</li>
+                        <li>Listed in annual report</li>
+                        <li>VIP event seating</li>
+                        <li>All individual benefits</li>
+                    </ul>
+                    <button class="tier-button">Join Now</button>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-badge">LIFETIME</div>
+                    <h4 class="tier-name">Lifetime Member</h4>
+                    <div class="tier-price">$500</div>
+                    <div class="tier-period">one-time payment</div>
+                    <ul class="tier-features">
+                        <li>Never renew again</li>
+                        <li>Lifetime benefits</li>
+                        <li>Special recognition</li>
+                        <li>Legacy member status</li>
+                        <li>All premium perks</li>
+                    </ul>
+                    <button class="tier-button">Join Now</button>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-badge">BENEFACTOR</div>
+                    <h4 class="tier-name">Benefactor</h4>
+                    <div class="tier-price">$1,000+</div>
+                    <div class="tier-period">per year</div>
+                    <ul class="tier-features">
+                        <li>Premium benefits</li>
+                        <li>Naming opportunities</li>
+                        <li>Board consultation</li>
+                        <li>Exclusive events</li>
+                        <li>Maximum impact</li>
+                    </ul>
+                    <button class="tier-button">Join Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="section-header">
+            <h3>What Our Members Say</h3>
+            <p>Hear from alumni who've experienced the value of UPAASF membership</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"UPAASF membership opened doors I never knew existed. The networking alone has been worth 10x the investment, and the cultural events keep me connected to my Filipino roots."</p>
+                <div class="testimonial-author">
+                    <div class="author-image">MS</div>
+                    <div class="author-info">
+                        <h5>Maria Santos</h5>
+                        <p>UP Diliman '15, Software Engineer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Being a mentor through UPAASF has been incredibly rewarding. Helping UP students while connecting with fellow alumni in the Bay Area—it's the best of both worlds."</p>
+                <div class="testimonial-author">
+                    <div class="author-image">RC</div>
+                    <div class="author-info">
+                        <h5>Ramon Cruz</h5>
+                        <p>UP Manila '08, Healthcare Administrator</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The family membership has been amazing! Our kids love the cultural camp, and we've built lifelong friendships with other Filipino families. Worth every penny."</p>
+                <div class="testimonial-author">
+                    <div class="author-image">LR</div>
+                    <div class="author-info">
+                        <h5>Lisa & Carlos Reyes</h5>
+                        <p>UP Los Baños '02, Family Members</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="section-header">
+            <h3>Frequently Asked Questions</h3>
+            <p>Everything you need to know about UPAASF membership</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Who can join UPAASF?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Any UP graduate from any campus (Diliman, Los Baños, Manila, Visayas, Mindanao, Baguio, Open University, etc.) can join UPAASF. Current UP students are also welcome with our Student Membership tier. Friends and supporters of UP are welcome to attend events and participate in programs.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I renew my membership?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        You'll receive a renewal reminder email 30 days before your membership expires. You can renew online through our website, or contact our membership coordinator. Lifetime members never need to renew!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What if I'm not in the Bay Area?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        You can still join! We offer virtual events, online networking opportunities, and our newsletter keeps you connected. Many members live outside the Bay Area and participate in our programs remotely. Plus, when you visit the Bay Area, you'll have instant access to all in-person events.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I join if I attended a specific UP campus?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Absolutely! UPAASF welcomes alumni from all UP campuses—Diliman, Los Baños, Manila, Visayas, Mindanao, Baguio, Open University, and any other UP campus. We celebrate the diversity of the UP system and unite all iskolar ng bayan under one community.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How are membership dues used?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Your membership dues support: (1) Program operations including the Alumni Mentoring Program and Cultural Immersion Camp, (2) Event organization and member activities, (3) Scholarships and support for UP students, (4) Administrative costs for the association, and (5) Philanthropic initiatives supporting UP campuses and disaster relief. We publish an annual report detailing our financial stewardship.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What's the difference between membership tiers?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        All members receive core benefits like event access and networking. Higher tiers (Patron, Benefactor) provide enhanced recognition, VIP experiences, and greater impact through increased support for UP students and programs. Family memberships cover multiple people. Lifetime membership eliminates annual renewals. Choose the tier that aligns with your goals and budget.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="value-prop">
+        <h3>The Investment That Keeps Giving</h3>
+        <p>For as little as $50 per year—less than $5 per month—you gain access to a thriving community, meaningful programs, and the opportunity to make a difference for UP students and Filipino-American communities.</p>
+        
+        <div class="value-stats">
+            <div class="value-stat">
+                <span class="value-stat-number">500+</span>
+                <span class="value-stat-label">Active Members</span>
+            </div>
+            <div class="value-stat">
+                <span class="value-stat-number">50+</span>
+                <span class="value-stat-label">Annual Events</span>
+            </div>
+            <div class="value-stat">
+                <span class="value-stat-number">100+</span>
+                <span class="value-stat-label">Students Mentored</span>
+            </div>
+            <div class="value-stat">
+                <span class="value-stat-number">$500K+</span>
+                <span class="value-stat-label">Raised for UP</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="section-header">
+            <h3>Ready to Join?</h3>
+            <p>Complete the form below to start your UPAASF membership</p>
+        </div>
+
+        <div class="form-container">
+            <form id="membershipForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="upCampus">UP Campus *</label>
+                        <select id="upCampus" name="upCampus" required>
+                            <option value="">Select Campus</option>
+                            <option value="diliman">UP Diliman</option>
+                            <option value="manila">UP Manila</option>
+                            <option value="losbanos">UP Los Baños</option>
+                            <option value="visayas">UP Visayas</option>
+                            <option value="mindanao">UP Mindanao</option>
+                            <option value="baguio">UP Baguio</option>
+                            <option value="open">UP Open University</option>
+                            <option value="other">Other UP Campus</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gradYear">Graduation Year *</label>
+                        <input type="number" id="gradYear" name="gradYear" min="1900" max="2030" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="degree">Degree/Program</label>
+                    <input type="text" id="degree" name="degree" placeholder="e.g., BS Computer Science">
+                </div>
+
+                <div class="form-group">
+                    <label for="membershipTier">Membership Tier *</label>
+                    <select id="membershipTier" name="membershipTier" required>
+                        <option value="">Select Membership Tier</option>
+                        <option value="student">Student Member - $25/year</option>
+                        <option value="individual">Individual Member - $50/year</option>
+                        <option value="family">Family Membership - $75/year</option>
+                        <option value="patron">Patron - $250/year</option>
+                        <option value="lifetime">Lifetime Member - $500 (one-time)</option>
+                        <option value="benefactor">Benefactor - $1,000+/year</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="interests">Areas of Interest (Optional)</label>
+                    <textarea id="interests" name="interests" rows="3" placeholder="e.g., mentoring, cultural programs, professional networking, volunteering"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current FAQ
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Tier button clicks
+        document.querySelectorAll('.tier-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const tierCard = this.closest('.tier-card');
+                const tierName = tierCard.querySelector('.tier-name').textContent;
+                
+                // Scroll to form
+                document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+                
+                // Pre-select the tier in the form
+                const tierSelect = document.getElementById('membershipTier');
+                const tierValue = tierName.toLowerCase().replace(' member', '').replace(' membership', '').trim();
+                
+                setTimeout(() => {
+                    for (let option of tierSelect.options) {
+                        if (option.value === tierValue) {
+                            tierSelect.value = option.value;
+                            break;
+                        }
+                    }
+                }, 500);
+            });
+        });
+
+        // Form submission
+        document.getElementById('membershipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Membership Application:', data);
+            
+            alert('Thank you for your application! You will receive a confirmation email with payment instructions shortly.');
+            
+            this.reset();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.benefit-card, .tier-card, .testimonial-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        console.log('UPAASF Membership Page loaded successfully');
+    </script>
+</body>
+</html>

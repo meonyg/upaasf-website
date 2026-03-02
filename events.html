@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP Alumni Events in San Francisco | UPAASF Calendar</title>
+    <meta name="description" content="Join UPAASF events: networking mixers, UP Rising! Gala, cultural celebrations, and professional development. Connect with UP alumni across the Bay Area.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            color: #8B0000;
+            font-weight: 800;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: #0A3B1A;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #8B0000;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #8B0000 0%, #660000 50%, #0A3B1A 100%);
+            color: white;
+            padding: 140px 5% 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .event-filters {
+            background: white;
+            padding: 2rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+        }
+
+        .filters-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .filter-group select {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            background: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: #8B0000;
+        }
+
+        .view-toggle {
+            margin-left: auto;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .view-btn.active {
+            background: #8B0000;
+            color: white;
+            border-color: #8B0000;
+        }
+
+        .featured-event {
+            padding: 5rem 5%;
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+        }
+
+        .featured-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .featured-label {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #8B0000;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .featured-info h3 {
+            font-size: 2.8rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.2rem;
+            color: #0A3B1A;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-info p {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .event-details {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.05rem;
+            color: #666;
+        }
+
+        .detail-icon {
+            font-size: 1.5rem;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #8B0000;
+            color: white;
+            box-shadow: 0 6px 25px rgba(139, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #660000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(139, 0, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #8B0000;
+            border: 2px solid #8B0000;
+        }
+
+        .btn-secondary:hover {
+            background: #8B0000;
+            color: white;
+        }
+
+        .events-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .events-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h3 {
+            font-size: 2.5rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border-color: #FFD700;
+        }
+
+        .event-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .event-type-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 215, 0, 0.95);
+            color: #8B0000;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .event-body {
+            padding: 2rem;
+        }
+
+        .event-body h4 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-body p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .event-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #8B0000;
+        }
+
+        .btn-small {
+            padding: 0.7rem 1.8rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            background: #8B0000;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-small:hover {
+            background: #660000;
+            transform: translateY(-2px);
+        }
+
+        .newsletter-section {
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            color: white;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2.5rem;
+            background: #FFD700;
+            color: #8B0000;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #FFC700;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 968px) {
+            .page-hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                height: 350px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .view-toggle {
+                margin-left: 0;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">UP</div>
+                <div class="logo-text">
+                    <h1>UPAASF</h1>
+                    <p>University of the Philippines Alumni</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./programs.html">Programs</a></li>
+                <li><a href="./events.html" style="color: #8B0000;">Events</a></li>
+                <li><a href="./membership.html">Membership</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h2>Connect, Celebrate, and Make a Difference</h2>
+            <p>From elegant galas to cultural celebrations, professional workshops to family gatherings—UPAASF events bring our community together</p>
+        </div>
+    </section>
+
+    <section class="event-filters">
+        <div class="filters-container">
+            <div class="filter-group">
+                <label>Filter by:</label>
+                <select>
+                    <option>All Events</option>
+                    <option>Upcoming</option>
+                    <option>This Month</option>
+                    <option>This Quarter</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Type:</label>
+                <select>
+                    <option>All Types</option>
+                    <option>Networking</option>
+                    <option>Cultural</option>
+                    <option>Fundraising</option>
+                    <option>Social</option>
+                    <option>Professional</option>
+                    <option>Family</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Audience:</label>
+                <select>
+                    <option>All</option>
+                    <option>Members Only</option>
+                    <option>Open to Public</option>
+                    <option>Family-Friendly</option>
+                </select>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active">Grid</button>
+                <button class="view-btn">List</button>
+                <button class="view-btn">Calendar</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-event">
+        <div class="featured-container">
+            <span class="featured-label">⭐ FEATURED EVENT</span>
+            <div class="featured-content">
+                <div class="featured-image">🎊</div>
+                <div class="featured-info">
+                    <h3>UP Rising! Gala 2026</h3>
+                    <div class="event-date">
+                        📅 Saturday, October 25, 2026 • 6:00 PM
+                    </div>
+                    <p>Join us for our signature fundraising gala celebrating outstanding Filipino-Americans while raising funds for UP students and campus improvements.</p>
+                    
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span>The Westin St. Francis, San Francisco</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👔</span>
+                            <span>Formal / Black Tie Optional</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🎫</span>
+                            <span>Individual: $150 | Patron Table: $2,000</span>
+                        </div>
+                    </div>
+
+                    <div class="event-actions">
+                        <a href="#" class="btn btn-primary">Purchase Tickets</a>
+                        <a href="#" class="btn btn-secondary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="events-section">
+        <div class="events-container">
+            <div class="section-header">
+                <h3>Upcoming Events</h3>
+                <p>Mark your calendars and join us at these exciting gatherings</p>
+            </div>
+
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-image">
+                        <span class="event-type-badge">Networking</span>
+                        🤝
+                    </div>
+                    <div class="event-body">
+                        <h4>Spring Alumni Mixer</h4>
+                        <div class="event-meta">
+                            <div class="meta-item">📅 Friday, March 15, 2026</div>
+                            <div class="meta-item">⏰ 6:00 PM - 9:00 PM</div>
+                            <div class="meta-item">📍 SoMa StrEat Food Park, SF</div>
+                        </div>
+                        <p>Casual networking event with fellow UP alumni. Enjoy food trucks, drinks, and great conversations.</p>
+                        <div class="event-footer">
+                            <span class="event-price">Free for Members</span>
+                            <button class="btn-small">RSVP Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <span class="event-type-badge">Cultural</span>
+                        🎭
+                    </div>
+                    <div class="event-body">
+                        <h4>Philippine Independence Day</h4>
+                        <div class="event-meta">
+                            <div class="meta-item">📅 Saturday, June 14, 2026</div>
+                            <div class="meta-item">⏰ 2:00 PM - 8:00 PM</div>
+                            <div class="meta-item">📍 Yerba Buena Gardens, SF</div>
+                        </div>
+                        <p>Celebrate Filipino heritage with traditional performances, food, and family activities.</p>
+                        <div class="event-footer">
+                            <span class="event-price">Free</span>
+                            <button class="btn-small">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <span class="event-type-badge">Professional</span>
+                        💡
+                    </div>
+                    <div class="event-body">
+                        <h4>Speakers Series: AI & Innovation</h4>
+                        <div class="event-meta">
+                            <div class="meta-item">📅 Thursday, April 18, 2026</div>
+                            <div class="meta-item">⏰ 7:00 PM - 9:00 PM</div>
+                            <div class="meta-item">📍 Virtual (Zoom)</div>
+                        </div>
+                        <p>Hear from a leading AI researcher about the future of technology and its impact on society.</p>
+                        <div class="event-footer">
+                            <span class="event-price">Members: Free</span>
+                            <button class="btn-small">Register</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <span class="event-type-badge">Social</span>
+                        ⚽
+                    </div>
+                    <div class="event-body">
+                        <h4>Annual Sports Day & Picnic</h4>
+                        <div class="event-meta">
+                            <div class="meta-item">📅 Sunday, May 19, 2026</div>
+                            <div class="meta-item">⏰ 11:00 AM - 4:00 PM</div>
+                            <div class="meta-item">📍 Coyote Point Recreation Area</div>
+                        </div>
+                        <p>Family-friendly day of sports, games, potluck picnic, and outdoor fun for all ages.</p>
+                        <div class="event-footer">
+                            <span class="event-price">$10/family</span>
+                            <button class="btn-small">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <span class="event-type-badge">Cultural</span>
+                        👨‍👩‍👧‍👦
+                    </div>
+                    <div class="event-body">
+                        <h4>Filipino Cultural Camp</h4>
+                        <div class="event-meta">
+                            <div class="meta-item">📅 July 21-25, 2026</div>
+                            <div class="meta-item">⏰ 9:00 AM - 3:00 PM Daily</div>
+                            <div class="meta-item">📍 Location TBA</div>
+                        </div>
+                        <p>Week-long summer camp introducing youth to Filipino language, culture, and traditions.</p>
+                        <div class="event-footer">
+                            <span class="event-price">$275</span>
+                            <button class="btn-small">Register</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <span class="event-type-badge">Fundraising</span>
+                        ⛳
+                    </div>
+                    <div class="event-body">
+                        <h4>Charity Golf Tournament</h4>
+                        <div class="event-meta">
+                            <div class="meta-item">📅 Saturday, September 14, 2026</div>
+                            <div class="meta-item">⏰ 8:00 AM - 2:00 PM</div>
+                            <div class="meta-item">📍 TPC Harding Park, SF</div>
+                        </div>
+                        <p>Annual golf tournament raising funds for UP scholarships. Includes lunch and awards.</p>
+                        <div class="event-footer">
+                            <span class="event-price">$200/player</span>
+                            <button class="btn-small">Join Team</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn btn-secondary">View Full Calendar</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h3>Never Miss an Event</h3>
+            <p>Subscribe to our newsletter and get the monthly event calendar delivered to your inbox</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">Join 500+ alumni receiving event updates and community news</p>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // View toggle functionality
+        const viewButtons = document.querySelectorAll('.view-btn');
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                viewButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.event-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert('Thank you for subscribing! You will receive our next event calendar at ' + email);
+            this.reset();
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-group select').forEach(select => {
+            select.addEventListener('change', function() {
+                console.log('Filter changed:', this.value);
+            });
+        });
+
+        // RSVP button functionality
+        document.querySelectorAll('.btn-small').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const eventCard = this.closest('.event-card');
+                const eventName = eventCard.querySelector('h4').textContent;
+                alert('Registration for "' + eventName + '" coming soon!');
+            });
+        });
+    </script>
+</body>
+</html>

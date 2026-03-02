@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs & Initiatives | UPAASF Alumni Mentoring, Cultural Camp & More</title>
+    <meta name="description" content="Discover UPAASF's impactful programs: Silicon Valley Alumni Mentoring connecting UP students with professionals, Filipino Cultural Immersion Camp, and community initiatives.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            color: #8B0000;
+            font-weight: 800;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: #0A3B1A;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #8B0000;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #8B0000 0%, #660000 50%, #0A3B1A 100%);
+            color: white;
+            padding: 140px 5% 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        /* Programs Overview */
+        .programs-overview {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .overview-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .overview-intro {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .overview-intro h3 {
+            font-size: 2.5rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .overview-intro p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .program-summary-card {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .program-summary-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .program-summary-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-summary-card h4 {
+            font-size: 1.5rem;
+            color: #8B0000;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .program-summary-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .program-summary-card .learn-more {
+            color: #8B0000;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Program Detail Section */
+        .program-detail {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+
+        .program-detail:nth-child(even) {
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+        }
+
+        .program-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .program-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .program-header-content h3 {
+            font-size: 3rem;
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+        }
+
+        .program-header-content .tagline {
+            font-size: 1.3rem;
+            color: #0A3B1A;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .program-header-content p {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .program-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-image::after {
+            content: 'Add Program Photo';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid #FFD700;
+        }
+
+        .feature-box h5 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 8rem;
+            color: rgba(255, 215, 0, 0.3);
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #FFD700;
+        }
+
+        .testimonial-author span {
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #8B0000;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* CTA Boxes */
+        .cta-box {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-box h4 {
+            font-size: 2rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-box p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #8B0000;
+            color: white;
+            box-shadow: 0 6px 25px rgba(139, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #660000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(139, 0, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #8B0000;
+            border: 2px solid #8B0000;
+        }
+
+        .btn-secondary:hover {
+            background: #8B0000;
+            color: white;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 4rem 0;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 3rem;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #FFD700;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .info-box h5 {
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+            color: #666;
+        }
+
+        .info-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* All Programs Overview */
+        .all-programs-section {
+            background: white;
+            padding: 6rem 5%;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .page-hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .program-header {
+                grid-template-columns: 1fr;
+            }
+
+            .program-header-content h3 {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">UP</div>
+                <div class="logo-text">
+                    <h1>UPAASF</h1>
+                    <p>University of the Philippines Alumni</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./programs.html" style="color: #8B0000;">Programs</a></li>
+                <li><a href="./events.html">Events</a></li>
+                <li><a href="./membership.html">Membership</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h2>Programs That Connect, Empower, and Inspire</h2>
+            <p>From groundbreaking mentoring initiatives to beloved cultural traditions, our programs create meaningful connections and lasting impact</p>
+        </div>
+    </section>
+
+    <!-- Programs Overview -->
+    <section class="programs-overview">
+        <div class="overview-content">
+            <div class="overview-intro">
+                <h3>Making a Difference Through Action</h3>
+                <p>UPAASF's programs reflect our commitment to excellence, service, and community. Each initiative is designed to strengthen connections between UP alumni, support current students, preserve Filipino heritage, and give back to our alma mater.</p>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-summary-card" onclick="document.getElementById('mentoring').scrollIntoView({behavior: 'smooth'})">
+                    <div class="icon">🎓</div>
+                    <h4>Alumni Mentoring Program</h4>
+                    <p>Connect UP students with Bay Area professionals for career guidance and design thinking sessions.</p>
+                    <a href="#mentoring" class="learn-more">Learn More →</a>
+                </div>
+
+                <div class="program-summary-card" onclick="document.getElementById('cultural-camp').scrollIntoView({behavior: 'smooth'})">
+                    <div class="icon">🎭</div>
+                    <h4>Filipino Cultural Immersion Camp</h4>
+                    <p>Introduce youth to Filipino heritage, language, and traditions through our beloved annual program.</p>
+                    <a href="#cultural-camp" class="learn-more">Learn More →</a>
+                </div>
+
+                <div class="program-summary-card" onclick="document.getElementById('speakers').scrollIntoView({behavior: 'smooth'})">
+                    <div class="icon">💡</div>
+                    <h4>Speakers' Series</h4>
+                    <p>Engage with thought leaders and accomplished professionals on diverse topics and industries.</p>
+                    <a href="#speakers" class="learn-more">Learn More →</a>
+                </div>
+
+                <div class="program-summary-card" onclick="document.getElementById('up-streets').scrollIntoView({behavior: 'smooth'})">
+                    <div class="icon">🎨</div>
+                    <h4>UP in the Streets</h4>
+                    <p>Community engagement and public art initiatives celebrating UP pride and Filipino culture.</p>
+                    <a href="#up-streets" class="learn-more">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alumni Mentoring Program -->
+    <section class="program-detail" id="mentoring">
+        <div class="program-container">
+            <div class="program-header">
+                <div class="program-header-content">
+                    <h3>Alumni Mentoring Program</h3>
+                    <p class="tagline">Empowering the Next Generation of UP Leaders</p>
+                    <p>The UPAASF Alumni Mentoring Program represents a bold vision: connecting UP students in the Philippines with accomplished professionals in the San Francisco Bay Area to provide career guidance, share global perspectives, and foster the innovative thinking that will shape their futures.</p>
+                </div>
+                <div class="program-image">🎓</div>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">A First-of-Its-Kind Initiative</h4>
+                <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">Launched in November 2023, this program is the first of its kind among UP alumni chapters worldwide. Developed in partnership with UP Diliman's Office of Student Development Services, the program uses a design thinking approach that puts students' needs, desires, and challenges at the heart of the mentorship experience.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h5>One-on-One Mentorship</h5>
+                    <p>Personalized career guidance conversations tailored to each student's goals and aspirations.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Design Thinking Workshops</h5>
+                    <p>Collaborative sessions teaching innovative problem-solving and strategic planning skills.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Global Perspectives</h5>
+                    <p>Insights into Silicon Valley innovation, Bay Area opportunities, and international careers.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Professional Networks</h5>
+                    <p>Build lasting connections with professionals across diverse industries and career stages.</p>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>This program could not have come at a better time. I had some idea of where I wanted to be but was unsure of how to get there. The mentorship sessions gave me clarity and confidence.</p>
+                    <div class="testimonial-author">
+                        Hannah Nicole Gaudiel <span>BS Statistics, UP Diliman</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Students Mentored</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Mentoring Hours</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Professional Fields</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Student Satisfaction</span>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h4 style="font-size: 1.8rem; color: #8B0000; margin-bottom: 1.5rem;">Our Mentors</h4>
+                <p style="font-size: 1.1rem; color: #555; line-height: 1.8; margin-bottom: 1rem;">Our mentors bring decades of expertise from leading organizations across the Bay Area:</p>
+                <ul style="font-size: 1.05rem; color: #555; line-height: 2; padding-left: 2rem;">
+                    <li>Software development managers at major tech companies</li>
+                    <li>Marketing and communications professionals</li>
+                    <li>Healthcare administrators and medical professionals</li>
+                    <li>Entrepreneurs and business leaders</li>
+                    <li>Engineers and technical experts</li>
+                    <li>Academic researchers and professors</li>
+                </ul>
+            </div>
+
+            <div class="cta-box">
+                <h4>Become a Mentor</h4>
+                <p>Share your expertise and make a lasting impact on a UP student's future. We're seeking experienced professionals to join our mentor network.</p>
+                <a href="./contact.html" class="btn btn-primary">Apply to Mentor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filipino Cultural Immersion Camp -->
+    <section class="program-detail" id="cultural-camp">
+        <div class="program-container">
+            <div class="program-header">
+                <div class="program-image">🎭</div>
+                <div class="program-header-content">
+                    <h3>Filipino Cultural Immersion Camp</h3>
+                    <p class="tagline">Passing Filipino Heritage to the Next Generation</p>
+                    <p>For over two decades, the UPAASF Annual Filipino Cultural Immersion Camp has been a cornerstone of our mission to preserve and celebrate Filipino culture in the Bay Area. This beloved program introduces children and young adults to the rich tapestry of Filipino heritage.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h5>2026 Camp Information</h5>
+                <p><strong>Dates:</strong> [Week of July/August - TBD]<br>
+                <strong>Location:</strong> [Venue - TBD]<br>
+                <strong>Ages:</strong> 8-17 years old<br>
+                <strong>Cost:</strong> $[Amount] (scholarships available)<br>
+                <strong>Registration Opens:</strong> [Date - TBD]</p>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">What Campers Experience</h4>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h5>🗣️ Filipino Language</h5>
+                    <p>Basic Tagalog conversation, common phrases, and cultural context for everyday use.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>💃 Traditional Arts</h5>
+                    <p>Folk dances like Tinikling, cultural music performances, and traditional crafts.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>📚 Filipino History</h5>
+                    <p>Stories of Philippine heroes, historical events, and cultural evolution.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>❤️ Filipino Values</h5>
+                    <p>Understanding bayanihan, pakikisama, respect for elders, and family bonds.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>🍽️ Filipino Cuisine</h5>
+                    <p>Cooking demonstrations and tastings of traditional dishes and regional favorites.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>🤝 Community Building</h5>
+                    <p>Build friendships with other Filipino-American youth and create lasting memories.</p>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>My daughter came home from camp singing Filipino songs and teaching us Tinikling! She's so proud of her heritage now. This program is a gift to our family.</p>
+                    <div class="testimonial-author">
+                        Maria Santos <span>Parent, 3rd-year camper</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h4 style="font-size: 1.8rem; color: #8B0000; margin-bottom: 1.5rem;">Week-Long Program Highlights</h4>
+                <ul style="font-size: 1.05rem; color: #555; line-height: 2; padding-left: 2rem;">
+                    <li>Interactive cultural workshops led by community experts</li>
+                    <li>Traditional dance instruction and performances</li>
+                    <li>Filipino language classes for all levels</li>
+                    <li>Cooking demonstrations of Filipino favorites</li>
+                    <li>Arts and crafts inspired by Philippine traditions</li>
+                    <li>Filipino games and recreational activities</li>
+                    <li>Field trips to Filipino cultural sites in the Bay Area</li>
+                    <li>Culminating performance for families and community</li>
+                </ul>
+            </div>
+
+            <div class="photo-gallery">
+                <div class="gallery-item"><div class="gallery-placeholder">📸</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">📸</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">📸</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">📸</div></div>
+            </div>
+
+            <div class="cta-box">
+                <h4>Register Your Child for Camp 2026</h4>
+                <p>Give your child the gift of cultural connection. Limited spots available!</p>
+                <!--
+                <a href="/contact" class="btn btn-primary">Join Waitlist</a>
+				<a href="#" class="btn btn-secondary" style="margin-left: 1rem;">Download Brochure</a>
+				-->
+				<a href="./contact.html" class="btn btn-primary">Join Waitlist</a>
+				<a href="/brochure.pdf" class="btn btn-secondary" style="margin-left: 1rem;">Download Brochure</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers' Series -->
+    <section class="program-detail" id="speakers">
+        <div class="program-container">
+            <div class="program-header">
+                <div class="program-header-content">
+                    <h3>Speakers' Series</h3>
+                    <p class="tagline">Inspiring Conversations with Leaders and Innovators</p>
+                    <p>The UPAASF Speakers' Series brings together thought leaders, accomplished professionals, and inspiring change-makers for engaging conversations that educate, inspire, and connect our community.</p>
+                </div>
+                <div class="program-image">💡</div>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">What to Expect</h4>
+                <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">Our quarterly speaker events feature presentations, panel discussions, and Q&A sessions covering diverse topics:</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h5>Technology & Innovation</h5>
+                    <p>Silicon Valley insights, emerging technologies, and digital transformation.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Healthcare & Medicine</h5>
+                    <p>Medical breakthroughs, public health, and healthcare innovation.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Business & Leadership</h5>
+                    <p>Entrepreneurship, career development, and organizational excellence.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Arts & Culture</h5>
+                    <p>Filipino arts, cultural preservation, and creative expression.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Social Impact</h5>
+                    <p>Community development, nonprofit work, and social entrepreneurship.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Education & Research</h5>
+                    <p>Academic excellence, research innovation, and educational policy.</p>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0; background: #f8f9fa; padding: 3rem; border-radius: 20px;">
+                <h4 style="font-size: 1.8rem; color: #8B0000; margin-bottom: 2rem;">Recent Speakers</h4>
+                <div style="display: grid; gap: 2rem;">
+                    <div style="border-left: 4px solid #FFD700; padding-left: 1.5rem;">
+                        <h5 style="font-size: 1.3rem; color: #333; margin-bottom: 0.5rem;">[Speaker Name], [Title]</h5>
+                        <p style="color: #8B0000; font-weight: 600; margin-bottom: 0.5rem;">"[Talk Title]"</p>
+                        <p style="color: #666;">Brief description of the talk and key takeaways for attendees.</p>
+                    </div>
+                    <div style="border-left: 4px solid #FFD700; padding-left: 1.5rem;">
+                        <h5 style="font-size: 1.3rem; color: #333; margin-bottom: 0.5rem;">[Speaker Name], [Title]</h5>
+                        <p style="color: #8B0000; font-weight: 600; margin-bottom: 0.5rem;">"[Talk Title]"</p>
+                        <p style="color: #666;">Brief description of the talk and key takeaways for attendees.</p>
+                    </div>
+                    <div style="border-left: 4px solid #FFD700; padding-left: 1.5rem;">
+                        <h5 style="font-size: 1.3rem; color: #333; margin-bottom: 0.5rem;">[Speaker Name], [Title]</h5>
+                        <p style="color: #8B0000; font-weight: 600; margin-bottom: 0.5rem;">"[Talk Title]"</p>
+                        <p style="color: #666;">Brief description of the talk and key takeaways for attendees.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h5>Upcoming Speaker Event</h5>
+                <p><strong>Date:</strong> [Date - TBD]<br>
+                <strong>Speaker:</strong> [Name, Title]<br>
+                <strong>Topic:</strong> "[Talk Title]"<br>
+                <strong>Format:</strong> In-person at [Location] + Virtual option<br>
+                <strong>Registration:</strong> Free for members, $[Amount] for guests</p>
+            </div>
+
+            <div class="cta-box">
+                <h4>Suggest a Speaker</h4>
+                <p>Know an inspiring leader or expert who would make a great speaker? We'd love to hear your suggestions!</p>
+                <a href="./contact.html" class="btn btn-primary">Submit Speaker Idea</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UP in the Streets -->
+    <section class="program-detail" id="up-streets">
+        <div class="program-container">
+            <div class="program-header">
+                <div class="program-image">🎨</div>
+                <div class="program-header-content">
+                    <h3>UP in the Streets</h3>
+                    <p class="tagline">Celebrating UP Pride Through Community Art and Engagement</p>
+                    <p>UP in the Streets brings the spirit of UP into the Bay Area community through public art projects, cultural celebrations, and community engagement initiatives that showcase Filipino pride and UP excellence.</p>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">Program Components</h4>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h5>Public Murals</h5>
+                    <p>Collaborative mural projects celebrating Filipino culture and UP heritage in Bay Area communities.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Community Events</h5>
+                    <p>Street festivals, cultural showcases, and public celebrations of Filipino traditions.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Youth Engagement</h5>
+                    <p>Workshops and programs introducing young people to public art and community activism.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Cultural Education</h5>
+                    <p>Public programs teaching Filipino history, arts, and cultural traditions to diverse audiences.</p>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>Seeing UP represented in public art makes me so proud. It's a reminder that we're not just alumni—we're ambassadors of Filipino excellence everywhere we go.</p>
+                    <div class="testimonial-author">
+                        Ramon Cruz <span>UPAASF Member, Class of 2010</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-gallery">
+                <div class="gallery-item"><div class="gallery-placeholder">📸</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">📸</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">📸</div></div>
+            </div>
+
+            <div class="cta-box">
+                <h4>Get Involved</h4>
+                <p>Join us in bringing UP pride to the streets! We're always looking for volunteers, artists, and community partners.</p>
+                <a href="./contact.html" class="btn btn-primary">Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Programs -->
+    <section class="all-programs-section">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h3 style="font-size: 2.5rem; color: #8B0000; margin-bottom: 1rem;">Additional Initiatives</h3>
+                <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto;">Beyond our flagship programs, UPAASF supports a variety of initiatives that strengthen our community and support UP.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; border: 2px solid #f0f0f0;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎓</div>
+                    <h4 style="font-size: 1.5rem; color: #8B0000; margin-bottom: 1rem; font-weight: 700;">Scholarship Program</h4>
+                    <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem;">Providing financial assistance to deserving UP students through merit-based scholarships funded by our community.</p>
+                    <a href="./contact.html" style="color: #8B0000; font-weight: 700; text-decoration: none;">Learn More →</a>
+                </div>
+
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; border: 2px solid #f0f0f0;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🆘</div>
+                    <h4 style="font-size: 1.5rem; color: #8B0000; margin-bottom: 1rem; font-weight: 700;">Disaster Relief</h4>
+                    <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem;">Rapid response fundraising and support for communities in the Philippines affected by natural disasters.</p>
+                    <a href="./contact.html" style="color: #8B0000; font-weight: 700; text-decoration: none;">Learn More →</a>
+                </div>
+
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; border: 2px solid #f0f0f0;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏛️</div>
+                    <h4 style="font-size: 1.5rem; color: #8B0000; margin-bottom: 1rem; font-weight: 700;">UP Campus Support</h4>
+                    <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem;">Fundraising for facility improvements, equipment donations, and infrastructure projects at UP campuses.</p>
+                    <a href="./contact.html" style="color: #8B0000; font-weight: 700; text-decoration: none;">Learn More →</a>
+                </div>
+
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; border: 2px solid #f0f0f0;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤝</div>
+                    <h4 style="font-size: 1.5rem; color: #8B0000; margin-bottom: 1rem; font-weight: 700;">Networking Events</h4>
+                    <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem;">Quarterly mixers, professional gatherings, and social events connecting alumni across industries.</p>
+                    <a href="./events.html" style="color: #8B0000; font-weight: 700; text-decoration: none;">View Events →</a>
+                </div>
+
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; border: 2px solid #f0f0f0;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">👨‍👩‍👧‍👦</div>
+                    <h4 style="font-size: 1.5rem; color: #8B0000; margin-bottom: 1rem; font-weight: 700;">Family Programs</h4>
+                    <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem;">Family-friendly activities, picnics, sports leagues, and gatherings that bring multiple generations together.</p>
+                    <a href="./events.html" style="color: #8B0000; font-weight: 700; text-decoration: none;">View Events →</a>
+                </div>
+
+                <div style="background: white; padding: 2.5rem; border-radius: 15px; border: 2px solid #f0f0f0;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌐</div>
+                    <h4 style="font-size: 1.5rem; color: #8B0000; margin-bottom: 1rem; font-weight: 700;">Global UP Network</h4>
+                    <p style="color: #666; line-height: 1.7; margin-bottom: 1.5rem;">Collaboration with UP alumni chapters worldwide, sharing best practices and supporting global initiatives.</p>
+                    <a href="./about.html" style="color: #8B0000; font-weight: 700; text-decoration: none;">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section style="background: linear-gradient(135deg, #8B0000, #0A3B1A); color: white; padding: 6rem 5%; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">Our Collective Impact</h3>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Through our programs, UPAASF members are making a tangible difference for UP students, Filipino-American communities, and the Bay Area.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-top: 3rem;">
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 900; color: #FFD700; margin-bottom: 0.5rem;">100+</div>
+                    <div style="font-size: 1.1rem; font-weight: 600;">Students Impacted Annually</div>
+                </div>
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 900; color: #FFD700; margin-bottom: 0.5rem;">1,000+</div>
+                    <div style="font-size: 1.1rem; font-weight: 600;">Community Members Served</div>
+                </div>
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 900; color: #FFD700; margin-bottom: 0.5rem;">$500K+</div>
+                    <div style="font-size: 1.1rem; font-weight: 600;">Raised for UP & Community</div>
+                </div>
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 900; color: #FFD700; margin-bottom: 0.5rem;">5,000+</div>
+                    <div style="font-size: 1.1rem; font-weight: 600;">Volunteer Hours</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="background: white; padding: 6rem 5%; text-align: center;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h3 style="font-size: 2.5rem; color: #8B0000; margin-bottom: 1rem;">Get Involved in Our Programs</h3>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 2.5rem; line-height: 1.7;">Whether you want to mentor a student, volunteer at our cultural camp, or support our initiatives financially, there's a place for you in UPAASF's mission.</p>
+            
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="./membership.html" class="btn btn-primary">Become a Member</a>
+                <a href="./contact.html" class="btn btn-secondary">Volunteer</a>
+                <a href="/donate" class="btn btn-secondary">Make a Donation</a>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2.5rem; background: #f8f9fa; border-radius: 15px;">
+                <h4 style="font-size: 1.5rem; color: #8B0000; margin-bottom: 1rem;">Have a Program Idea?</h4>
+                <p style="color: #666; margin-bottom: 1.5rem;">We're always exploring new ways to serve our community. If you have an idea for a program or initiative, we'd love to hear from you.</p>
+                <a href="./contact.html" style="color: #8B0000; font-weight: 700; text-decoration: none; font-size: 1.1rem;">Submit Your Idea →</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.feature-box, .program-summary-card, .testimonial, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Animate stats when visible
+        let statsAnimated = false;
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    animateStatNumbers();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statBars = document.querySelectorAll('.stats-bar');
+        statBars.forEach(bar => statsObserver.observe(bar));
+
+        function animateStatNumbers() {
+            document.querySelectorAll('.stat-number').forEach(stat => {
+                const text = stat.textContent;
+                const hasPlus = text.includes('+');
+                const hasPercent = text.includes('%');
+                
+                let target = parseInt(text.replace(/[^0-9]/g, ''));
+                let current = 0;
+                const increment = target / 40;
+                const duration = 1200;
+                const stepTime = duration / 40;
+
+                const counter = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(counter);
+                    }
+                    
+                    let displayValue = Math.floor(current);
+                    if (hasPlus) displayValue = displayValue + '+';
+                    if (hasPercent) displayValue = displayValue + '%';
+                    
+                    stat.textContent = displayValue;
+                }, stepTime);
+            });
+        }
+
+        // Program card click handling
+        document.querySelectorAll('.program-summary-card').forEach(card => {
+            card.style.cursor = 'pointer';
+        });
+    </script>
+</body>
+</html>
