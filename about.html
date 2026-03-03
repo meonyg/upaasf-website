@@ -972,7 +972,7 @@
             statNumbers.forEach(stat => {
                 const text = stat.textContent;
                 const hasPlus = text.includes('+');
-                const hasDollar = text.includes(');
+                const hasDollar = text.includes('$');
                 const hasK = text.includes('K');
                 
                 let target = parseInt(text.replace(/[^0-9]/g, ''));
@@ -989,7 +989,7 @@
                     }
                     
                     let displayValue = Math.floor(current);
-                    if (hasDollar) displayValue = ' + displayValue;
+                    if (hasDollar) displayValue = '$' + displayValue;
                     if (hasK) displayValue = displayValue + 'K';
                     if (hasPlus) displayValue = displayValue + '+';
                     
