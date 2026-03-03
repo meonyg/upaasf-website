@@ -29,6 +29,8 @@
             padding: 1rem 5%;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            /* ===== MOBILE NAV FIX ===== */
+            overflow: visible;
         }
 
         .nav-container {
@@ -505,6 +507,31 @@
             transform: translateY(-2px);
         }
 
+        /* ===== MOBILE NAV FIX: START ===== */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            min-width: 44px;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #8B0000;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        /* ===== MOBILE NAV FIX: END ===== */
+        
         @media (max-width: 968px) {
             .page-hero h2 {
                 font-size: 2.2rem;
@@ -522,9 +549,43 @@
                 grid-template-columns: 1fr;
             }
 
+            /* ===== MOBILE NAV FIX: START ===== */
+            .mobile-menu-btn {
+                display: flex;
+            }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.99);
+                flex-direction: column;
+                padding: 1rem 5%;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+                gap: 0;
+                z-index: 999;
             }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 0.85rem 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                font-size: 1.05rem;
+                display: block;
+            }
+            /* ===== MOBILE NAV FIX: END ===== */
 
             .view-toggle {
                 margin-left: 0;
@@ -554,6 +615,13 @@
                 <li><a href="./membership.html">Membership</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
+            <!-- ===== MOBILE NAV FIX: START ===== -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <!-- ===== MOBILE NAV FIX: END ===== -->
         </div>
     </nav>
 
@@ -788,6 +856,23 @@
     </section>
 
     <script>
+        // ===== MOBILE NAV FIX: START =====
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                mobileMenuBtn.setAttribute('aria-expanded', false);
+            });
+        });
+        // ===== MOBILE NAV FIX: END =====
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
