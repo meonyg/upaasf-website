@@ -801,84 +801,16 @@
 
         /* ===================== FOOTER ===================== */
         footer {
-            background: linear-gradient(135deg, #1a0000 0%, #0A1A0A 100%);
+            background: #1a1a1a;
             color: white;
             padding: 3rem 5%;
             text-align: center;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto 2.5rem;
-            text-align: left;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-brand p {
-            font-size: 0.83rem;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .footer-social { display: flex; gap: 0.6rem; }
-
-        .social-btn {
-            width: 36px; height: 36px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-decoration: none;
-        }
-
-        .social-btn:hover { background: #8B0000; }
-
-        .footer-col h4 {
-            font-size: 0.85rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #FFD700;
-            margin-bottom: 1rem;
-        }
-
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-
-        .footer-col ul li a {
-            font-size: 0.83rem;
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-col ul li a:hover { color: white; }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+        footer p { color: rgba(255,255,255,0.7); }
 
         /* ===================== RESPONSIVE ===================== */
         @media (max-width: 1024px) {
-            .footer-grid { grid-template-columns: 1fr 1fr; }
             .stats-bar    { grid-template-columns: repeat(2, 1fr); }
             .stat-item:nth-child(2) { border-right: none; }
         }
@@ -899,8 +831,6 @@
             .stats-bar { grid-template-columns: repeat(2, 1fr); }
             .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
             .stat-item:nth-last-child(-n+2) { border-bottom: none; }
-
-            .footer-grid { grid-template-columns: 1fr; }
 
             .programs-subnav { top: 70px; }
 
@@ -1476,50 +1406,9 @@
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
-    <div class="footer-grid">
-        <div class="footer-brand">
-            <h3>UPAASF</h3>
-            <p>University of the Philippines Alumni Association of San Francisco. Serving the Bay Area UP community since 1973. Iskolar ng Bayan, united in the Bay.</p>
-            <div class="footer-social">
-                <a class="social-btn" href="https://www.facebook.com/upaasf" target="_blank" aria-label="Facebook">📘</a>
-                <a class="social-btn" href="https://www.instagram.com/upaa_sf" target="_blank" aria-label="Instagram">📷</a>
-                <a class="social-btn" href="https://www.linkedin.com/company/upaasf" target="_blank" aria-label="LinkedIn">💼</a>
-                <a class="social-btn" href="#" aria-label="YouTube">▶️</a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Programs</h4>
-            <ul>
-                <li><a href="./alumni-mentoring-program.html">Alumni Mentoring</a></li>
-                <li><a href="#cultural-camp">Cultural Camp</a></li>
-                <li><a href="#speakers">Speakers' Series</a></li>
-                <li><a href="#up-streets">UP in the Streets</a></li>
-                <li><a href="#">Scholarship Fund</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Organization</h4>
-            <ul>
-                <li><a href="./about.html">About UPAASF</a></li>
-                <li><a href="./events.html">Events</a></li>
-                <li><a href="./membership.html">Membership</a></li>
-                <li><a href="./community.html">Community</a></li>
-                <li><a href="./contact.html">Contact Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Resources</h4>
-            <ul>
-                <li><a href="#">Member Directory</a></li>
-                <li><a href="#">Annual Reports</a></li>
-                <li><a href="#">Media Kit</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Donate</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2026 University of the Philippines Alumni Association of San Francisco. All rights reserved. | Established 1973 | 501(c)(3) Non-Profit Organization</p>
+    <div class="section-container" style="max-width:1400px; margin:0 auto; padding:3rem 5%;">
+        <p>&copy; 2026 UPAASF | University of the Philippines Alumni Association of San Francisco</p>
+        <p style="margin-top: 0.5rem;">Established 1973 • Serving the Bay Area for 50+ Years</p>
     </div>
 </footer>
 
