@@ -14,12 +14,13 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
+            /* line-height: 1.6; */
             color: #333;
             overflow-x: hidden;
         }
 
-        nav {
+        /* Navigation */
+		nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -48,8 +49,8 @@
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             background: linear-gradient(135deg, #8B0000, #0A3B1A);
             border-radius: 10px;
             display: flex;
@@ -57,18 +58,21 @@
             justify-content: center;
             color: white;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+			box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
         }
 
         .logo-text h1 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #8B0000;
             font-weight: 800;
+			letter-spacing: 1px;
         }
 
         .logo-text p {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #0A3B1A;
+			margin-top: 2px;
             font-weight: 500;
         }
 
@@ -91,6 +95,21 @@
             color: #8B0000;
         }
 
+        .nav-cta {
+            background: #8B0000;
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: #660000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+        }
+
+		/* Page Hero */
         .page-hero {
             background: linear-gradient(135deg, #8B0000 0%, #660000 50%, #0A3B1A 100%);
             color: white;
@@ -641,7 +660,9 @@
                 <li><a href="./programs.html">Programs</a></li>
                 <li><a href="./events.html">Events</a></li>
                 <li><a href="./membership.html">Membership</a></li>
+				<!-- <li><a href="./community.html">Community</a></li> -->
                 <li><a href="./contact.html" style="color: #8B0000;">Contact</a></li>
+				<li><a href="#join" class="nav-cta">Join Now</a></li>
             </ul>
             <!-- ===== MOBILE NAV FIX: START ===== -->
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false">
@@ -875,7 +896,7 @@
         </div>
     </section>
 
-    <section class="cta-section">
+    <section class="cta-section" id="join">
         <div class="cta-content">
             <h3>Ready to Join Our Community?</h3>
             <p>Become a member of the Bay Area's premier UP alumni organization and connect with fellow iskolar ng bayan</p>
