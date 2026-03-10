@@ -5,293 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community | UPAASF – UP Alumni Stories, News & Connections</title>
     <meta name="description" content="Explore the UPAASF community: alumni stories, news and updates, member blog, photo gallery, and UP System connections. Stay connected with your UP ohana in the Bay Area.">
+    <link rel="stylesheet" href="./shared/styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-		
-		:root {
-			/* Standardizes the header height (92px accounts for the 55px logo + padding) */
-			--nav-height: 92px; 
-			/* This is the constant vertical gap between the header and your content */
-			--hero-internal-gap: 48px; 
-		}
-
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            /* line-height: 1.6; */
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* ===================== NAVIGATION ===================== */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 1rem 5%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            /* ===== MOBILE NAV FIX ===== */
-			overflow: visible;		
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-icon {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #8B0000, #0A3B1A);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 900;
-            font-size: 1.2rem;
-			box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
-        }
-
-        .logo-text h1 {
-            font-size: 1.3rem;
-            color: #8B0000;
-            font-weight: 800;
-			letter-spacing: 1px;
-        }
-
-        .logo-text p {
-            font-size: 0.75rem;
-            color: #0A3B1A;
-			margin-top: 2px;
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: #8B0000;
-        }
-
-        .nav-links .active-nav {
-            color: #8B0000;
-        }
-
-        /* Dropdown toggle indicator */
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-        }
-
-        .dropdown-toggle::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid currentColor;
-            transition: transform 0.25s;
-            margin-top: 2px;
-        }
-
-        .nav-links > li:hover .dropdown-toggle::after,
-        .nav-links > li.open .dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-
-        /* Dropdown menu */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #fff;
-            min-width: 240px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.14);
-            padding: 0.5rem 0;
-			padding-top: calc(0.5rem + 10px);
-            margin-top: 0;
-            z-index: 2000;
-            border-top: 3px solid #8B0000;
-        }
-
-        .nav-links > li:hover .dropdown-menu,
-        .nav-links > li.open .dropdown-menu {
-            display: block;
-            animation: dropIn 0.2s ease;
-        }
-
-        @keyframes dropIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
-            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-
-        .dropdown-menu li {
-            list-style: none;
-        }
-
-        .dropdown-menu a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.65rem 1.2rem;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: #444;
-            transition: background 0.2s, color 0.2s, padding-left 0.2s;
-        }
-
-        .dropdown-menu a:hover {
-            background: #fdf2f2;
-            color: #8B0000;
-            padding-left: 1.5rem;
-        }
-		
-		.dropdown-menu a.active-section {
-            background: #fdf2f2;
-            color: #8B0000;
-            padding-left: 1.5rem;
-            border-left: 3px solid #8B0000;
-        }
-
-        .dropdown-menu a.active-section .submenu-label span {
-            color: #c0392b;
-        }
-		
-        .dropdown-menu .submenu-icon {
-            font-size: 1rem;
-            width: 22px;
-            text-align: center;
-        }
-
-        .dropdown-menu .submenu-label {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .dropdown-menu .submenu-label span {
-            font-size: 0.75rem;
-            font-weight: 400;
-            color: #999;
-        }
-
-        .dropdown-divider {
-            border: none;
-            border-top: 1px solid #f0f0f0;
-            margin: 0.3rem 0;
-        }
-
-        /* CTA button in nav */
-        .nav-cta {
-            background: #8B0000;
-            color: white !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-			transition: all 0.3s;
-            /*
-			transition: background 0.3s, transform 0.2s !important;
-			font-size: 0.88rem !important;
-			*/
-        }
-
-        .nav-cta:hover {
-            background: #660000 !important;
-            /* color: white !important; */
-            transform: translateY(-2px);
-			box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
-        }
-
-        /* Mobile hamburger */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-            min-width: 44px;
-            min-height: 44px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: #8B0000;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        /* ===================== PAGE HERO ===================== */
-        .page-hero {
-            background: linear-gradient(135deg, #8B0000 0%, #660000 50%, #0A3B1A 100%);
-            color: white;
-			/* This calculation replaces the hardcoded 140px -- padding: 140px 5% 80px; */
-			padding: calc(var(--nav-height) + var(--hero-internal-gap)) 5% 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
+        /* ── Page Hero: centered emoji watermark override (needs right/bottom: auto to clear shared full-bleed rule) ── */
         .page-hero::before {
             content: '🤝';
-            position: absolute;
             font-size: 22rem;
             opacity: 0.05;
             top: 50%;
             left: 50%;
+            right: auto;
+            bottom: auto;
             transform: translate(-50%, -50%);
+            background: none;
             pointer-events: none;
         }
 
-        .page-hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
+        /* Hero badge (community-specific pill label above h2) */
         .page-hero-badge {
             display: inline-block;
             background: rgba(255,215,0,0.2);
@@ -306,26 +36,95 @@
             margin-bottom: 1.2rem;
         }
 
-        .page-hero h2 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            line-height: 1.15;
+        /* Hero CTA buttons (smaller, community-density sizing) */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FFD700;
+            color: #1a1a1a;
+            padding: 0.75rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
         }
+        .btn-gold:hover {
+			background: #e6c200; 
+			transform: translateY(-2px);
+		}
 
-        .page-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: all 0.2s;
         }
+        .btn-outline-white:hover {
+			border-color: white;
+			background: rgba(255,255,255,0.1);
+			}
 
-        /* ===================== COMMUNITY SUB-NAV ===================== */
+        /* Override shared .btn-primary / .btn-secondary to community density sizing */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #8B0000;
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-primary:hover {
+			background: #660000;
+			transform: translateY(-2px);
+		}
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: #8B0000;
+            padding: 0.75rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid #8B0000;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover {
+			background: #8B0000;
+			color: white;
+			transform: translateY(-2px);
+		}
+
+        /* ── Community sub-nav ── */
         .community-subnav {
             background: white;
             border-bottom: 2px solid #f0f0f0;
             position: sticky;
-            top: 74px;
+            top: var(--nav-height);
             z-index: 900;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
@@ -339,7 +138,6 @@
             overflow-x: auto;
             scrollbar-width: none;
         }
-
         .subnav-container::-webkit-scrollbar { display: none; }
 
         .subnav-item {
@@ -356,32 +154,42 @@
             transition: color 0.2s, border-color 0.2s;
             cursor: pointer;
         }
-
         .subnav-item:hover {
-            color: #8B0000;
-            border-bottom-color: rgba(139,0,0,0.3);
-        }
-
+			color: #8B0000;
+			border-bottom-color: rgba(139,0,0,0.3);
+		}
+		
         .subnav-item.active {
-            color: #8B0000;
-            border-bottom-color: #8B0000;
-        }
-
+			color: #8B0000;
+			border-bottom-color: #8B0000;
+		}
+		
         .subnav-icon {
-            font-size: 1rem;
-        }
+			font-size: 1rem;
+		}
 
-        /* ===================== SECTIONS ===================== */
+        /* ── Section scaffolding ── */
         .section-anchor {
-            scroll-margin-top: 130px;
-        }
+			scroll-margin-top: 130px;
+		}
 
-        /* Section intro header */
+        /* Community uses a compact section-header (overrides shared 3rem h3) */
         .section-header {
             text-align: center;
             max-width: 700px;
             margin: 0 auto 3rem;
         }
+        .section-header h3 {
+			font-size: 2.2rem;
+			font-weight: 800;
+			color: #1a1a1a;
+			margin-bottom: 0.75rem;
+		}
+		
+        .section-header p {
+			color: #666;
+			font-size: 1.05rem;
+		}
 
         .section-tag {
             display: inline-block;
@@ -396,24 +204,7 @@
             margin-bottom: 1rem;
         }
 
-        .section-header h3 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-header p {
-            color: #666;
-            font-size: 1.05rem;
-        }
-
-        /* ===================== ALUMNI STORIES ===================== */
-        #alumni-stories {
-            padding: 5rem 5%;
-            background: #fff;
-        }
-
+        /* ── Alumni Stories ── */
         .stories-subnav {
             display: flex;
             gap: 0.5rem;
@@ -433,13 +224,12 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .story-filter-btn.active,
         .story-filter-btn:hover {
-            border-color: #8B0000;
-            color: #8B0000;
-            background: #fdf2f2;
-        }
+			border-color: #8B0000;
+			color: #8B0000;
+			background: #fdf2f2;
+		}
 
         .stories-grid {
             display: grid;
@@ -457,17 +247,17 @@
             background: white;
             border: 1px solid #f0f0f0;
         }
-
+		
         .story-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 35px rgba(139,0,0,0.12);
-        }
+			transform: translateY(-6px);
+			box-shadow: 0 12px 35px rgba(139,0,0,0.12);
+		}
 
         .story-card.featured {
-            grid-column: span 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
+			grid-column: span 2;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
 
         .story-image {
             height: 200px;
@@ -479,16 +269,16 @@
             position: relative;
             overflow: hidden;
         }
-
-        .story-card.featured .story-image {
-            height: 100%;
-        }
+        
+		.story-card.featured .story-image {
+			height: 100%;
+		}
 
         .story-image-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-        }
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+		}
 
         .story-badge {
             position: absolute;
@@ -505,15 +295,15 @@
         }
 
         .story-body {
-            padding: 1.5rem;
-        }
+			padding: 1.5rem;
+		}
 
         .story-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 0.75rem;
+		}
 
         .story-avatar {
             width: 32px;
@@ -529,35 +319,35 @@
         }
 
         .story-author {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #555;
-        }
-
+			font-size: 0.82rem;
+			font-weight: 700;
+			color: #555;
+		}
+		
         .story-date {
-            font-size: 0.78rem;
-            color: #999;
-            margin-left: auto;
-        }
+			font-size: 0.78rem;
+			color: #999;
+			margin-left: auto;
+		}
 
         .story-body h4 {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 0.6rem;
-            line-height: 1.35;
-        }
-
+			font-size: 1.1rem;
+			font-weight: 800;
+			color: #1a1a1a;
+			margin-bottom: 0.6rem;
+			line-height: 1.35;
+		}
+		
         .story-card.featured .story-body h4 {
-            font-size: 1.4rem;
-        }
+			font-size: 1.4rem;
+		}
 
         .story-body p {
-            font-size: 0.88rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
+			font-size: 0.88rem;
+			color: #666;
+			line-height: 1.6;
+			margin-bottom: 1rem;
+		}
 
         .story-tag {
             display: inline-block;
@@ -571,18 +361,13 @@
         }
 
         .story-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2.5rem;
-        }
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+			margin-top: 2.5rem;
+		}
 
-        /* ===================== NEWS & UPDATES ===================== */
-        #news-updates {
-            padding: 5rem 5%;
-            background: #f8f8f8;
-        }
-
+        /* ── News & Updates ── */
         .news-layout {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -600,7 +385,6 @@
             margin-bottom: 1.8rem;
             width: fit-content;
         }
-
         .news-tab {
             padding: 0.5rem 1.2rem;
             border-radius: 8px;
@@ -612,18 +396,18 @@
             background: transparent;
             border: none;
         }
-
+		
         .news-tab.active {
-            background: white;
-            color: #8B0000;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+			background: white;
+			color: #8B0000;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+		}
 
         .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
+			display: flex;
+			flex-direction: column;
+			gap: 1.2rem;
+		}
 
         .news-item {
             background: white;
@@ -636,64 +420,67 @@
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
-
-        .news-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-        }
+        
+		.news-item:hover {
+			transform: translateX(4px);
+			box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+		}
 
         .news-date-block {
-            background: #8B0000;
-            color: white;
-            border-radius: 10px;
-            padding: 0.5rem 0.8rem;
             text-align: center;
-            min-width: 56px;
-            flex-shrink: 0;
+            min-width: 48px;
+            background: #fdf2f2;
+            border-radius: 10px;
+            padding: 0.5rem 0.4rem;
         }
-
+		
         .news-date-block .day {
-            font-size: 1.4rem;
-            font-weight: 900;
-            line-height: 1;
-        }
-
+			font-size: 1.4rem;
+			font-weight: 900;
+			color: #8B0000;
+			line-height: 1;
+		}
+		
         .news-date-block .month {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            opacity: 0.85;
-        }
+			font-size: 0.72rem;
+			font-weight: 700;
+			color: #8B0000;
+			text-transform: uppercase;
+		}
 
-        .news-content h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 0.35rem;
-            line-height: 1.4;
-        }
-
-        .news-content p {
-            font-size: 0.83rem;
-            color: #777;
-            line-height: 1.5;
-        }
-
+        .news-content {
+			flex: 1;
+		}
         .news-category {
             font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            color: #8B0000;
-            margin-bottom: 0.3rem;
+            color: #0A3B1A;
+            margin-bottom: 0.35rem;
         }
+		
+        .news-content h4 {
+			font-size: 0.95rem;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-bottom: 0.4rem;
+			line-height: 1.4;
+		}
+		
+        .news-content p {
+			font-size: 0.82rem;
+			color: #777;
+			line-height: 1.5;
+		}
 
-        /* Sidebar */
+        /* News sidebar */
         .news-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+		
 
         .sidebar-widget {
             background: white;
@@ -701,57 +488,31 @@
             padding: 1.5rem;
             border: 1px solid #f0f0f0;
         }
+		
+        .newsletter-widget {
+			background: linear-gradient(135deg, #8B0000, #0A3B1A);
+			color: white;
+			border: none;
+		}
+		
+        .newsletter-widget p {
+			color: rgba(255,255,255,0.85);
+			font-size: 0.85rem;
+			margin-bottom: 1rem;
+		}
 
         .widget-title {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             color: #1a1a1a;
             margin-bottom: 1rem;
-            padding-bottom: 0.6rem;
-            border-bottom: 2px solid #8B0000;
-            display: inline-block;
         }
-
-        .widget-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .widget-links li a {
-            font-size: 0.85rem;
-            color: #555;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.2s;
-        }
-
-        .widget-links li a::before {
-            content: '→';
-            color: #8B0000;
-            font-size: 0.8rem;
-        }
-
-        .widget-links li a:hover { color: #8B0000; }
-
-        .newsletter-widget {
-            background: linear-gradient(135deg, #8B0000, #660000);
-            color: white;
-        }
-
-        .newsletter-widget .widget-title {
-            color: white;
-            border-bottom-color: #FFD700;
-        }
-
-        .newsletter-widget p {
-            font-size: 0.83rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
+        
+		.newsletter-widget .widget-title {
+			color: #FFD700;
+		}
 
         .newsletter-input {
             width: 100%;
@@ -763,15 +524,27 @@
             font-size: 0.85rem;
             margin-bottom: 0.75rem;
         }
-
         .newsletter-input::placeholder { color: rgba(255,255,255,0.6); }
 
-        /* ===================== MEMBER BLOG ===================== */
-        #member-blog {
-            padding: 5rem 5%;
-            background: white;
-        }
+        .widget-links {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+		
+        .widget-links li a {
+			font-size: 0.85rem;
+			color: #8B0000;
+			text-decoration: none;
+			font-weight: 600;
+		}
+		
+        .widget-links li a:hover {
+			text-decoration: underline;
+		}
 
+        /* ── Member Blog ── */
         .blog-toolbar {
             display: flex;
             justify-content: space-between;
@@ -781,12 +554,11 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-
         .blog-categories {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+			display: flex;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+		}
 
         .cat-chip {
             padding: 0.35rem 0.9rem;
@@ -801,10 +573,10 @@
         }
 
         .cat-chip.active, .cat-chip:hover {
-            border-color: #8B0000;
-            color: #8B0000;
-            background: #fdf2f2;
-        }
+			border-color: #8B0000;
+			color: #8B0000;
+			background: #fdf2f2;
+		}
 
         .write-btn {
             display: flex;
@@ -821,9 +593,9 @@
         }
 
         .write-btn:hover {
-            background: #062810;
-            transform: translateY(-2px);
-        }
+			background: #062810;
+			transform: translateY(-2px);
+		}
 
         .blog-grid {
             display: grid;
@@ -832,7 +604,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .blog-card {
             border: 1px solid #f0f0f0;
             border-radius: 14px;
@@ -840,11 +611,11 @@
             transition: transform 0.3s, box-shadow 0.3s;
             background: white;
         }
-
+		
         .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+			transform: translateY(-5px);
+			box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+		}
 
         .blog-card-image {
             height: 170px;
@@ -855,7 +626,6 @@
             font-size: 3.5rem;
             position: relative;
         }
-
         .blog-card-image .read-time {
             position: absolute;
             bottom: 10px;
@@ -869,45 +639,44 @@
         }
 
         .blog-card-body {
-            padding: 1.3rem;
-        }
-
+			padding: 1.3rem;
+		}
+		
         .blog-card-cat {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #0A3B1A;
-            margin-bottom: 0.5rem;
-        }
-
+			font-size: 0.72rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.8px;
+			color: #0A3B1A;
+			margin-bottom: 0.5rem;
+		}
+		
         .blog-card-body h4 {
-            font-size: 1rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-
+			font-size: 1rem;
+			font-weight: 800;
+			color: #1a1a1a;
+			margin-bottom: 0.5rem;
+			line-height: 1.4;
+		}
+		
         .blog-card-body p {
-            font-size: 0.83rem;
-            color: #777;
-            line-height: 1.55;
-            margin-bottom: 1rem;
-        }
+			font-size: 0.83rem;
+			color: #777;
+			line-height: 1.55;
+			margin-bottom: 1rem;
+		}
 
         .blog-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		
         .blog-author-info {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
+			display: flex;
+			align-items: center;
+			gap: 7px;
+		}
         .author-dot {
             width: 28px;
             height: 28px;
@@ -920,28 +689,27 @@
             font-size: 0.7rem;
             font-weight: 700;
         }
-
+		
         .author-name {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #444;
-        }
-
+			font-size: 0.8rem;
+			font-weight: 700;
+			color: #444;
+		}
+		
         .blog-likes {
-            font-size: 0.8rem;
-            color: #aaa;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+			font-size: 0.8rem;
+			color: #aaa;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
 
         .blog-pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2.5rem;
-        }
-
+			display: flex;
+			justify-content: center;
+			gap: 0.5rem;
+			margin-top: 2.5rem;
+		}
         .page-btn {
             width: 36px;
             height: 36px;
@@ -954,33 +722,14 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
+		
         .page-btn.active, .page-btn:hover {
-            border-color: #8B0000;
-            background: #8B0000;
-            color: white;
-        }
+			border-color: #8B0000;
+			background: #8B0000;
+			color: white;
+		}
 
-        /* ===================== PHOTO GALLERY ===================== */
-        #photo-gallery {
-            padding: 5rem 5%;
-            background: #1a1a1a;
-            color: white;
-        }
-
-        #photo-gallery .section-tag {
-            background: rgba(255,215,0,0.15);
-            color: #FFD700;
-        }
-
-        #photo-gallery .section-header h3 {
-            color: white;
-        }
-
-        #photo-gallery .section-header p {
-            color: rgba(255,255,255,0.7);
-        }
-
+        /* ── Photo Gallery ── */
         .gallery-filters {
             display: flex;
             gap: 0.5rem;
@@ -988,7 +737,6 @@
             flex-wrap: wrap;
             margin-bottom: 2.5rem;
         }
-
         .gallery-filter-btn {
             padding: 0.45rem 1.1rem;
             border: 2px solid rgba(255,255,255,0.2);
@@ -1000,13 +748,12 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .gallery-filter-btn.active,
         .gallery-filter-btn:hover {
-            border-color: #FFD700;
-            color: #FFD700;
-            background: rgba(255,215,0,0.1);
-        }
+			border-color: #FFD700;
+			color: #FFD700;
+			background: rgba(255,215,0,0.1);
+		}
 
         .gallery-grid {
             display: grid;
@@ -1016,7 +763,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .gallery-item {
             border-radius: 12px;
             overflow: hidden;
@@ -1029,14 +775,22 @@
             font-size: 3.5rem;
             transition: transform 0.3s;
         }
-
+		
         .gallery-item:hover {
-            transform: scale(1.02);
-            z-index: 2;
-        }
-
+			transform: scale(1.02); z-index: 2;
+		}
         .gallery-item.wide { grid-column: span 2; }
         .gallery-item.tall { grid-row: span 2; }
+
+        /* Color palette for gallery placeholders */
+        .gallery-item:nth-child(1) { background: linear-gradient(135deg, #8B0000, #c0392b); }
+        .gallery-item:nth-child(2) { background: linear-gradient(135deg, #0A3B1A, #27ae60); }
+        .gallery-item:nth-child(3) { background: linear-gradient(135deg, #1a3a6b, #2980b9); }
+        .gallery-item:nth-child(4) { background: linear-gradient(135deg, #6b1a3a, #c0392b); }
+        .gallery-item:nth-child(5) { background: linear-gradient(135deg, #3a1a6b, #8e44ad); }
+        .gallery-item:nth-child(6) { background: linear-gradient(135deg, #1a5a3a, #27ae60); }
+        .gallery-item:nth-child(7) { background: linear-gradient(135deg, #6b4a1a, #e67e22); }
+        .gallery-item:nth-child(8) { background: linear-gradient(135deg, #1a4a6b, #3498db); }
 
         .gallery-item-overlay {
             position: absolute;
@@ -1048,49 +802,30 @@
             align-items: flex-end;
             padding: 1rem;
         }
-
         .gallery-item:hover .gallery-item-overlay {
-            opacity: 1;
-        }
-
-        .gallery-item-info {
-            color: white;
-        }
-
+			opacity: 1;
+		}
+		
         .gallery-item-info h5 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 0.2rem;
-        }
-
+			font-size: 0.9rem;
+			font-weight: 700;
+			color: white;
+			margin-bottom: 0.2rem;
+		}
+		
         .gallery-item-info p {
-            font-size: 0.75rem;
-            opacity: 0.8;
-        }
+			font-size: 0.75rem;
+			color: rgba(255,255,255,0.8);
+		}
 
         .gallery-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2.5rem;
-        }
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+			margin-top: 2.5rem;
+		}
 
-        /* Color variations for gallery placeholders */
-        .gallery-item:nth-child(1)  { background: linear-gradient(135deg, #8B0000, #c0392b); }
-        .gallery-item:nth-child(2)  { background: linear-gradient(135deg, #0A3B1A, #27ae60); }
-        .gallery-item:nth-child(3)  { background: linear-gradient(135deg, #1a3a6b, #2980b9); }
-        .gallery-item:nth-child(4)  { background: linear-gradient(135deg, #6b1a3a, #c0392b); }
-        .gallery-item:nth-child(5)  { background: linear-gradient(135deg, #3a1a6b, #8e44ad); }
-        .gallery-item:nth-child(6)  { background: linear-gradient(135deg, #1a5a3a, #27ae60); }
-        .gallery-item:nth-child(7)  { background: linear-gradient(135deg, #6b4a1a, #e67e22); }
-        .gallery-item:nth-child(8)  { background: linear-gradient(135deg, #1a4a6b, #3498db); }
-
-        /* ===================== UP SYSTEM CONNECTION ===================== */
-        #up-system {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, #f8f8f8, #fff);
-        }
-
+        /* ── UP System Connection ── */
         .upsystem-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1098,7 +833,6 @@
             max-width: 1200px;
             margin: 0 auto 3rem;
         }
-
         .upsystem-card {
             background: white;
             border-radius: 16px;
@@ -1109,48 +843,46 @@
             position: relative;
             overflow: hidden;
         }
-
         .upsystem-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
+			left: 0;
+			right: 0;
             height: 4px;
             background: linear-gradient(90deg, #8B0000, #0A3B1A);
         }
 
         .upsystem-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
-        }
+			transform: translateY(-5px);
+			box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+		}
 
         .upsystem-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+			font-size: 2.5rem;
+			margin-bottom: 1rem;
+		}
 
         .upsystem-card h4 {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 0.6rem;
-        }
+			font-size: 1.15rem;
+			font-weight: 800;
+			color: #1a1a1a;
+			margin-bottom: 0.6rem;
+		}
 
         .upsystem-card p {
-            font-size: 0.88rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1.2rem;
-        }
+			font-size: 0.88rem;
+			color: #666;
+			line-height: 1.6;
+			margin-bottom: 1.2rem;
+		}
 
         .upsystem-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.4rem;
+		}
         .upsystem-links li a {
             font-size: 0.83rem;
             color: #8B0000;
@@ -1161,7 +893,6 @@
             gap: 5px;
             transition: gap 0.2s;
         }
-
         .upsystem-links li a:hover { gap: 9px; }
 
         .upsystem-banner {
@@ -1179,198 +910,55 @@
         }
 
         .upsystem-banner-text h4 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
+			font-size: 1.5rem;
+			font-weight: 800;
+			margin-bottom: 0.5rem;
+		}
 
         .upsystem-banner-text p {
-            font-size: 0.92rem;
-            opacity: 0.85;
-        }
+			font-size: 0.92rem;
+			opacity: 0.85;
+		}
 
         .upsystem-banner-ctas {
-            display: flex;
-            gap: 1rem;
-            flex-shrink: 0;
-        }
+			display: flex;
+			gap: 1rem;
+			flex-shrink: 0;
+		}
 
-        /* ===================== BUTTONS ===================== */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #8B0000;
-            color: white;
-            padding: 0.75rem 1.8rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .btn-primary:hover {
-            background: #660000;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: transparent;
-            color: #8B0000;
-            padding: 0.75rem 1.8rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: 2px solid #8B0000;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: #8B0000;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline-white {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: transparent;
-            color: white;
-            padding: 0.75rem 1.8rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: 2px solid rgba(255,255,255,0.6);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-outline-white:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: white;
-        }
-
-        .btn-gold {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #FFD700;
-            color: #1a1a1a;
-            padding: 0.75rem 1.8rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .btn-gold:hover {
-            background: #e6c200;
-            transform: translateY(-2px);
-        }
-
-        /* ===================== FOOTER ===================== */
-        footer {
-            background: linear-gradient(135deg, #1a0000 0%, #0A1A0A 100%);
-            color: white;
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
+        /* ── Large extended footer CSS (kept for future activation) ── */
+        /*
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto 2.5rem;
-            text-align: left;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-brand p {
-            font-size: 0.83rem;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 0.6rem;
-        }
-
-        .social-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-decoration: none;
-        }
-
-        .social-btn:hover { background: #8B0000; }
-
-        .footer-col h4 {
-            font-size: 0.85rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #FFD700;
-            margin-bottom: 1rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer-col ul li a {
-            font-size: 0.83rem;
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-col ul li a:hover { color: white; }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1.5rem;
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-
-        .footer-bottom p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.8rem;
+        .footer-brand h3 { font-size: 1.8rem; font-weight: 900; color: white; margin-bottom: 0.75rem; }
+        .footer-brand p { color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.5rem; }
+        .footer-social { display: flex; gap: 0.75rem; }
+        .social-btn {
+            width: 38px; height: 38px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background 0.2s;
         }
+        .social-btn:hover { background: rgba(255,255,255,0.2); }
+        .footer-col h4 { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #FFD700; margin-bottom: 1.2rem; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+        */
 
-        /* ===================== RESPONSIVE ===================== */
+        /* ── Responsive ── */
         @media (max-width: 1024px) {
             .stories-grid { grid-template-columns: repeat(2, 1fr); }
             .story-card.featured { grid-column: span 2; }
@@ -1378,12 +966,9 @@
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             .upsystem-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .page-hero h2 { font-size: 2.2rem; }
-            .page-hero p { font-size: 1rem; }
             .stories-grid { grid-template-columns: 1fr; }
             .story-card.featured { grid-column: span 1; display: block; }
             .story-card.featured .story-image { height: 200px; }
@@ -1393,434 +978,368 @@
             .upsystem-grid { grid-template-columns: 1fr; }
             .upsystem-banner { flex-direction: column; text-align: center; }
             .upsystem-banner-ctas { justify-content: center; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .section-header h3 { font-size: 1.8rem; }
-
-            .mobile-menu-btn { display: flex; }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255,255,255,0.99);
-                flex-direction: column;
-                padding: 1rem 5%;
-                box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-                gap: 0;
-                z-index: 999;
-            }
-
-            .nav-links.open { display: flex; }
-
-            .nav-links > li {
-                padding: 0.85rem 0;
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .nav-links > li:last-child { border-bottom: none; }
-
-            .nav-links a { font-size: 1.05rem; display: block; }
-
-            .dropdown-menu {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                border: none;
-                border-radius: 0;
-                padding: 0 0 0 1rem;
-                background: #fafafa;
-                display: none;
-            }
-
-            .nav-links > li.open .dropdown-menu { display: block; }
-
-            .community-subnav { top: 70px; }
         }
     </style>
 </head>
-<body>
-	<!-- ===================== NAVIGATION ===================== -->
-	<nav id="mainNav">
-		<div class="nav-container">
-			<div class="logo">
-				<div class="logo-icon">UP</div>
-				<div class="logo-text">
-					<h1>UPAASF</h1>
-					<p>University of the Philippines Alumni</p>
-				</div>
-			</div>
+<body data-page="community">
 
-			<ul class="nav-links" id="navLinks">
-				<li><a href="./index.html">Home</a></li>
-				<li><a href="./about.html">About</a></li>
-				<li><a href="./programs.html">Programs</a></li>
-				<li><a href="./events.html">Events</a></li>
-				<li><a href="./membership.html">Membership</a></li>
-				<li><a href="./community.html" class="active-nav">Community</a></li>
+    <div id="site-header"></div>
 
-				<!-- Community with Dropdown -->
-				<!--
-				<li id="communityNavItem">
-					<a href="./community.html" class="dropdown-toggle active-nav">Community</a>
-					<!--
-					<ul class="dropdown-menu">
-						<li>
-							<a href="#alumni-stories">
-								<span class="submenu-icon">🌟</span>
-								<span class="submenu-label">
-									Alumni Stories &amp; Spotlights
-									<span>Member success &amp; journeys</span>
-								</span>
-							</a>
-						</li>
-						<li>
-							<a href="#news-updates">
-								<span class="submenu-icon">📰</span>
-								<span class="submenu-label">
-									News &amp; Updates
-									<span>Latest bulletins &amp; press</span>
-								</span>
-							</a>
-						</li>
-						<li>
-							<a href="#member-blog">
-								<span class="submenu-icon">✍️</span>
-								<span class="submenu-label">
-									Member Blog
-									<span>Stories written by alumni</span>
-								</span>
-							</a>
-						</li>
-						<li>
-							<a href="#photo-gallery">
-								<span class="submenu-icon">📸</span>
-								<span class="submenu-label">
-									Photo Gallery
-									<span>Event &amp; program photos</span>
-								</span>
-							</a>
-						</li>
-						<hr class="dropdown-divider">
-						<li>
-							<a href="#up-system">
-								<span class="submenu-icon">🎓</span>
-								<span class="submenu-label">
-									UP System Connection
-									<span>Stay linked to alma mater</span>
-								</span>
-							</a>
-						</li>
-					</ul>
-				</li>
-				-->
+    <!--
+    ═══════════════════════════════════════════════════════════════════
+    FUTURE: Community dropdown nav structure (for site.js integration)
+    When implementing dropdown menus, wire this into the nav injection
+    in shared/site.js in place of the plain "Community" link.
+    ═══════════════════════════════════════════════════════════════════
 
-				<li><a href="./contact.html">Contact</a></li>
-				<li><a href="./membership.html" class="nav-cta">Join Now</a></li>
-			</ul>
+    <li id="communityNavItem">
+        <a href="./community.html" class="dropdown-toggle active-nav">Community</a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#alumni-stories">
+                    <span class="submenu-icon">🌟</span>
+                    <span class="submenu-label">
+                        Alumni Stories &amp; Spotlights
+                        <span>Member success &amp; journeys</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#news-updates">
+                    <span class="submenu-icon">📰</span>
+                    <span class="submenu-label">
+                        News &amp; Updates
+                        <span>Latest bulletins &amp; press</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#member-blog">
+                    <span class="submenu-icon">✍️</span>
+                    <span class="submenu-label">
+                        Member Blog
+                        <span>Stories written by alumni</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#photo-gallery">
+                    <span class="submenu-icon">📸</span>
+                    <span class="submenu-label">
+                        Photo Gallery
+                        <span>Event &amp; program photos</span>
+                    </span>
+                </a>
+            </li>
+            <hr class="dropdown-divider">
+            <li>
+                <a href="#up-system">
+                    <span class="submenu-icon">🎓</span>
+                    <span class="submenu-label">
+                        UP System Connection
+                        <span>Stay linked to alma mater</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    -->
 
-			<button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false">
-				<span></span><span></span><span></span>
-			</button>
-		</div>
-	</nav>
+    <!-- ===================== PAGE HERO ===================== -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <div class="page-hero-badge">Our Community</div>
+            <h2>Where Iskolar ng Bayan Connect</h2>
+            <p>Share stories, celebrate milestones, stay informed, and keep your bond with UP and fellow alumni alive — wherever life takes you.</p>
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top: 2rem;">
+                <a href="#alumni-stories" class="btn-gold">Explore Stories</a>
+                <a href="#member-blog" class="btn-outline-white">Write for the Blog</a>
+            </div>
+        </div>
+    </section>
 
-	<!-- ===================== PAGE HERO ===================== -->
-	<section class="page-hero">
-		<div class="page-hero-content">
-			<div class="page-hero-badge">Our Community</div>
-			<h2>Where Iskolar ng Bayan Connect</h2>
-			<p>Share stories, celebrate milestones, stay informed, and keep your bond with UP and fellow alumni alive — wherever life takes you.</p>
-			<div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-				<a href="#alumni-stories" class="btn-gold">Explore Stories</a>
-				<a href="#member-blog" class="btn-outline-white">Write for the Blog</a>
-			</div>
-		</div>
-	</section>
+    <!-- ===================== COMMUNITY SUB-NAV ===================== -->
+    <!-- Hide for now — enable when section scroll-spy is ready
+    <nav class="community-subnav" aria-label="Community sections">
+        <div class="subnav-container">
+            <a href="#alumni-stories" class="subnav-item active" data-target="alumni-stories">
+                <span class="subnav-icon">🌟</span> Alumni Stories &amp; Spotlights
+            </a>
+            <a href="#news-updates" class="subnav-item" data-target="news-updates">
+                <span class="subnav-icon">📰</span> News &amp; Updates
+            </a>
+            <a href="#member-blog" class="subnav-item" data-target="member-blog">
+                <span class="subnav-icon">✍️</span> Member Blog
+            </a>
+            <a href="#photo-gallery" class="subnav-item" data-target="photo-gallery">
+                <span class="subnav-icon">📸</span> Photo Gallery
+            </a>
+            <a href="#up-system" class="subnav-item" data-target="up-system">
+                <span class="subnav-icon">🎓</span> UP System Connection
+            </a>
+        </div>
+    </nav>
+    -->
 
-	<!-- ===================== COMMUNITY SUB-NAV ===================== -->
-	<!-- Hide for now
-	<nav class="community-subnav" aria-label="Community sections">
-		<div class="subnav-container">
-			<a href="#alumni-stories" class="subnav-item active" data-target="alumni-stories">
-				<span class="subnav-icon">🌟</span> Alumni Stories &amp; Spotlights
-			</a>
-			<a href="#news-updates" class="subnav-item" data-target="news-updates">
-				<span class="subnav-icon">📰</span> News &amp; Updates
-			</a>
-			<a href="#member-blog" class="subnav-item" data-target="member-blog">
-				<span class="subnav-icon">✍️</span> Member Blog
-			</a>
-			<a href="#photo-gallery" class="subnav-item" data-target="photo-gallery">
-				<span class="subnav-icon">📸</span> Photo Gallery
-			</a>
-			<a href="#up-system" class="subnav-item" data-target="up-system">
-				<span class="subnav-icon">🎓</span> UP System Connection
-			</a>
-		</div>
-	</nav>
-	-->
+    <!-- ===================== ALUMNI STORIES & SPOTLIGHTS ===================== -->
+    <section id="alumni-stories" class="section-anchor">
+        <div style="padding: 5rem 5%; background: #fff;">
+            <div class="section-header">
+                <div class="section-tag">✨ Alumni Stories &amp; Spotlights</div>
+                <h3>Celebrating Our Iskolar ng Bayan</h3>
+                <p>Real journeys, real impact — hear from the remarkable UP alumni who make our Bay Area community thrive.</p>
+            </div>
 
-	<!-- ===================== ALUMNI STORIES & SPOTLIGHTS ===================== -->
-	<section id="alumni-stories" class="section-anchor">
-		<div style="padding: 5rem 5%; background: #fff;">
-			<div class="section-header">
-				<div class="section-tag">✨ Alumni Stories &amp; Spotlights</div>
-				<h3>Celebrating Our Iskolar ng Bayan</h3>
-				<p>Real journeys, real impact — hear from the remarkable UP alumni who make our Bay Area community thrive.</p>
-			</div>
+            <!-- Sub-filters -->
+            <div class="stories-subnav">
+                <button class="story-filter-btn active">All Stories</button>
+                <button class="story-filter-btn">Featured Spotlights</button>
+                <button class="story-filter-btn">Career Journeys</button>
+                <button class="story-filter-btn">Community Impact</button>
+                <button class="story-filter-btn">Student to Alumni</button>
+                <button class="story-filter-btn">Submit Your Story</button>
+            </div>
 
-			<!-- Sub-filters -->
-			<div class="stories-subnav">
-				<button class="story-filter-btn active">All Stories</button>
-				<button class="story-filter-btn">Featured Spotlights</button>
-				<button class="story-filter-btn">Career Journeys</button>
-				<button class="story-filter-btn">Community Impact</button>
-				<button class="story-filter-btn">Student to Alumni</button>
-				<button class="story-filter-btn">Submit Your Story</button>
-			</div>
+            <div class="stories-grid">
+                <!-- Featured Story -->
+                <div class="story-card featured">
+                    <div class="story-image" style="background: linear-gradient(135deg, #8B0000, #c0392b); font-size: 5rem;">
+                        🏆
+                        <div class="story-image-overlay"></div>
+                        <div class="story-badge">Featured Spotlight</div>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-meta">
+                            <div class="story-avatar">MR</div>
+                            <span class="story-author">Dr. Maria Reyes</span>
+                            <span class="story-date">Feb 2025</span>
+                        </div>
+                        <h4>From UP Diliman Labs to Silicon Valley: A 20-Year Journey in Biotech</h4>
+                        <p>After graduating with a BS Biology from UP Diliman in 2004, Maria never imagined she'd be leading a team of 80 scientists at a Bay Area biotech firm. Her story is one of persistence, pride, and the enduring power of a UP education.</p>
+                        <span class="story-tag">🔬 Biotech</span>
+                        <span class="story-tag">🎓 UP Diliman</span>
+                        <span class="story-tag">💼 Leadership</span>
+                        <br><br>
+                        <a href="#" class="btn-primary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">Read Full Story →</a>
+                    </div>
+                </div>
 
-			<div class="stories-grid">
-				<!-- Featured Story -->
-				<div class="story-card featured">
-					<div class="story-image" style="background: linear-gradient(135deg, #8B0000, #c0392b); font-size: 5rem;">
-						🏆
-						<div class="story-image-overlay"></div>
-						<div class="story-badge">Featured Spotlight</div>
-					</div>
-					<div class="story-body">
-						<div class="story-meta">
-							<div class="story-avatar">MR</div>
-							<span class="story-author">Dr. Maria Reyes</span>
-							<span class="story-date">Feb 2025</span>
-						</div>
-						<h4>From UP Diliman Labs to Silicon Valley: A 20-Year Journey in Biotech</h4>
-						<p>After graduating with a BS Biology from UP Diliman in 2004, Maria never imagined she'd be leading a team of 80 scientists at a Bay Area biotech firm. Her story is one of persistence, pride, and the enduring power of a UP education.</p>
-						<span class="story-tag">🔬 Biotech</span>
-						<span class="story-tag">🎓 UP Diliman</span>
-						<span class="story-tag">💼 Leadership</span>
-						<br><br>
-						<a href="#" class="btn-primary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">Read Full Story →</a>
-					</div>
-				</div>
+                <!-- Story Card 2 -->
+                <div class="story-card">
+                    <div class="story-image" style="background: linear-gradient(135deg, #0A3B1A, #27ae60);">🌱</div>
+                    <div class="story-body">
+                        <div class="story-meta">
+                            <div class="story-avatar">JP</div>
+                            <span class="story-author">Jose Panlilio</span>
+                            <span class="story-date">Jan 2025</span>
+                        </div>
+                        <h4>Building a Filipino-owned Sustainable Farm Network</h4>
+                        <p>UPAASF mentoring helped Jose connect his agronomist background with Bay Area investor networks.</p>
+                        <span class="story-tag">🌿 Agriculture</span>
+                        <span class="story-tag">💡 Entrepreneurship</span>
+                    </div>
+                </div>
 
-				<!-- Story Card 2 -->
-				<div class="story-card">
-					<div class="story-image" style="background: linear-gradient(135deg, #0A3B1A, #27ae60);">🌱</div>
-					<div class="story-body">
-						<div class="story-meta">
-							<div class="story-avatar">JP</div>
-							<span class="story-author">Jose Panlilio</span>
-							<span class="story-date">Jan 2025</span>
-						</div>
-						<h4>Building a Filipino-owned Sustainable Farm Network</h4>
-						<p>UPAASF mentoring helped Jose connect his agronomist background with Bay Area investor networks.</p>
-						<span class="story-tag">🌿 Agriculture</span>
-						<span class="story-tag">💡 Entrepreneurship</span>
-					</div>
-				</div>
+                <!-- Story Card 3 -->
+                <div class="story-card">
+                    <div class="story-image" style="background: linear-gradient(135deg, #1a3a6b, #2980b9);">⚖️</div>
+                    <div class="story-body">
+                        <div class="story-meta">
+                            <div class="story-avatar">AL</div>
+                            <span class="story-author">Atty. Ana Lim</span>
+                            <span class="story-date">Dec 2024</span>
+                        </div>
+                        <h4>Advocating for Immigrant Rights Across California</h4>
+                        <p>Armed with a UP Law degree and two decades of advocacy, Ana has become a pillar of Filipino legal representation in the Bay Area.</p>
+                        <span class="story-tag">⚖️ Law</span>
+                        <span class="story-tag">🤝 Advocacy</span>
+                    </div>
+                </div>
+            </div>
 
-				<!-- Story Card 3 -->
-				<div class="story-card">
-					<div class="story-image" style="background: linear-gradient(135deg, #1a3a6b, #2980b9);">⚖️</div>
-					<div class="story-body">
-						<div class="story-meta">
-							<div class="story-avatar">AL</div>
-							<span class="story-author">Atty. Ana Lim</span>
-							<span class="story-date">Dec 2024</span>
-						</div>
-						<h4>Advocating for Immigrant Rights Across California</h4>
-						<p>Armed with a UP Law degree and two decades of advocacy, Ana has become a pillar of Filipino legal representation in the Bay Area.</p>
-						<span class="story-tag">⚖️ Law</span>
-						<span class="story-tag">🤝 Advocacy</span>
-					</div>
-				</div>
-			</div>
+            <div class="story-cta">
+                <a href="#" class="btn-secondary">View All Stories</a>
+                <a href="#" class="btn-primary">Submit Your Story ✍️</a>
+            </div>
+        </div>
+    </section>
 
-			<div class="story-cta">
-				<a href="#" class="btn-secondary">View All Stories</a>
-				<a href="#" class="btn-primary">Submit Your Story ✍️</a>
-			</div>
-		</div>
-	</section>
+    <!-- ===================== NEWS & UPDATES ===================== -->
+    <section id="news-updates" class="section-anchor">
+        <div style="padding: 5rem 5%; background: #f8f8f8;">
+            <div class="section-header">
+                <div class="section-tag">📰 News &amp; Updates</div>
+                <h3>Stay in the Know</h3>
+                <p>The latest from UPAASF — announcements, press, bulletins, and media coverage all in one place.</p>
+            </div>
 
-	<!-- ===================== NEWS & UPDATES ===================== -->
-	<section id="news-updates" class="section-anchor">
-		<div style="padding: 5rem 5%; background: #f8f8f8;">
-			<div class="section-header">
-				<div class="section-tag">📰 News &amp; Updates</div>
-				<h3>Stay in the Know</h3>
-				<p>The latest from UPAASF — announcements, press, bulletins, and media coverage all in one place.</p>
-			</div>
+            <div class="news-layout">
+                <!-- Main News -->
+                <div>
+                    <div class="news-tabs">
+                        <button class="news-tab active">Latest News</button>
+                        <button class="news-tab">Press Releases</button>
+                        <button class="news-tab">UPAASF Bulletin</button>
+                        <button class="news-tab">Media Coverage</button>
+                    </div>
 
-			<div class="news-layout">
-				<!-- Main News -->
-				<div>
-					<div class="news-tabs">
-						<button class="news-tab active">Latest News</button>
-						<button class="news-tab">Press Releases</button>
-						<button class="news-tab">UPAASF Bulletin</button>
-						<button class="news-tab">Media Coverage</button>
-					</div>
+                    <div class="news-list">
+                        <div class="news-item">
+                            <div class="news-date-block">
+                                <div class="day">15</div>
+                                <div class="month">Mar</div>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Announcement</div>
+                                <h4>UPAASF Launches 2025 Alumni Mentoring Cohort — Applications Now Open</h4>
+                                <p>The annual Silicon Valley mentoring program pairs UP students with Bay Area professionals. Deadline: April 30, 2025.</p>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date-block">
+                                <div class="day">08</div>
+                                <div class="month">Mar</div>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Community</div>
+                                <h4>UP Rising! Gala 2025 Breaks Attendance Record with 450+ Alumni</h4>
+                                <p>The annual gala celebrating Filipino heritage and UP excellence welcomed its largest crowd yet at the San Francisco Marriott Marquis.</p>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date-block">
+                                <div class="day">22</div>
+                                <div class="month">Feb</div>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Partnership</div>
+                                <h4>UPAASF Partners with Philippine Consulate for Balikbayan Documentation Drive</h4>
+                                <p>Members can now access consular services at UPAASF events through a new MOU signed with the Philippine Consulate General of San Francisco.</p>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date-block">
+                                <div class="day">10</div>
+                                <div class="month">Feb</div>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Scholarship</div>
+                                <h4>2025 UPAASF Scholarship Fund Awards $15,000 to Five Bay Area Students</h4>
+                                <p>This year's scholarship cycle saw a record number of applications, reflecting growing community engagement.</p>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date-block">
+                                <div class="day">03</div>
+                                <div class="month">Feb</div>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Board Update</div>
+                                <h4>New Board Officers Elected for 2025 — Full Results Inside</h4>
+                                <p>UPAASF members voted in the 2025–2026 board leadership team. Meet your new officers and their priorities for the year.</p>
+                            </div>
+                        </div>
+                    </div>
 
-					<div class="news-list">
-						<div class="news-item">
-							<div class="news-date-block">
-								<div class="day">15</div>
-								<div class="month">Mar</div>
-							</div>
-							<div class="news-content">
-								<div class="news-category">Announcement</div>
-								<h4>UPAASF Launches 2025 Alumni Mentoring Cohort — Applications Now Open</h4>
-								<p>The annual Silicon Valley mentoring program pairs UP students with Bay Area professionals. Deadline: April 30, 2025.</p>
-							</div>
-						</div>
-						<div class="news-item">
-							<div class="news-date-block">
-								<div class="day">08</div>
-								<div class="month">Mar</div>
-							</div>
-							<div class="news-content">
-								<div class="news-category">Community</div>
-								<h4>UP Rising! Gala 2025 Breaks Attendance Record with 450+ Alumni</h4>
-								<p>The annual gala celebrating Filipino heritage and UP excellence welcomed its largest crowd yet at the San Francisco Marriott Marquis.</p>
-							</div>
-						</div>
-						<div class="news-item">
-							<div class="news-date-block">
-								<div class="day">22</div>
-								<div class="month">Feb</div>
-							</div>
-							<div class="news-content">
-								<div class="news-category">Partnership</div>
-								<h4>UPAASF Partners with Philippine Consulate for Balikbayan Documentation Drive</h4>
-								<p>Members can now access consular services at UPAASF events through a new MOU signed with the Philippine Consulate General of San Francisco.</p>
-							</div>
-						</div>
-						<div class="news-item">
-							<div class="news-date-block">
-								<div class="day">10</div>
-								<div class="month">Feb</div>
-							</div>
-							<div class="news-content">
-								<div class="news-category">Scholarship</div>
-								<h4>2025 UPAASF Scholarship Fund Awards $15,000 to Five Bay Area Students</h4>
-								<p>This year's scholarship cycle saw a record number of applications, reflecting growing community engagement.</p>
-							</div>
-						</div>
-						<div class="news-item">
-							<div class="news-date-block">
-								<div class="day">03</div>
-								<div class="month">Feb</div>
-							</div>
-							<div class="news-content">
-								<div class="news-category">Board Update</div>
-								<h4>New Board Officers Elected for 2025 — Full Results Inside</h4>
-								<p>UPAASF members voted in the 2025–2026 board leadership team. Meet your new officers and their priorities for the year.</p>
-							</div>
-						</div>
-					</div>
+                    <div style="margin-top: 1.5rem; text-align:center;">
+                        <a href="#" class="btn-secondary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">View All News →</a>
+                    </div>
+                </div>
 
-					<div style="margin-top: 1.5rem; text-align:center;">
-						<a href="#" class="btn-secondary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">View All News →</a>
-					</div>
-				</div>
+                <!-- Sidebar -->
+                <div class="news-sidebar">
+                    <div class="sidebar-widget newsletter-widget">
+                        <div class="widget-title">📬 UPAASF Bulletin</div>
+                        <p>Get the monthly digest straight to your inbox — events, news, member spotlights.</p>
+                        <input type="email" class="newsletter-input" placeholder="your@email.com">
+                        <button class="btn-gold" style="width:100%; justify-content:center; font-size:0.85rem; padding:0.6rem;">Subscribe →</button>
+                    </div>
 
-				<!-- Sidebar -->
-				<div class="news-sidebar">
-					<div class="sidebar-widget newsletter-widget">
-						<div class="widget-title">📬 UPAASF Bulletin</div>
-						<p>Get the monthly digest straight to your inbox — events, news, member spotlights.</p>
-						<input type="email" class="newsletter-input" placeholder="your@email.com">
-						<button class="btn-gold" style="width:100%; justify-content:center; font-size:0.85rem; padding:0.6rem;">Subscribe →</button>
-					</div>
+                    <div class="sidebar-widget">
+                        <div class="widget-title">Quick Links</div>
+                        <ul class="widget-links">
+                            <li><a href="#">Press Release Archive</a></li>
+                            <li><a href="#">UPAASF Annual Report</a></li>
+                            <li><a href="#">Media Kit &amp; Brand Assets</a></li>
+                            <li><a href="#">Submit a News Tip</a></li>
+                            <li><a href="#">Contact Media Team</a></li>
+                        </ul>
+                    </div>
 
-					<div class="sidebar-widget">
-						<div class="widget-title">Quick Links</div>
-						<ul class="widget-links">
-							<li><a href="#">Press Release Archive</a></li>
-							<li><a href="#">UPAASF Annual Report</a></li>
-							<li><a href="#">Media Kit &amp; Brand Assets</a></li>
-							<li><a href="#">Submit a News Tip</a></li>
-							<li><a href="#">Contact Media Team</a></li>
-						</ul>
-					</div>
+                    <div class="sidebar-widget">
+                        <div class="widget-title">📺 Media Coverage</div>
+                        <ul class="widget-links">
+                            <li><a href="#">ABS-CBN News Feature (2024)</a></li>
+                            <li><a href="#">SF Chronicle — Filipino Heritage Month</a></li>
+                            <li><a href="#">GMA Pinoy TV Interview</a></li>
+                            <li><a href="#">UP System Newsletter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-					<div class="sidebar-widget">
-						<div class="widget-title">📺 Media Coverage</div>
-						<ul class="widget-links">
-							<li><a href="#">ABS-CBN News Feature (2024)</a></li>
-							<li><a href="#">SF Chronicle — Filipino Heritage Month</a></li>
-							<li><a href="#">GMA Pinoy TV Interview</a></li>
-							<li><a href="#">UP System Newsletter</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- ===================== MEMBER BLOG ===================== -->
+    <section id="member-blog" class="section-anchor">
+        <div style="padding: 5rem 5%; background: white;">
+            <div class="section-header">
+                <div class="section-tag">✍️ Member Blog</div>
+                <h3>Voices from the Community</h3>
+                <p>Opinion pieces, cultural reflections, career tips, and life stories — all written by UPAASF members for fellow alumni.</p>
+            </div>
 
-	<!-- ===================== MEMBER BLOG ===================== -->
-	<section id="member-blog" class="section-anchor">
-		<div style="padding: 5rem 5%; background: white;">
-			<div class="section-header">
-				<div class="section-tag">✍️ Member Blog</div>
-				<h3>Voices from the Community</h3>
-				<p>Opinion pieces, cultural reflections, career tips, and life stories — all written by UPAASF members for fellow alumni.</p>
-			</div>
+            <div class="blog-toolbar">
+                <div class="blog-categories">
+                    <button class="cat-chip active">All Posts</button>
+                    <button class="cat-chip">Culture &amp; Heritage</button>
+                    <button class="cat-chip">Career &amp; Business</button>
+                    <button class="cat-chip">Family &amp; Life</button>
+                    <button class="cat-chip">Technology</button>
+                    <button class="cat-chip">Advocacy</button>
+                    <button class="cat-chip">Archives</button>
+                </div>
+                <a href="#" class="write-btn">✏️ Write for Us</a>
+            </div>
 
-			<div class="blog-toolbar">
-				<div class="blog-categories">
-					<button class="cat-chip active">All Posts</button>
-					<button class="cat-chip">Culture &amp; Heritage</button>
-					<button class="cat-chip">Career &amp; Business</button>
-					<button class="cat-chip">Family &amp; Life</button>
-					<button class="cat-chip">Technology</button>
-					<button class="cat-chip">Advocacy</button>
-					<button class="cat-chip">Archives</button>
-				</div>
-				<a href="#" class="write-btn">✏️ Write for Us</a>
-			</div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #8B0000, #c0392b);">
+                        🇵🇭
+                        <span class="read-time">5 min read</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-cat">Culture &amp; Heritage</div>
+                        <h4>Keeping Baybayin Alive in the Bay Area: My Weekend Script Classes</h4>
+                        <p>How a simple curiosity turned into weekly community workshops teaching the ancient Philippine script to over 40 participants.</p>
+                        <div class="blog-card-footer">
+                            <div class="blog-author-info">
+                                <div class="author-dot">KS</div>
+                                <span class="author-name">Karla Santos</span>
+                            </div>
+                            <span class="blog-likes">❤️ 84</span>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="blog-grid">
-				<div class="blog-card">
-					<div class="blog-card-image" style="background: linear-gradient(135deg, #8B0000, #c0392b);">
-						🇵🇭
-						<span class="read-time">5 min read</span>
-					</div>
-					<div class="blog-card-body">
-						<div class="blog-card-cat">Culture &amp; Heritage</div>
-						<h4>Keeping Baybayin Alive in the Bay Area: My Weekend Script Classes</h4>
-						<p>How a simple curiosity turned into weekly community workshops teaching the ancient Philippine script to over 40 participants.</p>
-						<div class="blog-card-footer">
-							<div class="blog-author-info">
-								<div class="author-dot">KS</div>
-								<span class="author-name">Karla Santos</span>
-							</div>
-							<span class="blog-likes">❤️ 84</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="blog-card">
-					<div class="blog-card-image" style="background: linear-gradient(135deg, #1a3a6b, #2980b9);">
-						💻
-						<span class="read-time">7 min read</span>
-					</div>
-					<div class="blog-card-body">
-						<div class="blog-card-cat">Technology</div>
-						<h4>What 10 Years in Silicon Valley Taught Me About the Filipino Work Ethic</h4>
-						<p>Reflections on hustle, community, and why bayanihan is still the most powerful professional framework I know.</p>
-						<div class="blog-card-footer">
-							<div class="blog-author-info">
-								<div class="author-dot">RD</div>
-								<span class="author-name">Ramon Dela Cruz</span>
-							</div>
-							<span class="blog-likes">❤️ 112</span>
-						</div>
-					</div>
-				</div>
+                <div class="blog-card">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #1a3a6b, #2980b9);">
+                        💻
+                        <span class="read-time">7 min read</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-cat">Technology</div>
+                        <h4>What 10 Years in Silicon Valley Taught Me About the Filipino Work Ethic</h4>
+                        <p>Reflections on hustle, community, and why bayanihan is still the most powerful professional framework I know.</p>
+                        <div class="blog-card-footer">
+                            <div class="blog-author-info">
+                                <div class="author-dot">RD</div>
+                                <span class="author-name">Ramon Dela Cruz</span>
+                            </div>
+                            <span class="blog-likes">❤️ 112</span>
+                        </div>
+                    </div>
+                </div>
 
 				<div class="blog-card">
 					<div class="blog-card-image" style="background: linear-gradient(135deg, #0A3B1A, #27ae60);">
@@ -1878,376 +1397,305 @@
 						</div>
 					</div>
 				</div>
+				
+                <div class="blog-card">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #1a5a3a, #27ae60);">
+                        🎨
+                        <span class="read-time">5 min read</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-cat">Culture &amp; Heritage</div>
+                        <h4>Filipino Visual Art in San Francisco: A Hidden Renaissance You Should Know About</h4>
+                        <p>From the Mission District to SoMa galleries — Filipino artists are reshaping the Bay Area's cultural landscape.</p>
+                        <div class="blog-card-footer">
+                            <div class="blog-author-info">
+                                <div class="author-dot">EG</div>
+                                <span class="author-name">Elena Garcia</span>
+                            </div>
+                            <span class="blog-likes">❤️ 55</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-				<div class="blog-card">
-					<div class="blog-card-image" style="background: linear-gradient(135deg, #1a5a3a, #27ae60);">
-						🎨
-						<span class="read-time">5 min read</span>
-					</div>
-					<div class="blog-card-body">
-						<div class="blog-card-cat">Culture &amp; Heritage</div>
-						<h4>Filipino Visual Art in San Francisco: A Hidden Renaissance You Should Know About</h4>
-						<p>From the Mission District to SoMa galleries — Filipino artists are reshaping the Bay Area's cultural landscape.</p>
-						<div class="blog-card-footer">
-							<div class="blog-author-info">
-								<div class="author-dot">EG</div>
-								<span class="author-name">Elena Garcia</span>
-							</div>
-							<span class="blog-likes">❤️ 55</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="blog-pagination">
-				<button class="page-btn active">1</button>
-				<button class="page-btn">2</button>
-				<button class="page-btn">3</button>
-				<button class="page-btn">→</button>
-			</div>
-		</div>
-	</section>
-
-	<!-- ===================== PHOTO GALLERY ===================== -->
-	<section id="photo-gallery" class="section-anchor">
-		<div style="padding: 5rem 5%; background: #1a1a1a;">
-			<div class="section-header">
-				<div class="section-tag" style="background:rgba(255,215,0,0.15); color:#FFD700;">📸 Photo Gallery</div>
-				<h3 style="color:white;">Memories from Our Community</h3>
-				<p style="color:rgba(255,255,255,0.7);">Relive our events, programs, cultural celebrations, and campus milestones through the lens of our community.</p>
-			</div>
-
-			<div class="gallery-filters">
-				<button class="gallery-filter-btn active">All Photos</button>
-				<button class="gallery-filter-btn">Events Gallery</button>
-				<button class="gallery-filter-btn">Cultural Programs</button>
-				<button class="gallery-filter-btn">Campus Life</button>
-				<button class="gallery-filter-btn">Submit Photos</button>
-			</div>
-
-			<div class="gallery-grid" style="max-width:1200px; margin:0 auto;">
-				<div class="gallery-item wide">
-					🎉
-					<div class="gallery-item-overlay">
-						<div class="gallery-item-info">
-							<h5>UP Rising! Gala 2025</h5>
-							<p>San Francisco Marriott Marquis · March 2025</p>
-						</div>
-					</div>
-				</div>
-				<div class="gallery-item tall">
-					🎓
-					<div class="gallery-item-overlay">
-						<div class="gallery-item-info">
-							<h5>50th Anniversary Celebration</h5>
-							<p>2023 Milestone Event</p>
-						</div>
-					</div>
-				</div>
-				<div class="gallery-item">
-					🌺
-					<div class="gallery-item-overlay">
-						<div class="gallery-item-info">
-							<h5>Filipino Cultural Camp</h5>
-							<p>Summer Immersion 2024</p>
-						</div>
-					</div>
-				</div>
-				<div class="gallery-item">
-					🤝
-					<div class="gallery-item-overlay">
-						<div class="gallery-item-info">
-							<h5>Alumni Mentoring Session</h5>
-							<p>Silicon Valley · Feb 2025</p>
-						</div>
-					</div>
-				</div>
-				<div class="gallery-item wide">
-					🏔️
-					<div class="gallery-item-overlay">
-						<div class="gallery-item-info">
-							<h5>Bay Area Hiking Social</h5>
-							<p>Mount Tamalpais · Jan 2025</p>
-						</div>
-					</div>
-				</div>
-				<div class="gallery-item">
-					🍜
-					<div class="gallery-item-overlay">
-						<div class="gallery-item-info">
-							<h5>Kamayan Dinner Night</h5>
-							<p>Annual Food Celebration</p>
-						</div>
-					</div>
-				</div>
-				<div class="gallery-item">
-					🎭
-					<div class="gallery-item-overlay">
-						<div class="gallery-item-info">
-							<h5>Sining at Kultura Festival</h5>
-							<p>Cultural Night 2024</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="gallery-actions">
-				<a href="#" class="btn-outline-white">View Full Gallery</a>
-				<a href="#" class="btn-gold">📤 Submit Photos</a>
-			</div>
-		</div>
-	</section>
-
-	<!-- ===================== UP SYSTEM CONNECTION ===================== -->
-	<section id="up-system" class="section-anchor">
-		<div style="padding: 5rem 5%; background: linear-gradient(135deg, #f8f8f8, #fff);">
-			<div class="section-header">
-				<div class="section-tag">🎓 UP System Connection</div>
-				<h3>Always Connected to Alma Mater</h3>
-				<p>From UP Diliman to UP Mindanao — stay linked to the University of the Philippines system, its news, and its global alumni network.</p>
-			</div>
-
-			<div class="upsystem-grid">
-				<div class="upsystem-card">
-					<div class="upsystem-card-icon">📡</div>
-					<h4>UP System News</h4>
-					<p>Official updates, research breakthroughs, policy changes, and announcements straight from the UP Office of the President and its constituent universities.</p>
-					<ul class="upsystem-links">
-						<li><a href="#">→ UP System Official Website</a></li>
-						<li><a href="#">→ UP Diliman News Feed</a></li>
-						<li><a href="#">→ UP Manila Updates</a></li>
-						<li><a href="#">→ UP Visayas &amp; Mindanao News</a></li>
-					</ul>
-				</div>
-
-				<div class="upsystem-card">
-					<div class="upsystem-card-icon">🏛️</div>
-					<h4>Campus Updates</h4>
-					<p>New buildings, renovations, research centers, and campus development news across UP's constituent universities and campuses in the Philippines.</p>
-					<ul class="upsystem-links">
-						<li><a href="#">→ Campus Infrastructure Projects</a></li>
-						<li><a href="#">→ Research &amp; Innovation Hub</a></li>
-						<li><a href="#">→ Student Life &amp; Organizations</a></li>
-						<li><a href="#">→ Support Campus Initiatives</a></li>
-					</ul>
-				</div>
-
-				<div class="upsystem-card">
-					<div class="upsystem-card-icon">🌏</div>
-					<h4>UP Alumni Global Network</h4>
-					<p>Connect with UP alumni chapters worldwide — from the US chapters to Europe, Asia-Pacific, and the Middle East. Together, we are a global UP ohana.</p>
-					<ul class="upsystem-links">
-						<li><a href="#">→ UP Alumni Global Directory</a></li>
-						<li><a href="#">→ Other US-based UP Chapters</a></li>
-						<li><a href="#">→ UP Alumni Association (UP AA)</a></li>
-						<li><a href="#">→ Global Chapter Events</a></li>
-					</ul>
-				</div>
-
-				<div class="upsystem-card">
-					<div class="upsystem-card-icon">❤️</div>
-					<h4>Support UP</h4>
-					<p>Give back to your alma mater. From scholarship funds to infrastructure drives, your generosity directly empowers the next generation of Iskolars ng Bayan.</p>
-					<ul class="upsystem-links">
-						<li><a href="#">→ UPAASF Scholarship Fund</a></li>
-						<li><a href="#">→ UP Foundation Giving</a></li>
-						<li><a href="#">→ Adopt a Scholar Program</a></li>
-						<li><a href="#">→ Disaster Relief Efforts</a></li>
-					</ul>
-				</div>
-
-				<div class="upsystem-card">
-					<div class="upsystem-card-icon">🤝</div>
-					<h4>Mentoring &amp; Internships</h4>
-					<p>Bridge the gap between UP students and Bay Area professionals. Open internship opportunities, co-op programs, and mentoring slots at your company or organization.</p>
-					<ul class="upsystem-links">
-						<li><a href="#">→ Become a Mentor</a></li>
-						<li><a href="#">→ Post an Internship</a></li>
-						<li><a href="#">→ Career Day Participation</a></li>
-						<li><a href="#">→ Mentoring Program Info</a></li>
-					</ul>
-				</div>
-
-				<div class="upsystem-card">
-					<div class="upsystem-card-icon">📚</div>
-					<h4>Research &amp; Publications</h4>
-					<p>Access the latest research, journals, and publications from UP's world-class faculty. Stay informed and be proud of what your alma mater continues to achieve.</p>
-					<ul class="upsystem-links">
-						<li><a href="#">→ UP Research Digest</a></li>
-						<li><a href="#">→ UP Press Publications</a></li>
-						<li><a href="#">→ Philippine Journal of Science</a></li>
-						<li><a href="#">→ UP Open University Courses</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- Connection Banner -->
-			<div class="upsystem-banner">
-				<div class="upsystem-banner-text">
-					<h4>🏅 Proudly Part of the UP Global Alumni Network</h4>
-					<p>UPAASF is an officially recognized UP alumni chapter, connected to the UP Alumni Association and the Office of Alumni Relations. Your membership here keeps you tied to a worldwide family of over 200,000 Iskolars ng Bayan.</p>
-				</div>
-				<div class="upsystem-banner-ctas">
-					<a href="#" class="btn-gold">Explore UP Alumni Network</a>
-					<a href="./membership.html" class="btn-outline-white">Renew UPAASF Membership</a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ===================== FOOTER ===================== -->
-	<!-- Hide the larger footer for now. Leave here for futre reference/use
-	<footer>
-		<div class="footer-grid">
-			<div class="footer-brand">
-				<h3>UPAASF</h3>
-				<p>University of the Philippines Alumni Association of San Francisco. Serving the Bay Area UP community since 1973. Iskolar ng Bayan, united in the Bay.</p>
-				<div class="footer-social">
-					<a class="social-btn" href="#" aria-label="Facebook">📘</a>
-					<a class="social-btn" href="#" aria-label="Instagram">📷</a>
-					<a class="social-btn" href="#" aria-label="LinkedIn">💼</a>
-					<a class="social-btn" href="#" aria-label="YouTube">▶️</a>
-				</div>
-			</div>
-			<div class="footer-col">
-				<h4>Community</h4>
-				<ul>
-					<li><a href="#alumni-stories">Alumni Stories</a></li>
-					<li><a href="#news-updates">News &amp; Updates</a></li>
-					<li><a href="#member-blog">Member Blog</a></li>
-					<li><a href="#photo-gallery">Photo Gallery</a></li>
-					<li><a href="#up-system">UP System</a></li>
-				</ul>
-			</div>
-			<div class="footer-col">
-				<h4>Organization</h4>
-				<ul>
-					<li><a href="./about.html">About UPAASF</a></li>
-					<li><a href="./programs.html">Programs</a></li>
-					<li><a href="./events.html">Events</a></li>
-					<li><a href="./membership.html">Membership</a></li>
-					<li><a href="./contact.html">Contact Us</a></li>
-				</ul>
-			</div>
-			<div class="footer-col">
-				<h4>Resources</h4>
-				<ul>
-					<li><a href="#">Member Directory</a></li>
-					<li><a href="#">Annual Reports</a></li>
-					<li><a href="#">Scholarship Fund</a></li>
-					<li><a href="#">Media Kit</a></li>
-					<li><a href="#">Privacy Policy</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<p>© 2025 University of the Philippines Alumni Association of San Francisco. All rights reserved. | Established 1973 | 501(c)(3) Non-Profit Organization</p>
-		</div>
-	</footer>
-	-->
-
-	<footer>
-        <div class="section-container">
-            <p>&copy; 2026 UPAASF | University of the Philippines Alumni Association of San Francisco</p>
-            <p style="margin-top: 0.5rem;">Established 1973 • Serving the Bay Area for 50+ Years</p>
+            <div class="blog-pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">→</button>
+            </div>
         </div>
-    </footer>
+    </section>
 
+    <!-- ===================== PHOTO GALLERY ===================== -->
+    <section id="photo-gallery" class="section-anchor">
+        <div style="padding: 5rem 5%; background: #1a1a1a;">
+            <div class="section-header">
+                <div class="section-tag" style="background:rgba(255,215,0,0.15); color:#FFD700;">📸 Photo Gallery</div>
+                <h3 style="color:white;">Memories from Our Community</h3>
+                <p style="color:rgba(255,255,255,0.7);">Relive our events, programs, cultural celebrations, and campus milestones through the lens of our community.</p>
+            </div>
 
-	<!-- ===================== SCRIPTS ===================== -->
-	<script>
-		// Mobile menu toggle
-		const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-		const navLinks = document.getElementById('navLinks');
-		const communityNavItem = document.getElementById('communityNavItem');
+            <div class="gallery-filters">
+                <button class="gallery-filter-btn active">All Photos</button>
+                <button class="gallery-filter-btn">Events Gallery</button>
+                <button class="gallery-filter-btn">Cultural Programs</button>
+                <button class="gallery-filter-btn">Campus Life</button>
+                <button class="gallery-filter-btn">Submit Photos</button>
+            </div>
 
-		mobileMenuBtn.addEventListener('click', () => {
-			const isOpen = navLinks.classList.toggle('open');
-			mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-		});
+            <div class="gallery-grid">
+                <div class="gallery-item wide">
+                    🎉
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <h5>UP Rising! Gala 2025</h5>
+                            <p>San Francisco Marriott Marquis · March 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item tall">
+                    🎓
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <h5>50th Anniversary Celebration</h5>
+                            <p>2023 Milestone Event</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    🌺
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <h5>Filipino Cultural Camp</h5>
+                            <p>Summer Immersion 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    🤝
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <h5>Alumni Mentoring Session</h5>
+                            <p>Silicon Valley · Feb 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item wide">
+                    🏔️
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <h5>Bay Area Hiking Social</h5>
+                            <p>Mount Tamalpais · Jan 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    🍜
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <h5>Kamayan Dinner Night</h5>
+                            <p>Annual Food Celebration</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    🎭
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-info">
+                            <h5>Sining at Kultura Festival</h5>
+                            <p>Cultural Night 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		// Community dropdown on mobile (tap to open)
-		communityNavItem.addEventListener('click', (e) => {
-			if (window.innerWidth <= 768) {
-				e.preventDefault();
-				communityNavItem.classList.toggle('open');
-			}
-		});
+            <div class="gallery-actions">
+                <a href="#" class="btn-outline-white">View Full Gallery</a>
+                <a href="#" class="btn-gold">📤 Submit Photos</a>
+            </div>
+        </div>
+    </section>
 
-		// Smooth sub-nav active state on scroll
-		const sections = ['alumni-stories', 'news-updates', 'member-blog', 'photo-gallery', 'up-system'];
-		const subnavItems = document.querySelectorAll('.subnav-item');
-		
-		const dropdownLinks = document.querySelectorAll('.dropdown-menu a[href^="#"]');
+    <!-- ===================== UP SYSTEM CONNECTION ===================== -->
+    <section id="up-system" class="section-anchor">
+        <div style="padding: 5rem 5%; background: linear-gradient(135deg, #f8f8f8, #fff);">
+            <div class="section-header">
+                <div class="section-tag">🎓 UP System Connection</div>
+                <h3>Always Connected to Alma Mater</h3>
+                <p>From UP Diliman to UP Mindanao — stay linked to the University of the Philippines system, its news, and its global alumni network.</p>
+            </div>
 
-		function setActiveSection(id) {
-			// Sub-nav bar
-			subnavItems.forEach(item => {
-				item.classList.toggle('active', item.dataset.target === id);
-			});
-			// Dropdown menu
-			dropdownLinks.forEach(link => {
-				const matches = link.getAttribute('href') === `#${id}`;
-				link.classList.toggle('active-section', matches);
-			});
-		}
+            <div class="upsystem-grid">
+                <div class="upsystem-card">
+                    <div class="upsystem-card-icon">📡</div>
+                    <h4>UP System News</h4>
+                    <p>Official updates, research breakthroughs, policy changes, and announcements straight from the UP Office of the President and its constituent universities.</p>
+                    <ul class="upsystem-links">
+                        <li><a href="#">→ UP System Official Website</a></li>
+                        <li><a href="#">→ UP Diliman News Feed</a></li>
+                        <li><a href="#">→ UP Manila Updates</a></li>
+                        <li><a href="#">→ UP Visayas &amp; Mindanao News</a></li>
+                    </ul>
+                </div>
 
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					setActiveSection(entry.target.id);
-				}
-			});
-		}, { rootMargin: '-30% 0px -60% 0px' });
+                <div class="upsystem-card">
+                    <div class="upsystem-card-icon">🏛️</div>
+                    <h4>Campus Updates</h4>
+                    <p>New buildings, renovations, research centers, and campus development news across UP's constituent universities and campuses in the Philippines.</p>
+                    <ul class="upsystem-links">
+                        <li><a href="#">→ Campus Infrastructure Projects</a></li>
+                        <li><a href="#">→ Research &amp; Innovation Hub</a></li>
+                        <li><a href="#">→ Student Life &amp; Organizations</a></li>
+                        <li><a href="#">→ Support Campus Initiatives</a></li>
+                    </ul>
+                </div>
 
-		sections.forEach(id => {
-			const el = document.getElementById(id);
-			if (el) observer.observe(el);
-		});
+                <div class="upsystem-card">
+                    <div class="upsystem-card-icon">🌏</div>
+                    <h4>UP Alumni Global Network</h4>
+                    <p>Connect with UP alumni chapters worldwide — from the US chapters to Europe, Asia-Pacific, and the Middle East. Together, we are a global UP ohana.</p>
+                    <ul class="upsystem-links">
+                        <li><a href="#">→ UP Alumni Global Directory</a></li>
+                        <li><a href="#">→ Other US-based UP Chapters</a></li>
+                        <li><a href="#">→ UP Alumni Association (UP AA)</a></li>
+                        <li><a href="#">→ Global Chapter Events</a></li>
+                    </ul>
+                </div>
 
-		// Sub-nav smooth scroll
-		document.querySelectorAll('.subnav-item, .dropdown-menu a').forEach(link => {
-			link.addEventListener('click', (e) => {
-				const href = link.getAttribute('href');
-				if (href && href.startsWith('#')) {
-					e.preventDefault();
-					const target = document.querySelector(href);
-					if (target) target.scrollIntoView({ behavior: 'smooth' });
-				}
-			});
-		});
+                <div class="upsystem-card">
+                    <div class="upsystem-card-icon">❤️</div>
+                    <h4>Support UP</h4>
+                    <p>Give back to your alma mater. From scholarship funds to infrastructure drives, your generosity directly empowers the next generation of Iskolars ng Bayan.</p>
+                    <ul class="upsystem-links">
+                        <li><a href="#">→ UPAASF Scholarship Fund</a></li>
+                        <li><a href="#">→ UP Foundation Giving</a></li>
+                        <li><a href="#">→ Adopt a Scholar Program</a></li>
+                        <li><a href="#">→ Disaster Relief Efforts</a></li>
+                    </ul>
+                </div>
 
-		// News tab switching
-		document.querySelectorAll('.news-tab').forEach(tab => {
-			tab.addEventListener('click', () => {
-				document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
-				tab.classList.add('active');
-			});
-		});
+                <div class="upsystem-card">
+                    <div class="upsystem-card-icon">🤝</div>
+                    <h4>Mentoring &amp; Internships</h4>
+                    <p>Bridge the gap between UP students and Bay Area professionals. Open internship opportunities, co-op programs, and mentoring slots at your company or organization.</p>
+                    <ul class="upsystem-links">
+                        <li><a href="#">→ Become a Mentor</a></li>
+                        <li><a href="#">→ Post an Internship</a></li>
+                        <li><a href="#">→ Career Day Participation</a></li>
+                        <li><a href="#">→ Mentoring Program Info</a></li>
+                    </ul>
+                </div>
 
-		// Story filter buttons
-		document.querySelectorAll('.story-filter-btn').forEach(btn => {
-			btn.addEventListener('click', () => {
-				document.querySelectorAll('.story-filter-btn').forEach(b => b.classList.remove('active'));
-				btn.classList.add('active');
-			});
-		});
+                <div class="upsystem-card">
+                    <div class="upsystem-card-icon">📚</div>
+                    <h4>Research &amp; Publications</h4>
+                    <p>Access the latest research, journals, and publications from UP's world-class faculty. Stay informed and be proud of what your alma mater continues to achieve.</p>
+                    <ul class="upsystem-links">
+                        <li><a href="#">→ UP Research Digest</a></li>
+                        <li><a href="#">→ UP Press Publications</a></li>
+                        <li><a href="#">→ Philippine Journal of Science</a></li>
+                        <li><a href="#">→ UP Open University Courses</a></li>
+                    </ul>
+                </div>
+            </div>
 
-		// Gallery filter buttons
-		document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-			btn.addEventListener('click', () => {
-				document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
-				btn.classList.add('active');
-			});
-		});
+            <!-- Connection Banner -->
+            <div class="upsystem-banner">
+                <div class="upsystem-banner-text">
+                    <h4>🏅 Proudly Part of the UP Global Alumni Network</h4>
+                    <p>UPAASF is an officially recognized UP alumni chapter, connected to the UP Alumni Association and the Office of Alumni Relations. Your membership here keeps you tied to a worldwide family of over 200,000 Iskolars ng Bayan.</p>
+                </div>
+                <div class="upsystem-banner-ctas">
+                    <a href="#" class="btn-gold">Explore UP Alumni Network</a>
+                    <a href="./membership.html" class="btn-outline-white">Renew UPAASF Membership</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		// Blog category chips
-		document.querySelectorAll('.cat-chip').forEach(chip => {
-			chip.addEventListener('click', () => {
-				document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
-				chip.classList.add('active');
-			});
-		});
-	</script>
+    <div id="site-footer"></div>
+
+    <script src="./shared/site.js"></script>
+    <script>
+        // ── Section scroll-spy: drives both sub-nav bar and future dropdown active states ──
+        const sections = ['alumni-stories', 'news-updates', 'member-blog', 'photo-gallery', 'up-system'];
+        const subnavItems = document.querySelectorAll('.subnav-item');
+
+        // Also wires up future dropdown menu links (when dropdown is activated in site.js)
+        const dropdownLinks = document.querySelectorAll('.dropdown-menu a[href^="#"]');
+
+        function setActiveSection(id) {
+            subnavItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.target === id);
+            });
+            dropdownLinks.forEach(link => {
+                link.classList.toggle('active-section', link.getAttribute('href') === `#${id}`);
+            });
+        }
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) setActiveSection(entry.target.id);
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) sectionObserver.observe(el);
+        });
+
+        // Sub-nav smooth scroll (also handles future dropdown links)
+        document.querySelectorAll('.subnav-item, .dropdown-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Community dropdown toggle on mobile (guard: only runs when dropdown is activated)
+        const communityNavItem = document.getElementById('communityNavItem');
+        if (communityNavItem) {
+            communityNavItem.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    communityNavItem.classList.toggle('open');
+                }
+            });
+        }
+
+        // ── UI filter toggles (stub — replace with real filter logic when content is dynamic) ──
+        document.querySelectorAll('.news-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.story-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.story-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.cat-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
