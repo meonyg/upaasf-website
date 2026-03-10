@@ -98,7 +98,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-
+		
         /* ── Program detail sections ── */
         .program-detail {
             padding: 6rem 5%;
@@ -157,9 +157,12 @@
             position: relative;
             overflow: hidden;
         }
-		
+
+		/* ── ::after label is now driven by "--img-label" CSS variable.
+			  Set it per-element via style="--img-label: 'Your Text Here'"
+			  The fallback 'Add Program Photo' is used when no variable is set. ── */		
         .program-image::after {
-            content: 'Add Program Photo';
+            content: var(--img-label, 'Add Program Photo');
             position: absolute;
             bottom: 1rem;
             right: 1rem;
@@ -319,6 +322,20 @@
             color: rgba(255, 255, 255, 0.5);
             font-size: 3rem;
         }
+
+        /* ── Same "--img-label" pattern applied to gallery placeholders.
+              Mirrors the ".program-image::after" approach exactly.
+              Set per-element via style="--img-label: 'Your Text Here'"
+              Fallback is 'Add Photo'. ── */		
+        .gallery-placeholder::after {
+            content: var(--img-label, 'Add Photo');
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
 
         /* ── Info box ── */
         .info-box {
@@ -489,7 +506,7 @@
                     <p>Launched as a pioneering initiative, this program has become a model for UP alumni chapters globally, demonstrating how diaspora communities can give back meaningfully to their alma mater.</p>
 					-->
                 </div>
-                <div class="program-image fade-in">🎓</div>
+                <div class="program-image fade-in"  style="--img-label: 'Add Mentoring Photo'">🎓</div>
             </div>
 
             <div class="features-grid">
@@ -572,7 +589,7 @@
                 <div class="program-header-content">
                     <h3>Filipino Cultural Immersion Summer Camp</h3>
                     <p class="tagline">Passing Filipino Heritage to the Next Generation</p>
-                    <p>For over two decades, the UPAASF Annual Filipino Cultural Immersion Summer Camp has been a cornerstone of our mission to preserve and celebrate Filipino culture in the Bay Area. This beloved program introduces children and young adults to the rich tapestry of Filipino heritage.</p>
+                    <p>Now in its 13th year, the UPAASF Annual Filipino Cultural Immersion Summer Camp has been a cornerstone of our mission to preserve and celebrate Filipino culture in the Bay Area. This beloved program introduces children and young adults to the rich tapestry of Filipino heritage.</p>
                 </div>
             </div>
 
@@ -640,10 +657,10 @@
             </div>
 
             <div class="photo-gallery">
-                <div class="gallery-item fade-in"><div class="gallery-placeholder">📸</div></div>
-                <div class="gallery-item fade-in"><div class="gallery-placeholder">📸</div></div>
-                <div class="gallery-item fade-in"><div class="gallery-placeholder">📸</div></div>
-                <div class="gallery-item fade-in"><div class="gallery-placeholder">📸</div></div>
+                <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Camp Photo'">📸</div></div>
+                <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Camp Photo'">📸</div></div>
+                <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Camp Photo'">📸</div></div>
+                <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Camp Photo'">📸</div></div>
             </div>
 
             <div class="cta-box fade-in">
@@ -710,9 +727,9 @@
             </div>
 
             <div class="photo-gallery">
-                <div class="gallery-item fade-in"><div class="gallery-placeholder">📸</div></div>
-                <div class="gallery-item fade-in"><div class="gallery-placeholder">📸</div></div>
-                <div class="gallery-item fade-in"><div class="gallery-placeholder">📸</div></div>
+                <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Event Photo'">📸</div></div>
+                <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Event Photo'">📸</div></div>
+                <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Event Photo'">📸</div></div>
             </div>
 
             <div style="margin: 3rem 0; background: #f8f9fa; padding: 3rem; border-radius: 20px;">
