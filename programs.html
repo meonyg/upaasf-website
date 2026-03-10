@@ -157,6 +157,15 @@
             position: relative;
             overflow: hidden;
         }
+		
+        .program-image::after {
+            content: 'Add Program Photo';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
 
         /* ── Features grid ── */
         .features-grid {
@@ -397,7 +406,7 @@
         }
     </style>
 </head>
-<body data-page="programs">
+<body data-page="programs" data-join-href="#join">
 
     <div id="site-header"></div>
 
@@ -472,8 +481,13 @@
                 <div class="program-header-content">
                     <h3>Alumni Mentoring Program</h3>
                     <p class="tagline">Empowering the Next Generation of UP Leaders</p>
-                    <p>UPAASF's Alumni Mentoring Program connects current UP students with experienced professionals in the San Francisco Bay Area. Through structured sessions focused on career guidance and design thinking, we help the next generation of iskolar ng bayan chart their path to success.</p>
+                    <p>The UPAASF Alumni Mentoring Program represents a bold vision: connecting UP students in the Philippines with accomplished professionals in the San Francisco Bay Area to provide career guidance, share global perspectives, and foster the innovative thinking that will shape their futures.</p>
+					<p>Launched in November 2023, this program is the first of its kind among UP alumni chapters worldwide. Developed in partnership with UP Diliman's Office of Student Development Services, the program uses a design thinking approach that puts students' needs, desires, and challenges at the heart of the mentorship experience.</p>
+					
+					<!--
+					<p>UPAASF's Alumni Mentoring Program connects current UP students with experienced professionals in the San Francisco Bay Area. Through structured sessions focused on career guidance and design thinking, we help the next generation of iskolar ng bayan chart their path to success.</p>
                     <p>Launched as a pioneering initiative, this program has become a model for UP alumni chapters globally, demonstrating how diaspora communities can give back meaningfully to their alma mater.</p>
+					-->
                 </div>
                 <div class="program-image fade-in">🎓</div>
             </div>
@@ -882,7 +896,7 @@
     </section>
 
     <!-- ── Final CTA ── -->
-    <section style="background: white; padding: 6rem 5%; text-align: center;">
+    <section id="join" style="background: white; padding: 6rem 5%; text-align: center;">
         <div style="max-width: 900px; margin: 0 auto;">
             <h3 style="font-size: 2.5rem; color: #8B0000; margin-bottom: 1rem;">Get Involved in Our Programs</h3>
             <p style="font-size: 1.2rem; color: #666; margin-bottom: 2.5rem; line-height: 1.7;">Whether you want to mentor a student, volunteer at our cultural camp, or support our initiatives financially, there's a place for you in UPAASF's mission.</p>
