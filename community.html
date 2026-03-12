@@ -7,8 +7,11 @@
     <meta name="description" content="Explore the UPAASF community: alumni stories, news and updates, member blog, photo gallery, and UP System connections. Stay connected with your UP ohana in the Bay Area.">
     <link rel="stylesheet" href="./shared/styles.css">
     <style>
-        /* ── Page Hero: centered emoji watermark override (needs right/bottom: auto to clear shared full-bleed rule) ── */
-        .page-hero::before {
+		/* ── Page Hero: bottom padding adjust to account for the sub navigation ── */
+        .page-hero { padding-bottom: 10px; }
+		
+        /* ── Page Hero: centered emoji watermark override ── */		
+		.page-hero::before {
             content: '🤝';
             font-size: 22rem;
             opacity: 0.05;
@@ -20,10 +23,10 @@
             background: none;
             pointer-events: none;
         }
-		
-		.page-hero-content {
-			max-width: 750px;
-		}
+
+        .page-hero-content {
+            max-width: 750px;
+        }
 
         /* Hero badge (community-specific pill label above h2) */
         .page-hero-badge {
@@ -40,7 +43,7 @@
             margin-bottom: 1.2rem;
         }
 
-        /* Hero CTA buttons (smaller, community-density sizing) */
+        /* Community-density button sizing overrides */
         .btn-gold {
             display: inline-flex;
             align-items: center;
@@ -81,7 +84,7 @@
 			background: rgba(255,255,255,0.1);
 			}
 
-        /* Override shared .btn-primary / .btn-secondary to community density sizing */
+        /* Override shared .btn-primary / .btn-secondary to community density */
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -123,59 +126,12 @@
 			transform: translateY(-2px);
 		}
 
-        /* ── Community sub-nav ── */
-        .community-subnav {
-            background: white;
-            border-bottom: 2px solid #f0f0f0;
-            position: sticky;
-            top: var(--nav-height);
-            z-index: 900;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        .subnav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: flex;
-            gap: 0;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .subnav-container::-webkit-scrollbar { display: none; }
-
-        .subnav-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 1rem 1.4rem;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: #666;
-            text-decoration: none;
-            border-bottom: 3px solid transparent;
-            white-space: nowrap;
-            transition: color 0.2s, border-color 0.2s;
-            cursor: pointer;
-        }
-        .subnav-item:hover {
-			color: #8B0000;
-			border-bottom-color: rgba(139,0,0,0.3);
-		}
-		
-        .subnav-item.active {
-			color: #8B0000;
-			border-bottom-color: #8B0000;
-		}
-		
-        .subnav-icon {
-			font-size: 1rem;
-		}
-
         /* ── Section scaffolding ── */
+
+        /* Section anchor offset: fixed nav + sticky sub-nav */
         .section-anchor {
-			scroll-margin-top: 130px;
-		}
+            scroll-margin-top: calc(var(--nav-height) + 56px);
+        }
 
         /* Community uses a compact section-header (overrides shared 3rem h3) */
         .section-header {
@@ -208,7 +164,12 @@
             margin-bottom: 1rem;
         }
 
-        /* ── Alumni Stories ── */
+        /* Subnav icon — community subnav uses <span class="subnav-icon"> wrapper */
+        .subnav-icon { font-size: 1rem; }
+
+        /* ── Alumni Stories & Spotlights ── */
+        #alumni-stories { padding: 5rem 5%; background: #fff; }
+
         .stories-subnav {
             display: flex;
             gap: 0.5rem;
@@ -229,11 +190,11 @@
             transition: all 0.2s;
         }
         .story-filter-btn.active,
-        .story-filter-btn:hover {
-			border-color: #8B0000;
-			color: #8B0000;
-			background: #fdf2f2;
-		}
+		.story-filter-btn:hover {
+            border-color: #8B0000;
+            color: #8B0000;
+            background: #fdf2f2;
+        }
 
         .stories-grid {
             display: grid;
@@ -251,7 +212,7 @@
             background: white;
             border: 1px solid #f0f0f0;
         }
-		
+
         .story-card:hover {
 			transform: translateY(-6px);
 			box-shadow: 0 12px 35px rgba(139,0,0,0.12);
@@ -279,15 +240,15 @@
 		}
 
         .story-image-overlay {
-			position: absolute;
-			inset: 0;
-			background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-		}
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+        }
 
         .story-badge {
             position: absolute;
             top: 12px;
-            left: 12px;
+			left: 12px;
             background: #FFD700;
             color: #1a1a1a;
             font-size: 0.72rem;
@@ -303,23 +264,23 @@
 		}
 
         .story-meta {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-			margin-bottom: 0.75rem;
-		}
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
 
         .story-avatar {
             width: 32px;
-            height: 32px;
+			height: 32px;
             border-radius: 50%;
             background: linear-gradient(135deg, #8B0000, #0A3B1A);
             display: flex;
-            align-items: center;
-            justify-content: center;
+			align-items: center;
+			justify-content: center;
             color: white;
             font-size: 0.75rem;
-            font-weight: 700;
+			font-weight: 700;
         }
 
         .story-author {
@@ -327,7 +288,7 @@
 			font-weight: 700;
 			color: #555;
 		}
-		
+
         .story-date {
 			font-size: 0.78rem;
 			color: #999;
@@ -372,6 +333,8 @@
 		}
 
         /* ── News & Updates ── */
+        #news-updates { padding: 5rem 5%; background: #f8f8f8; }
+
         .news-layout {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -382,18 +345,18 @@
 
         .news-tabs {
             display: flex;
-            gap: 0;
             background: #eee;
             border-radius: 10px;
             padding: 4px;
             margin-bottom: 1.8rem;
             width: fit-content;
         }
+
         .news-tab {
             padding: 0.5rem 1.2rem;
             border-radius: 8px;
             font-size: 0.85rem;
-            font-weight: 600;
+			font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             color: #666;
@@ -431,60 +394,55 @@
 		}
 
         .news-date-block {
-            text-align: center;
-            min-width: 48px;
-            background: #fdf2f2;
+            background: #8B0000;
+            color: white;
             border-radius: 10px;
-            padding: 0.5rem 0.4rem;
+            padding: 0.5rem 0.8rem;
+            text-align: center;
+            min-width: 56px;
+            flex-shrink: 0;
         }
-		
         .news-date-block .day {
 			font-size: 1.4rem;
 			font-weight: 900;
-			color: #8B0000;
 			line-height: 1;
 		}
 		
         .news-date-block .month {
-			font-size: 0.72rem;
-			font-weight: 700;
-			color: #8B0000;
+			font-size: 0.7rem;
+			font-weight: 600;
 			text-transform: uppercase;
+			opacity: 0.85;
 		}
 
-        .news-content {
-			flex: 1;
-		}
-        .news-category {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #0A3B1A;
-            margin-bottom: 0.35rem;
-        }
-		
         .news-content h4 {
 			font-size: 0.95rem;
 			font-weight: 700;
 			color: #1a1a1a;
-			margin-bottom: 0.4rem;
+			margin-bottom: 0.35rem;
 			line-height: 1.4;
 		}
 		
         .news-content p {
-			font-size: 0.82rem;
+			font-size: 0.83rem;
 			color: #777;
 			line-height: 1.5;
 		}
+		
+        .news-category {
+			font-size: 0.72rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.8px;
+			color: #8B0000;
+			margin-bottom: 0.3rem;
+		}
 
-        /* News sidebar */
         .news-sidebar {
 			display: flex;
 			flex-direction: column;
 			gap: 1.5rem;
 		}
-		
 
         .sidebar-widget {
             background: white;
@@ -492,30 +450,58 @@
             padding: 1.5rem;
             border: 1px solid #f0f0f0;
         }
+
+        .widget-title {
+            font-size: 0.9rem;
+			font-weight: 800;
+			color: #1a1a1a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid #8B0000;
+            display: inline-block;
+        }
+
+        .widget-links {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+        .widget-links li a {
+            font-size: 0.85rem;
+			color: #555;
+			text-decoration: none;
+            display: flex;
+			align-items: center;
+			gap: 6px;
+            transition: color 0.2s;
+        }
 		
+        .widget-links li a::before {
+			content: '→';
+			color: #8B0000;
+			font-size: 0.8rem;
+		}
+		
+        .widget-links li a:hover {
+			/* text-decoration: underline; */
+			color: #8B0000;
+		}
+
         .newsletter-widget {
-			background: linear-gradient(135deg, #8B0000, #0A3B1A);
+			background: linear-gradient(135deg, #8B0000, #660000);
 			color: white;
-			border: none;
+		}
+		
+        .newsletter-widget .widget-title {
+			color: white;
+			border-bottom-color: #FFD700;
 		}
 		
         .newsletter-widget p {
-			color: rgba(255,255,255,0.85);
-			font-size: 0.85rem;
+			font-size: 0.83rem;
+			opacity: 0.9;
 			margin-bottom: 1rem;
-		}
-
-        .widget-title {
-            font-size: 0.85rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-        }
-        
-		.newsletter-widget .widget-title {
-			color: #FFD700;
 		}
 
         .newsletter-input {
@@ -530,25 +516,9 @@
         }
         .newsletter-input::placeholder { color: rgba(255,255,255,0.6); }
 
-        .widget-links {
-			list-style: none;
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-		}
-		
-        .widget-links li a {
-			font-size: 0.85rem;
-			color: #8B0000;
-			text-decoration: none;
-			font-weight: 600;
-		}
-		
-        .widget-links li a:hover {
-			text-decoration: underline;
-		}
-
         /* ── Member Blog ── */
+        #member-blog { padding: 5rem 5%; background: white; }
+
         .blog-toolbar {
             display: flex;
             justify-content: space-between;
@@ -558,7 +528,8 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-        .blog-categories {
+
+        .blog-categories 
 			display: flex;
 			gap: 0.5rem;
 			flex-wrap: wrap;
@@ -569,14 +540,14 @@
             border: 1.5px solid #ddd;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 600;
+			font-weight: 600;
             color: #666;
             cursor: pointer;
             transition: all 0.2s;
             background: white;
         }
-
-        .cat-chip.active, .cat-chip:hover {
+        
+		.cat-chip.active, .cat-chip:hover {
 			border-color: #8B0000;
 			color: #8B0000;
 			background: #fdf2f2;
@@ -591,12 +562,12 @@
             padding: 0.55rem 1.2rem;
             border-radius: 8px;
             font-size: 0.85rem;
-            font-weight: 700;
+			font-weight: 700;
             text-decoration: none;
             transition: background 0.2s, transform 0.2s;
         }
-
-        .write-btn:hover {
+        
+		.write-btn:hover {
 			background: #062810;
 			transform: translateY(-2px);
 		}
@@ -608,6 +579,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .blog-card {
             border: 1px solid #f0f0f0;
             border-radius: 14px;
@@ -620,24 +592,25 @@
 			transform: translateY(-5px);
 			box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 		}
-
+		
         .blog-card-image {
             height: 170px;
             background: linear-gradient(135deg, #0A3B1A 0%, #1a6b35 100%);
             display: flex;
-            align-items: center;
-            justify-content: center;
+			align-items: center;
+			justify-content: center;
             font-size: 3.5rem;
             position: relative;
         }
+
         .blog-card-image .read-time {
             position: absolute;
             bottom: 10px;
-            right: 12px;
+			right: 12px;
             background: rgba(0,0,0,0.6);
             color: white;
             font-size: 0.72rem;
-            font-weight: 600;
+			font-weight: 600;
             padding: 0.2rem 0.6rem;
             border-radius: 10px;
         }
@@ -734,6 +707,11 @@
 		}
 
         /* ── Photo Gallery ── */
+        #photo-gallery { padding: 5rem 5%; background: #1a1a1a; color: white; }
+        #photo-gallery .section-tag { background: rgba(255,215,0,0.15); color: #FFD700; }
+        #photo-gallery .section-header h3 { color: white; }
+        #photo-gallery .section-header p { color: rgba(255,255,255,0.7); }
+
         .gallery-filters {
             display: flex;
             gap: 0.5rem;
@@ -767,6 +745,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+		
         .gallery-item {
             border-radius: 12px;
             overflow: hidden;
@@ -829,7 +808,6 @@
 			margin-top: 2.5rem;
 		}
 
-        /* ── UP System Connection ── */
         .upsystem-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -837,6 +815,7 @@
             max-width: 1200px;
             margin: 0 auto 3rem;
         }
+
         .upsystem-card {
             background: white;
             border-radius: 16px;
@@ -930,37 +909,6 @@
 			flex-shrink: 0;
 		}
 
-        /* ── Large extended footer CSS (kept for future activation) ── */
-        /*
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .footer-brand h3 { font-size: 1.8rem; font-weight: 900; color: white; margin-bottom: 0.75rem; }
-        .footer-brand p { color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.5rem; }
-        .footer-social { display: flex; gap: 0.75rem; }
-        .social-btn {
-            width: 38px; height: 38px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .social-btn:hover { background: rgba(255,255,255,0.2); }
-        .footer-col h4 { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #FFD700; margin-bottom: 1.2rem; }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-        .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
-        .footer-col ul li a:hover { color: white; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; max-width: 1200px; margin: 0 auto; }
-        .footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
-        */
 
         /* ── Responsive ── */
         @media (max-width: 1024px) {
@@ -989,66 +937,6 @@
 
     <div id="site-header"></div>
 
-    <!--
-    ═══════════════════════════════════════════════════════════════════
-    FUTURE: Community dropdown nav structure (for site.js integration)
-    When implementing dropdown menus, wire this into the nav injection
-    in shared/site.js in place of the plain "Community" link.
-    ═══════════════════════════════════════════════════════════════════
-
-    <li id="communityNavItem">
-        <a href="./community.html" class="dropdown-toggle active-nav">Community</a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#alumni-stories">
-                    <span class="submenu-icon">🌟</span>
-                    <span class="submenu-label">
-                        Alumni Stories &amp; Spotlights
-                        <span>Member success &amp; journeys</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#news-updates">
-                    <span class="submenu-icon">📰</span>
-                    <span class="submenu-label">
-                        News &amp; Updates
-                        <span>Latest bulletins &amp; press</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#member-blog">
-                    <span class="submenu-icon">✍️</span>
-                    <span class="submenu-label">
-                        Member Blog
-                        <span>Stories written by alumni</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#photo-gallery">
-                    <span class="submenu-icon">📸</span>
-                    <span class="submenu-label">
-                        Photo Gallery
-                        <span>Event &amp; program photos</span>
-                    </span>
-                </a>
-            </li>
-            <hr class="dropdown-divider">
-            <li>
-                <a href="#up-system">
-                    <span class="submenu-icon">🎓</span>
-                    <span class="submenu-label">
-                        UP System Connection
-                        <span>Stay linked to alma mater</span>
-                    </span>
-                </a>
-            </li>
-        </ul>
-    </li>
-    -->
-
     <!-- ===================== PAGE HERO ===================== -->
     <section class="page-hero">
         <div class="page-hero-content">
@@ -1063,7 +951,6 @@
     </section>
 
     <!-- ===================== COMMUNITY SUB-NAV ===================== -->
-    <!-- Hide for now — enable when section scroll-spy is ready
     <nav class="community-subnav" aria-label="Community sections">
         <div class="subnav-container">
             <a href="#alumni-stories" class="subnav-item active" data-target="alumni-stories">
@@ -1083,7 +970,6 @@
             </a>
         </div>
     </nav>
-    -->
 
     <!-- ===================== ALUMNI STORIES & SPOTLIGHTS ===================== -->
     <section id="alumni-stories" class="section-anchor">
@@ -1094,7 +980,6 @@
                 <p>Real journeys, real impact — hear from the remarkable UP alumni who make our Bay Area community thrive.</p>
             </div>
 
-            <!-- Sub-filters -->
             <div class="stories-subnav">
                 <button class="story-filter-btn active">All Stories</button>
                 <button class="story-filter-btn">Featured Spotlights</button>
@@ -1309,8 +1194,7 @@
             <div class="blog-grid">
                 <div class="blog-card">
                     <div class="blog-card-image" style="background: linear-gradient(135deg, #8B0000, #c0392b);">
-                        🇵🇭
-                        <span class="read-time">5 min read</span>
+                        🇵🇭 <span class="read-time">5 min read</span>
                     </div>
                     <div class="blog-card-body">
                         <div class="blog-card-cat">Culture &amp; Heritage</div>
@@ -1328,8 +1212,7 @@
 
                 <div class="blog-card">
                     <div class="blog-card-image" style="background: linear-gradient(135deg, #1a3a6b, #2980b9);">
-                        💻
-                        <span class="read-time">7 min read</span>
+                        💻 <span class="read-time">7 min read</span>
                     </div>
                     <div class="blog-card-body">
                         <div class="blog-card-cat">Technology</div>
@@ -1345,67 +1228,63 @@
                     </div>
                 </div>
 
-				<div class="blog-card">
-					<div class="blog-card-image" style="background: linear-gradient(135deg, #0A3B1A, #27ae60);">
-						🌿
-						<span class="read-time">4 min read</span>
-					</div>
-					<div class="blog-card-body">
-						<div class="blog-card-cat">Advocacy</div>
-						<h4>Why Filipino-Americans Must Engage with Local Politics Now More Than Ever</h4>
-						<p>A call to action for our community as Bay Area district boundaries and housing policy directly affect Filipino neighborhoods.</p>
-						<div class="blog-card-footer">
-							<div class="blog-author-info">
-								<div class="author-dot">LV</div>
-								<span class="author-name">Lina Villanueva</span>
-							</div>
-							<span class="blog-likes">❤️ 67</span>
-						</div>
-					</div>
-				</div>
+                <div class="blog-card">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #0A3B1A, #27ae60);">
+                        🌿 <span class="read-time">4 min read</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-cat">Advocacy</div>
+                        <h4>Why Filipino-Americans Must Engage with Local Politics Now More Than Ever</h4>
+                        <p>A call to action for our community as Bay Area district boundaries and housing policy directly affect Filipino neighborhoods.</p>
+                        <div class="blog-card-footer">
+                            <div class="blog-author-info">
+                                <div class="author-dot">LV</div>
+                                <span class="author-name">Lina Villanueva</span>
+                            </div>
+                            <span class="blog-likes">❤️ 67</span>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="blog-card">
-					<div class="blog-card-image" style="background: linear-gradient(135deg, #6b1a3a, #c0392b);">
-						👨‍👩‍👧
-						<span class="read-time">6 min read</span>
-					</div>
-					<div class="blog-card-body">
-						<div class="blog-card-cat">Family &amp; Life</div>
-						<h4>Raising Third-Culture Kids: Balancing Filipino and American Identities at Home</h4>
-						<p>A candid look at what it means to parent children who are Filipino by blood but American by upbringing.</p>
-						<div class="blog-card-footer">
-							<div class="blog-author-info">
-								<div class="author-dot">MC</div>
-								<span class="author-name">Maricel Cruz</span>
-							</div>
-							<span class="blog-likes">❤️ 93</span>
-						</div>
-					</div>
-				</div>
+                <div class="blog-card">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #6b1a3a, #c0392b);">
+                        👨‍👩‍👧 <span class="read-time">6 min read</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-cat">Family &amp; Life</div>
+                        <h4>Raising Third-Culture Kids: Balancing Filipino and American Identities at Home</h4>
+                        <p>A candid look at what it means to parent children who are Filipino by blood but American by upbringing.</p>
+                        <div class="blog-card-footer">
+                            <div class="blog-author-info">
+                                <div class="author-dot">MC</div>
+                                <span class="author-name">Maricel Cruz</span>
+                            </div>
+                            <span class="blog-likes">❤️ 93</span>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="blog-card">
-					<div class="blog-card-image" style="background: linear-gradient(135deg, #3a1a6b, #8e44ad);">
-						💼
-						<span class="read-time">8 min read</span>
-					</div>
-					<div class="blog-card-body">
-						<div class="blog-card-cat">Career &amp; Business</div>
-						<h4>How I Negotiated My Way to a $40K Raise — And You Can Too</h4>
-						<p>Practical salary negotiation strategies from a UP-trained engineer who learned the hard way that Filipinos deserve to advocate for their worth.</p>
-						<div class="blog-card-footer">
-							<div class="blog-author-info">
-								<div class="author-dot">BT</div>
-								<span class="author-name">Bryan Tan</span>
-							</div>
-							<span class="blog-likes">❤️ 148</span>
-						</div>
-					</div>
-				</div>
-				
+                <div class="blog-card">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #3a1a6b, #8e44ad);">
+                        💼 <span class="read-time">8 min read</span>
+                    </div>
+                    <div class="blog-card-body">
+                        <div class="blog-card-cat">Career &amp; Business</div>
+                        <h4>How I Negotiated My Way to a $40K Raise — And You Can Too</h4>
+                        <p>Practical salary negotiation strategies from a UP-trained engineer who learned the hard way that Filipinos deserve to advocate for their worth.</p>
+                        <div class="blog-card-footer">
+                            <div class="blog-author-info">
+                                <div class="author-dot">BT</div>
+                                <span class="author-name">Bryan Tan</span>
+                            </div>
+                            <span class="blog-likes">❤️ 148</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="blog-card">
                     <div class="blog-card-image" style="background: linear-gradient(135deg, #1a5a3a, #27ae60);">
-                        🎨
-                        <span class="read-time">5 min read</span>
+                        🎨 <span class="read-time">5 min read</span>
                     </div>
                     <div class="blog-card-body">
                         <div class="blog-card-cat">Culture &amp; Heritage</div>
@@ -1622,11 +1501,9 @@
 
     <script src="./shared/site.js"></script>
     <script>
-        // ── Section scroll-spy: drives both sub-nav bar and future dropdown active states ──
+        // ── Section scroll-spy: drives both sub-nav bar and dropdown active states ──
         const sections = ['alumni-stories', 'news-updates', 'member-blog', 'photo-gallery', 'up-system'];
         const subnavItems = document.querySelectorAll('.subnav-item');
-
-        // Also wires up future dropdown menu links (when dropdown is activated in site.js)
         const dropdownLinks = document.querySelectorAll('.dropdown-menu a[href^="#"]');
 
         function setActiveSection(id) {
@@ -1649,7 +1526,7 @@
             if (el) sectionObserver.observe(el);
         });
 
-        // Sub-nav smooth scroll (also handles future dropdown links)
+        // Sub-nav smooth scroll (also covers dropdown links to in-page anchors)
         document.querySelectorAll('.subnav-item, .dropdown-menu a').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
@@ -1661,18 +1538,7 @@
             });
         });
 
-        // Community dropdown toggle on mobile (guard: only runs when dropdown is activated)
-        const communityNavItem = document.getElementById('communityNavItem');
-        if (communityNavItem) {
-            communityNavItem.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    communityNavItem.classList.toggle('open');
-                }
-            });
-        }
-
-        // ── UI filter toggles (stub — replace with real filter logic when content is dynamic) ──
+        // News tab switching
         document.querySelectorAll('.news-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
@@ -1680,6 +1546,7 @@
             });
         });
 
+        // Story filter buttons
         document.querySelectorAll('.story-filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.story-filter-btn').forEach(b => b.classList.remove('active'));
@@ -1687,6 +1554,7 @@
             });
         });
 
+        // Gallery filter buttons
         document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
@@ -1694,6 +1562,7 @@
             });
         });
 
+        // Blog category chips
         document.querySelectorAll('.cat-chip').forEach(chip => {
             chip.addEventListener('click', () => {
                 document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
