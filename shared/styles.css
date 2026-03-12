@@ -37,7 +37,7 @@ nav {
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    overflow: visible; /* required for mobile dropdown */
+    overflow: visible; /* required for dropdown menus */
     line-height: normal; /* prevent body line-height from affecting nav layout */
 }
 
@@ -97,6 +97,20 @@ nav.scrolled {
     align-items: center;
 }
 
+/* Each top-level li needs relative positioning for the dropdown to anchor to */
+.nav-links > li {
+    position: relative;
+}
+
+/* Invisible hover bridge — prevents dropdown from closing over the gap
+   between the nav link and the dropdown panel */
+.nav-links > li::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    height: 14px;
+}
+
 .nav-links a {
     text-decoration: none;
     color: #333;
@@ -126,6 +140,123 @@ nav.scrolled {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
     color: white !important;
+}
+
+/* ----- Nav Dropdown ----- */
+
+/* Caret indicator on links that have a dropdown */
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.dropdown-toggle::after {
+    content: '';
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transition: transform 0.25s;
+    margin-top: 2px;
+}
+
+.nav-links > li:hover .dropdown-toggle::after,
+.nav-links > li.open .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+/* Dropdown panel */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    min-width: 260px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.14);
+    padding: calc(0.5rem + 10px) 0 0.5rem;
+    margin-top: 0;
+    z-index: 2000;
+    border-top: 3px solid #8B0000;
+}
+
+.nav-links > li:hover .dropdown-menu,
+.nav-links > li.open .dropdown-menu {
+    display: block;
+    animation: dropIn 0.2s ease;
+}
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.dropdown-menu li { list-style: none; }
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #444;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background: #fdf2f2;
+    color: #8B0000;
+    padding-left: 1.5rem;
+}
+
+/* Active state — highlighted when that section is in view (driven by JS) */
+.dropdown-menu a.active-section {
+    background: #fdf2f2;
+    color: #8B0000;
+    padding-left: 1.5rem;
+    border-left: 3px solid #8B0000;
+}
+
+.submenu-icon {
+    font-size: 1rem;
+    width: 22px;
+    text-align: center;
+}
+
+.submenu-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.submenu-label span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #999;
+}
+
+.dropdown-menu a.active-section .submenu-label span { color: #c0392b; }
+
+.dropdown-divider {
+    border: none;
+    border-top: 1px solid #f0f0f0;
+    margin: 0.3rem 0;
+}
+
+/* "Coming Soon" pill badge inside dropdown items */
+.badge-soon {
+    font-size: 0.65rem;
+    font-weight: 700;
+    background: #f0f0f0;
+    color: #999;
+    padding: 0.1rem 0.5rem;
+    border-radius: 8px;
+    margin-left: auto;
+    white-space: nowrap;
 }
 
 /* ----- Mobile Nav ----- */
@@ -197,6 +328,26 @@ nav.scrolled {
     .logo-text p {
         font-size: 0.65rem;
     }
+
+    /* Dropdown becomes inline/static inside the mobile flyout */
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-top: none;
+        border-radius: 0;
+        padding: 0 0 0.5rem 1rem;
+        background: #fafafa;
+        display: none;
+        animation: none;
+        min-width: unset;
+    }
+
+    .nav-links > li.open .dropdown-menu { display: block; }
+
+    /* Remove the hover bridge on mobile — not needed */
+    .nav-links > li::after { display: none; }
 }
 
 /* ----- Buttons ----- */
@@ -234,6 +385,32 @@ nav.scrolled {
 .btn-secondary:hover {
     background: #8B0000;
     color: white;
+    transform: translateY(-3px);
+}
+
+/* Gold variant — for use on dark (hero/CTA) backgrounds */
+.btn-gold {
+    background: #FFD700;
+    color: #8B0000;
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+}
+
+.btn-gold:hover {
+    background: #FFC700;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 35px rgba(255, 215, 0, 0.5);
+}
+
+/* White outline variant — for use on dark backgrounds */
+.btn-outline-white {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.btn-outline-white:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
     transform: translateY(-3px);
 }
 
@@ -281,6 +458,212 @@ nav.scrolled {
     .page-hero p  { font-size: 1.1rem; }
 }
 
+/* When a breadcrumb bar sits between the nav and the hero, the breadcrumb
+   already clears the fixed nav (margin-top: var(--nav-height)).
+   The hero should then use only the breathing-room gap, not the full
+   nav-height + hero-gap calculation. */
+.breadcrumb + .page-hero {
+    padding-top: calc(var(--hero-gap) + 0.5rem);
+}
+
+/* Hero badge / label pill (used in inner page heroes) */
+.hero-tag,
+.page-hero-badge {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+}
+
+/* Hero CTA button group */
+.hero-actions {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* ----- Breadcrumb ----- */
+.breadcrumb {
+    background: #f8f9fa;
+    padding: 0.85rem 5%;
+	margin-top: var(--nav-height);	
+    border-bottom: 1px solid #e8e8e8;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+
+    /* margin-top pushes it below the fixed nav on initial load;
+       sticky + top keeps it visible while scrolling — same pattern as sub-nav */
+    margin-top: var(--nav-height);
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 800;	
+}
+
+.breadcrumb-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: #666;
+    flex-wrap: wrap;
+}
+
+.breadcrumb-container a {
+    color: #8B0000;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.breadcrumb-container a:hover { color: #660000; }
+
+.breadcrumb-sep { color: #ccc; }
+
+.breadcrumb-container span {
+    color: #333;
+    font-weight: 600;
+}
+
+/* ----- Stats Bar ----- */
+/*
+.stats-bar {
+    background: white;
+    padding: 3rem 5%;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.stats-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 1.5rem;
+    border-right: 1px solid #f0f0f0;
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #8B0000;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #666;
+    font-weight: 600;
+}
+
+@media (max-width: 968px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-item {
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .stat-item:nth-child(2n) { border-right: none; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-number { font-size: 2.2rem; }
+}
+*/
+
+/* ----- Sticky Sub-Nav (Programs & Community pages) ----- */
+.programs-subnav,
+.community-subnav {
+    background: white;
+    border-bottom: 2px solid #f0f0f0;
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 900;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    /* Mirror the nav's own transition so the sub-nav slides flush as the
+       nav grows/shrinks — nav uses transition: all 0.3s ease */
+    transition: top 0.3s ease;	
+}
+
+.subnav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.subnav-container::-webkit-scrollbar { display: none; }
+
+.subnav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 1rem 1.4rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #666;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.subnav-item:hover {
+    color: #8B0000;
+    border-bottom-color: rgba(139,0,0,0.3);
+}
+
+.subnav-item.active {
+    color: #8B0000;
+    border-bottom-color: #8B0000;
+}
+
+/* Scroll-fade hint on the right edge — tells users there are more tabs */
+.programs-subnav,
+.community-subnav {
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+    .subnav-container {
+        padding: 0 4%;
+    }
+
+    .subnav-item {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.78rem;
+        gap: 5px;
+    }
+
+    /* Hide emoji icons on narrow screens to save horizontal space */
+    .subnav-item .subnav-icon {
+        display: none;
+    }
+}
+
 /* ----- Strategic Goals Section ----- */
 .strategic-goals {
     padding: 6rem 5%;
@@ -298,6 +681,10 @@ nav.scrolled {
 .strategic-goals-container {
     max-width: 1400px;
     margin: 0 auto;
+}
+
+.strategic-goals .section-header {
+    margin-bottom: 4rem;
 }
 
 .strategic-goals .section-header h3 {
@@ -382,8 +769,8 @@ nav.scrolled {
 	/* color: rgba(255, 215, 0, 0.25); */
 	
     line-height: 1;
-    margin-bottom: 1rem;
-    font-family: Georgia, serif;
+    margin-bottom: 0.5rem;
+    font-family: Georgia, serif;	
 }
 
 .goal-card h4 {
@@ -394,7 +781,7 @@ nav.scrolled {
 	color: #8B0000;
 	/* dark green background option */
     /* color: #FFD700; */
-	
+
     margin-bottom: 0.75rem;
 }
 
@@ -469,7 +856,7 @@ nav.scrolled {
     color: #8B0000;
 }
 
-/* ----- Section Container ----- */
+/* ----- Section Container & Header ----- */
 .section-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -495,22 +882,10 @@ nav.scrolled {
     line-height: 1.7;
 }
 
-/* ----- Footer ----- */
-footer {
-    background: linear-gradient(135deg, #1a1a1a, #2d1a1a);
-    color: white;
-    padding: 3rem 5%;
-    text-align: center;
+@media (max-width: 768px) {
+    .section-header h3 { font-size: 2.2rem; }
 }
-
-footer p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.95rem;
-}
-
-footer p + p {
-    margin-top: 0.5rem;
-}
+/* Original location of footer */
 
 /* ----- Shared Form Styles (contact, membership) ----- */
 .form-group {
@@ -558,13 +933,21 @@ footer p + p {
     .form-row { grid-template-columns: 1fr; }
 }
 
-/* ----- FAQ Accordion (contact, membership) ----- */
+/* ----- FAQ Accordion (contact, membership, AMP) ----- */
 .faq-item {
-    background: white;
-    margin-bottom: 1.5rem;
+    background: white;  /* #f8f9fa */
+    margin-bottom: 1.5rem; /* 1.2 */
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+	/*
+	border: 2px solid transparent;
+    transition: border-color 0.2s;
+	*/
+}
+
+.faq-item.open {
+    border-color: rgba(139,0,0,0.15);
 }
 
 .faq-question {
@@ -576,38 +959,55 @@ footer p + p {
     font-weight: 700;
     color: #333;
     transition: all 0.3s;
+	/*
+	font-size: 1.05rem;
+    transition: color 0.2s, background 0.2s;
+    gap: 1rem;
+	*/
 }
 
 .faq-question:hover {
     color: #8B0000;
-    background: #f8f9fa;
+    background: #f8f9fa; /* #f0f0f0 */
 }
 
 .faq-icon {
-    font-size: 1.5rem;
+    font-size: 1.5rem;  /* 1.4rem */
     color: #8B0000;
     flex-shrink: 0;
-    transition: transform 0.3s;
+    transition: transform 0.3s; /* transform 0.3s ease; */
+	/* line-height: 1; */
 }
 
-.faq-item.active .faq-icon {
+.faq-item.open .faq-icon {
     transform: rotate(45deg);
 }
 
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease; /* max-height 0.35s ease; */
 }
 
-.faq-item.active .faq-answer {
-    max-height: 500px;
+.faq-item.open .faq-answer {
+    max-height: 500px; /* 400ps */
 }
 
 .faq-answer-content {
     padding: 0 2rem 1.5rem;
     color: #666;
-    line-height: 1.7;
+    line-height: 1.7; */1.75 */
+	/* font-size: 1rem */
+}
+
+@media (max-width: 768px) {
+    .faq-question {
+        padding: 1.2rem 1.4rem;
+        font-size: 0.97rem;
+    }
+    .faq-answer-content {
+        padding: 0 1.4rem 1.2rem;
+    }
 }
 
 /* ----- Fade-in animation utility ----- */
@@ -621,3 +1021,53 @@ footer p + p {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ----- Footer ----- */
+footer {
+    background: linear-gradient(135deg, #1a1a1a, #2d1a1a);
+    color: white;
+    padding: 3rem 5%;
+    text-align: center;
+}
+
+footer p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+	/* line-height: 1.8;  */
+}
+
+footer p + p {
+    margin-top: 0.5rem;
+}
+
+/* ── Large extended footer CSS (kept for future activation) ── */
+/*
+.footer-grid {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
+	gap: 3rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding-bottom: 3rem;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand h3 { font-size: 1.8rem; font-weight: 900; color: white; margin-bottom: 0.75rem; }
+.footer-brand p { color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.5rem; }
+.footer-social { display: flex; gap: 0.75rem; }
+.social-btn {
+	width: 38px; height: 38px;
+	background: rgba(255,255,255,0.1);
+	border-radius: 8px;
+	display: flex; align-items: center; justify-content: center;
+	font-size: 1.1rem;
+	text-decoration: none;
+	transition: background 0.2s;
+}
+.social-btn:hover { background: rgba(255,255,255,0.2); }
+.footer-col h4 { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #FFD700; margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; max-width: 1200px; margin: 0 auto; }
+.footer-bottom p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+*/

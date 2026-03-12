@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Mentoring Program | UPAASF Programs</title>
+    <meta name="description" content="UPAASF's Alumni Mentoring Program connects UP students with Bay Area professionals for career guidance, networking, and personal development. Apply today.">
+    <link rel="stylesheet" href="./shared/styles.css">
+    <style>
+        /* ─────────────────────────────────────────────────────────────
+           AMP PAGE-SPECIFIC STYLES
+           Anything already in shared/styles.css is removed from here.
+        ───────────────────────────────────────────────────────────── */
+
+        /* Hero: swap the shared tiled "UP" watermark for gold radial glows */
+        .page-hero::before {
+            background:
+                radial-gradient(circle at 15% 50%, rgba(255,215,0,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 85% 70%, rgba(255,215,0,0.10) 0%, transparent 50%);
+        }
+
+        /* Hero text tweaks — slightly larger than standard inner-page hero */
+        .page-hero h2 { font-size: 3.5rem; line-height: 1.15; }
+
+        @media (max-width: 768px) {
+            .page-hero h2 { font-size: 2.4rem; }
+        }
+
+        /* ── About Section ── */
+        .about-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 2.5rem;
+            color: #8B0000;
+            font-weight: 900;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+        }
+
+        .about-content .tagline {
+            font-size: 1.15rem;
+            color: #0A3B1A;
+            font-style: italic;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.85;
+            margin-bottom: 1.2rem;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #FFD700;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .highlight-box p {
+            color: #555;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box strong { color: #8B0000; }
+
+        .about-visual {
+            position: relative;
+        }
+
+        /* Program image placeholder */
+        .program-image-block {
+            width: 100%;
+            height: 420px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+            color: rgba(255,255,255,0.25);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(139,0,0,0.25);
+        }
+
+        .program-image-block::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.15) 0%, transparent 60%);
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: #FFD700;
+            color: #8B0000;
+            padding: 1.2rem 1.8rem;
+            border-radius: 16px;
+            font-weight: 900;
+            font-size: 1rem;
+            box-shadow: 0 8px 30px rgba(255,215,0,0.5);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* Features intro + grid */
+        .features-intro {
+            max-width: 1400px;
+            margin: 5rem auto 0;
+        }
+
+        .features-intro h4 {
+            font-size: 2rem;
+            color: #8B0000;
+            margin-bottom: 1rem;
+        }
+
+        .features-intro p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid #FFD700;
+        }
+
+        .feature-box h5 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.98rem;
+        }
+
+        /* ── How It Works ── */
+        .how-it-works {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        /* Connecting line between steps */
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, #8B0000, #0A3B1A);
+            z-index: 0;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.07);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 15px rgba(139,0,0,0.3);
+        }
+
+        .step-card h4 {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.65;
+        }
+
+        /* ── Benefits ── */
+        .benefits-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .benefits-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.9rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 2px solid #8B0000;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            color: #8B0000;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: #8B0000;
+            color: white;
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: #FFD700;
+            background: white;
+            box-shadow: 0 8px 35px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(139,0,0,0.2);
+        }
+
+        .benefit-card h4 {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        /* ── Matching Criteria ── */
+        .matching-section {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #8B0000 0%, #660000 40%, #0A3B1A 100%);
+            color: white;
+        }
+
+        .matching-section .section-header h3 { color: white; }
+        .matching-section .section-header p  { color: rgba(255,255,255,0.85); }
+
+        .matching-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .matching-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .matching-card:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-5px);
+        }
+
+        .matching-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .matching-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: #FFD700;
+        }
+
+        .matching-card p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+        }
+
+        /* ── Testimonials ── */
+        .testimonials-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: #FFD700;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .quote-mark {
+            font-size: 5rem;
+            color: rgba(255,215,0,0.4);
+            line-height: 0.6;
+            margin-bottom: 1.5rem;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-card p {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .author-info strong {
+            display: block;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .author-info span {
+            font-size: 0.88rem;
+            color: #8B0000;
+            font-weight: 600;
+        }
+
+        /* ── Eligibility ── */
+        .eligibility-section {
+            padding: 6rem 5%;
+            background: #f8f9fa;
+        }
+
+        .eligibility-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .eligibility-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+        }
+
+        .eligibility-card h4 {
+            font-size: 1.6rem;
+            color: #8B0000;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .eligibility-card .role-desc {
+            color: #0A3B1A;
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .criteria-list { list-style: none; }
+
+        .criteria-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .criteria-list li:last-child { border-bottom: none; }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+		/* ----- Stats Bar ----- */
+		.stats-bar {
+			background: white;
+			padding: 3rem 5%;
+			border-bottom: 1px solid #f0f0f0;
+		}
+
+		.stats-grid {
+			max-width: 1400px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 2rem;
+			text-align: center;
+		}
+
+		.stat-item {
+			padding: 1.5rem;
+			border-right: 1px solid #f0f0f0;
+		}
+
+		.stat-item:last-child { border-right: none; }
+
+		.stat-number {
+			font-size: 3rem;
+			font-weight: 900;
+			color: #8B0000;
+			line-height: 1;
+			margin-bottom: 0.4rem;
+		}
+
+		.stat-label {
+			font-size: 0.95rem;
+			color: #666;
+			font-weight: 600;
+		}
+
+		@media (max-width: 968px) {
+			.stats-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			.stat-item {
+				border-right: none;
+				border-bottom: 1px solid #f0f0f0;
+			}
+			.stat-item:nth-child(2n) { border-right: none; }
+		}
+
+		@media (max-width: 480px) {
+			.stats-grid { grid-template-columns: 1fr 1fr; }
+			.stat-number { font-size: 2.2rem; }
+		}
+        /* ── FAQ section wrapper ── */
+        .faq-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            /* Hide the decorative image column — content is enough on tablet */
+            .about-grid .about-visual { display: none; }
+
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .steps-grid::before { display: none; }
+
+            .benefits-grid { grid-template-columns: 1fr 1fr; }
+
+            .matching-grid { grid-template-columns: 1fr; }
+
+            .testimonials-grid { grid-template-columns: 1fr; }
+
+            .eligibility-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .steps-grid    { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr; }
+
+            .tab-btn {
+                padding: 0.75rem 1.6rem;
+                font-size: 0.9rem;
+            }
+
+            .eligibility-card { padding: 2rem; }
+
+            .floating-badge { display: none; } /* avoid overflow on very small screens */
+        }
+    </style>
+</head>
+<body data-page="programs">
+
+    <div id="site-header"></div>
+
+    <!-- ── Breadcrumb ── -->
+    <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="./index.html">Home</a>
+            <span class="breadcrumb-sep" aria-hidden="true">›</span>
+            <a href="./programs.html">Programs</a>
+            <span class="breadcrumb-sep" aria-hidden="true">›</span>
+            <span>Alumni Mentoring Program</span>
+        </div>
+    </div>
+
+    <!-- ── Page Hero ── -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <div class="hero-tag">✦ UPAASF Programs</div>
+            <h2>Alumni Mentoring Program</h2>
+            <p>Bridging the gap between UP students and accomplished alumni professionals in the Bay Area — one meaningful mentorship at a time.</p>
+            <div class="hero-actions">
+                <a href="#apply" class="btn btn-gold">Apply as Mentee</a>
+                <a href="#mentor" class="btn btn-outline-white">Become a Mentor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Stats Bar ── -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Mentorships Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Active Mentees</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">Industries Represented</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Mentee Satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── About the Program ── -->
+    <section class="about-section">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Connecting Iskolar ng Bayan Across Generations</h3>
+                    <p class="tagline">"Guiding today's students to become tomorrow's leaders"</p>
+                    <p>The UPAASF Alumni Mentoring Program pairs UP students in their graduating year with seasoned alumni professionals across the San Francisco Bay Area. Mentors bring their industry expertise, personal networks, and lived experience to help mentees navigate career decisions, build professional skills, and unlock opportunities in one of the world's most dynamic job markets.</p>
+                    <!--
+					<p>Since its founding, the program has grown into one of UPAASF's flagship initiatives — a testament to our community's deeply held belief that every UP graduate carries a responsibility to lift others along the way.</p>
+					-->
+                    <div class="highlight-box">
+                        <p><strong>Program Cycle:</strong> Each cohort runs for <strong>six months</strong>, with a new cycle launching every November. Pairs are carefully matched based on career interests, industries, and mentee goals.</p>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="program-image-block">
+                        🤝
+                        <span class="image-caption">Add Program Photo</span>
+                    </div>
+                    <div class="floating-badge">
+                        Est. 2024<br>
+                        <span style="font-size: 0.8rem; font-weight: 600;">Bay Area's Premier<br>UP Mentorship</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-intro">
+                <div style="margin-bottom: 2rem;">
+                    <h4>A First-of-Its-Kind Initiative</h4>
+                    <p>Launched in November 2023, this program is the first of its kind among UP alumni chapters worldwide. Developed in partnership with UP Diliman's Office of Student Development Services, the program uses a design thinking approach that puts students' needs, desires, and challenges at the heart of the mentorship experience.</p>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h5>One-on-One Mentorship</h5>
+                    <p>Personalized career guidance conversations tailored to each student's goals and aspirations.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Design Thinking Workshops</h5>
+                    <p>Collaborative sessions teaching innovative problem-solving and strategic planning skills.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Global Perspectives</h5>
+                    <p>Insights into Silicon Valley innovation, Bay Area opportunities, and international careers.</p>
+                </div>
+                <div class="feature-box">
+                    <h5>Professional Networks</h5>
+                    <p>Build lasting connections with professionals across diverse industries and career stages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── How It Works ── -->
+    <section class="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>How It Works</h3>
+                <p>A structured, six-month journey from application to graduation — with support every step of the way.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">1</div>
+                    <h4>Apply</h4>
+                    <p>Submit your application sharing your background, career interests, and what you're hoping to gain from mentorship.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">2</div>
+                    <h4>Get Matched</h4>
+                    <p>Our team carefully reviews applications and matches each mentee with an alumni mentor aligned to their goals and industry.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">3</div>
+                    <h4>Meet &amp; Engage</h4>
+                    <p>Connect regularly — at least twice a month — through one-on-ones, site visits, networking events, and shared goals.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">4</div>
+                    <h4>Graduate &amp; Give Back</h4>
+                    <p>Complete the program, celebrate your growth, and consider joining our mentor pool to pay it forward.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Benefits ── -->
+    <section class="benefits-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Program Benefits</h3>
+                <p>Whether you're a mentee seeking guidance or a mentor ready to give back, the program is designed to enrich both sides of the relationship.</p>
+            </div>
+            <div class="benefits-tabs">
+                <button class="tab-btn active" onclick="switchTab('mentees', this)">For Mentees</button>
+                <button class="tab-btn" onclick="switchTab('mentors', this)">For Mentors</button>
+            </div>
+
+            <!-- Mentees Panel -->
+            <div class="tab-panel active" id="panel-mentees">
+                <div class="benefits-grid">
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🎯</div>
+                        <h4>Career Clarity</h4>
+                        <p>Get expert guidance on career paths, industries, and opportunities specific to the Bay Area and beyond.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🤝</div>
+                        <h4>Professional Network</h4>
+                        <p>Gain introductions to the mentor's professional network — a priceless head-start in a competitive job market.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">📄</div>
+                        <h4>Resume &amp; Interview Prep</h4>
+                        <p>Work with your mentor to sharpen your resume, practice interviews, and prepare for real-world job applications.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🏢</div>
+                        <h4>Workplace Insight</h4>
+                        <p>Gain a realistic view of your target industry through your mentor's day-to-day experience and candid stories.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🌏</div>
+                        <h4>Community &amp; Belonging</h4>
+                        <p>Join a community of fellow UP scholars navigating similar journeys, and build friendships that last beyond the program.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🏆</div>
+                        <h4>UPAASF Events Access</h4>
+                        <p>Receive complimentary or discounted access to UPAASF networking events, galas, and professional development sessions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mentors Panel -->
+            <div class="tab-panel" id="panel-mentors">
+                <div class="benefits-grid">
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">💡</div>
+                        <h4>Fresh Perspectives</h4>
+                        <p>Mentees bring new ideas and energy that often spark fresh thinking in your own professional and personal growth.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">❤️</div>
+                        <h4>Meaningful Impact</h4>
+                        <p>Directly shape the career trajectory of a fellow UP alumnus — one of the most fulfilling acts of giving back.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🌟</div>
+                        <h4>Strengthen Leadership</h4>
+                        <p>Mentoring hones coaching, communication, and leadership skills that are directly transferable to your professional role.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🔗</div>
+                        <h4>Expand Your Network</h4>
+                        <p>Connect with fellow UPAASF mentors across industries, attend exclusive mentor events, and grow your own community.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">🎖️</div>
+                        <h4>UPAASF Recognition</h4>
+                        <p>Outstanding mentors are recognized at our annual UP Rising! Gala and featured in UPAASF's newsletters and channels.</p>
+                    </div>
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">📅</div>
+                        <h4>Flexible Commitment</h4>
+                        <p>Engage on your schedule — meetings are flexible and can be conducted in-person, virtually, or a blend of both.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Matching Criteria ── -->
+    <section class="matching-section" id="mentor">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Our Matching Approach</h3>
+                <p>We go beyond simply pairing names. Our team takes care to understand each person's background, goals, and working style to foster genuinely productive relationships.</p>
+            </div>
+            <div class="matching-grid">
+                <div class="matching-card fade-in">
+                    <div class="icon">🎓</div>
+                    <h4>Academic &amp; Career Alignment</h4>
+                    <p>We match metee students based on their degree, target field, and career stage — so every conversation starts from a place of genuine relevance and shared context.</p>
+                </div>
+                <div class="matching-card fade-in">
+                    <div class="icon">🌐</div>
+                    <h4>Industry Expertise</h4>
+                    <p>Mentors are selected from UPAASF's network of professionals spanning technology, healthcare, finance, law, entrepreneurship, and public service.</p>
+                </div>
+                <div class="matching-card fade-in">
+                    <div class="icon">🤙</div>
+                    <h4>Personal Compatibility</h4>
+                    <p>We consider personality, communication preferences, and availability so that every pairing starts off on the right foot and builds real rapport.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Testimonials ── -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Voices From Our Community</h3>
+                <p>Real stories from mentors and mentees whose lives and careers have been shaped by this program.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>My mentor introduced me to her network at three Bay Area tech companies within the first month. Within six months, I had my first full-time offer. I would not be where I am today without the UPAASF Mentoring Program.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <strong>Maria Reyes</strong>
+                            <span>UP Diliman '21 · Software Engineer, San Francisco</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>Being a mentor has made me a better leader at work. Listening deeply, asking the right questions, and helping someone grow — it's rewarding in a way that my day job simply cannot replicate.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JC</div>
+                        <div class="author-info">
+                            <strong>Jose Cruz</strong>
+                            <span>UP Manila '05 · Healthcare Director &amp; UPAASF Mentor</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>The program didn't just help me with my career — it connected me with a community of UP scholars who've become some of my closest friends and professional collaborators in the Bay Area.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AL</div>
+                        <div class="author-info">
+                            <strong>Angela Lim</strong>
+                            <span>UP Los Baños '19 · Product Manager, Silicon Valley</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Eligibility ── -->
+    <section class="eligibility-section" id="apply">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Who Can Participate?</h3>
+                <p>The program is open to UP students, recent graduates, and UPAASF alumni members in the Bay Area.</p>
+            </div>
+            <div class="eligibility-grid">
+                <div class="eligibility-card fade-in">
+                    <h4>Mentees</h4>
+                    <p class="role-desc">Students &amp; Early-Career Graduates</p>
+                    <ul class="criteria-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Currently enrolled at any University of the Philippines campus, in their senior year</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Committed to meeting with your mentor at least once a month for the six-month cycle</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Clear goals and a genuine willingness to learn, grow, and receive guidance</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="eligibility-card fade-in">
+                    <h4>Mentors</h4>
+                    <p class="role-desc">Alumni Professionals &amp; UPAASF Members</p>
+                    <ul class="criteria-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>UP alumnus with at least 5 years of professional experience in your field</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Current UPAASF member in good standing (or willing to join upon acceptance)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Able to dedicate approximately 2–4 hours per month to mentoring activities</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Passionate about giving back to the UP community and developing the next generation</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Open to attending at least one UPAASF program event per cycle alongside your mentee</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="faq-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Frequently Asked Questions</h3>
+                <p>Answers to the questions we hear most often from prospective mentors and mentees.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>When does the next cohort open for applications?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Applications for each cohort open approximately 6–8 weeks before the cycle start date. The annual cohort opens in mid-August. Sign up for our newsletter or follow our social media channels to be notified when applications go live.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is the program open to non-UPAASF members?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Mentees who are currently enrolled UP students may apply regardless of membership. Mentor applicants are required to be — or become — UPAASF members.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What industries are represented in the mentor pool?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our mentors represent industries in finance, healthcare, public policy, technology, entrepreneurship, and academia. We continue to grow our mentor base, so if your target industry is not yet covered, please reach out and we'll do our best to find a suitable match.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can mentoring meetings be conducted virtually?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely. Mentor-mentee pairs are free to meet in-person, virtually via Zoom or Google Meet, or a combination of both. Flexibility is built into the program structure to accommodate busy schedules and varying locations across the Bay Area.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What happens if the pairing isn't a good fit?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We take matching seriously, but we understand that not every pairing will be a perfect fit. If a mentor or mentee feels the relationship isn't working after a reasonable good-faith effort, they can request a reassignment by contacting the program coordinator. We handle these situations with care and confidentiality.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there a fee to participate?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            There is no fee to participate as a mentee or mentor. The program is made possible through UPAASF membership dues and the generous volunteer time of our alumni community. We simply ask participants to honor their commitments and contribute positively to the program.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h3>Ready to Take the Next Step?</h3>
+            <p>Whether you're a student looking for direction or an alumni professional ready to make a difference — there's a place for you in the UPAASF Alumni Mentoring Program.</p>
+            <div class="cta-buttons">
+                <a href="./contact.html" class="btn btn-primary">Apply Now</a>
+                <a href="./programs.html" class="btn btn-secondary">Explore All Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="site-footer"></div>
+
+    <script src="./shared/site.js"></script>
+    <script>
+        // ── Benefits tab switcher (page-specific UI) ──
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-panel').forEach(function (p) {
+                p.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(function (b) {
+                b.classList.remove('active');
+            });
+            document.getElementById('panel-' + tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

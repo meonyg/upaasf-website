@@ -7,16 +7,21 @@
     <meta name="description" content="Explore UPAASF programs: Alumni Mentoring, Filipino Cultural Immersion Summer Camp, UPConnect, and philanthropic initiatives serving the Bay Area.">
     <link rel="stylesheet" href="./shared/styles.css">
     <style>
-        /* ── Page Hero override: radial gradient watermark (full-bleed, no reset needed) ── */
+        /* ── Page Hero override: radial gradient watermark (full-bleed) ── */
         .page-hero::before {
             content: '';
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
             background:
-                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(255,215,0,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,215,0,0.1) 0%, transparent 50%);
+        }
+
+        /* ── Section anchor offset: fixed nav height + sticky sub-nav height ── */
+        .section-anchor {
+            scroll-margin-top: calc(var(--nav-height) + 56px);
         }
 
         /* ── Programs overview ── */
@@ -52,7 +57,7 @@
 
         .programs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
@@ -63,7 +68,8 @@
             border-radius: 20px;
             padding: 2.5rem;
             transition: all 0.3s ease;
-            cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
         .program-summary-card:hover {
@@ -72,13 +78,13 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
 
-        .program-summary-card .icon {
+        .program-summary-card .card-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
         .program-summary-card h4 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             color: #8B0000;
             margin-bottom: 0.8rem;
             font-weight: 700;
@@ -86,19 +92,63 @@
 
         .program-summary-card p {
             color: #666;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+            flex: 1;
         }
 
-        .program-summary-card .learn-more {
+        /* Card action row: "Overview →" anchor + "Full Page ↗" button or pill */
+        .card-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .learn-more {
             color: #8B0000;
             font-weight: 700;
             text-decoration: none;
+            font-size: 0.92rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            transition: gap 0.2s;
         }
-		
+
+        .learn-more:hover { gap: 0.7rem; }
+
+        .view-page-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #8B0000;
+            color: white;
+            padding: 0.5rem 1.1rem;
+            border-radius: 25px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .view-page-btn:hover {
+            background: #660000;
+            transform: translateY(-2px);
+        }
+
+        .coming-soon-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #f0f0f0;
+            color: #999;
+            padding: 0.4rem 0.9rem;
+            border-radius: 25px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
         /* ── Program detail sections ── */
         .program-detail {
             padding: 6rem 5%;
@@ -114,27 +164,60 @@
             margin: 0 auto;
         }
 
+        /* Section intro: heading + tagline on the left, "View Full Page" CTA on the right */
+        .program-section-intro {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .program-section-intro-text h3 {
+            font-size: 2.7rem;
+            color: #8B0000;
+            font-weight: 900;
+            margin-bottom: 0.4rem;
+        }
+
+        .program-section-intro-text .tagline {
+            font-size: 1.1rem;
+            color: #0A3B1A;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .view-full-page-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #8B0000;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(139,0,0,0.25);
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        .view-full-page-cta:hover {
+            background: #660000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139,0,0,0.35);
+        }
+
         .program-header {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
             margin-bottom: 4rem;
-        }
-
-        .program-header-content h3 {
-            font-size: 3rem;
-            color: #8B0000;
-            margin-bottom: 0.5rem;
-            font-weight: 900;
-        }
-
-        .program-header-content .tagline {
-            font-size: 1.3rem;
-            color: #0A3B1A;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
         }
 
         .program-header-content p {
@@ -158,54 +241,59 @@
             overflow: hidden;
         }
 
-		/* ── ::after label is now driven by "--img-label" CSS variable.
-			  Set it per-element via style="--img-label: 'Your Text Here'"
-			  The fallback 'Add Program Photo' is used when no variable is set. ── */		
+        /* Label driven by --img-label CSS variable; fallback = 'Add Program Photo' */
         .program-image::after {
             content: var(--img-label, 'Add Program Photo');
             position: absolute;
             bottom: 1rem;
             right: 1rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
         }
 
         /* ── Features grid ── */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
         }
 
         .feature-box {
             background: white;
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border-left: 4px solid #FFD700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+            transition: box-shadow 0.3s, border-color 0.3s;
+			border-left: 4px solid #FFD700;
+        }
+
+        .feature-box:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #FFD700;
         }
 
         .feature-box h5 {
-            font-size: 1.3rem;
-            color: #333;
-            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+            color: #8B0000;
+            margin-bottom: 0.6rem;
             font-weight: 700;
         }
 
         .feature-box p {
             color: #666;
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        /* ── Testimonial block ── */
+        /* ── Testimonial ── */
         .testimonial {
             background: linear-gradient(135deg, #8B0000, #0A3B1A);
             color: white;
             padding: 3rem;
             border-radius: 20px;
-            margin: 4rem 0;
-            position: relative;
+            margin: 2.5rem 0;
         }
 
         .testimonial::before {
@@ -223,26 +311,27 @@
             z-index: 2;
         }
 
-        .testimonial p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+        .testimonial-content p {
+            font-size: 1.15rem;
             font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
         }
 
         .testimonial-author {
             font-weight: 700;
-            font-size: 1.1rem;
             color: #FFD700;
         }
 
         .testimonial-author span {
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
+            color: rgba(255,255,255,0.75);
+            margin-left: 0.6rem;
+            font-size: 0.9rem;
         }
 
-        /* ── Stats bar ── */
+
+        /* ── Stats bar (used here only) ── */
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -270,7 +359,7 @@
             margin-top: 0.5rem;
         }
 
-        /* ── CTA box ── */
+        /* ── CTA box (gold gradient — used within program sections) ── */
         .cta-box {
             background: linear-gradient(135deg, #FFD700, #FFA500);
             padding: 3rem;
@@ -293,7 +382,7 @@
             line-height: 1.6;
         }
 
-        /* ── Photo gallery ── */
+        /* ── Photo gallery strip ── */
         .photo-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -323,11 +412,7 @@
             font-size: 3rem;
         }
 
-        /* ── Same "--img-label" pattern applied to gallery placeholders.
-              Mirrors the ".program-image::after" approach exactly.
-              Set per-element via style="--img-label: 'Your Text Here'"
-              Fallback is 'Add Photo'. ── */		
-        .gallery-placeholder::after {
+        /* Label driven by --img-label CSS variable; fallback = 'Add Photo' */        .gallery-placeholder::after {
             content: var(--img-label, 'Add Photo');
             position: absolute;
             bottom: 1rem;
@@ -336,8 +421,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-
-        /* ── Info box ── */
+        /* ── Info box (highlighted callout) ── */
         .info-box {
             background: #fff3cd;
             border-left: 4px solid #FFD700;
@@ -349,52 +433,149 @@
         .info-box h5 {
             color: #8B0000;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
 
-        .info-box p { color: #666; line-height: 1.6; }
+        .info-box p, .info-box li { color: #666; line-height: 1.7; }
+        .info-box ul { margin-top: 0.8rem; padding-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.4rem; }
+		
+		/* ── Info-box CTA — three placement variants (optional) ──────────────────
+           All three collapse identically on mobile (see @media block).
 
-        .info-box ul {
-            margin-top: 1rem;
-            padding-left: 1.5rem;
-            color: #666;
+           VARIANT 1 — bottom (default)
+             Place <div class="info-box-cta"> as the last child.
+             Renders below all content with a divider line above.
+
+           VARIANT 2 — top-right
+             Wrap the h5 + cta together in <div class="info-box-header">.
+             Button sits flush right of the title on the same row.
+
+           VARIANT 3 — inline-right
+             Add class "info-box--has-inline-cta" to the parent .info-box.
+             Place <div class="info-box-cta info-box-cta--inline-right">
+             immediately after the h5 (before body content).
+             Button floats right; text wraps around it.
+        ─────────────────────────────────────────────────────────────── */
+
+        /* -- Base CTA (bottom, default) -- */
+        .info-box-cta {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(139, 0, 0, 0.12);
         }
 
-        .info-box li { margin-bottom: 0.5rem; }
+        /* -- Shared button sizing inside any info-box -- */
+        .info-box .btn {
+            font-size: 0.9rem;
+            padding: 0.65rem 1.6rem;
+        }
 
+        /* -- top-right: header row that holds h5 + button side by side -- */
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem; /* replaces h5's own bottom margin */
+        }
+
+        .info-box-header h5 {
+            margin-bottom: 0; /* spacing handled by .info-box-header */
+        }
+
+        .info-box-cta--top-right {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+            flex-shrink: 0; /* prevent button from squishing the title */
+        }
+
+        /* -- inline-right: button floats right, body text wraps around it -- */
+        .info-box--has-inline-cta::after {
+            content: '';
+            display: table;
+            clear: both; /* clearfix so the box stretches around the float */
+        }
+
+        .info-box-cta--inline-right {
+            float: right;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* -- Mobile: all three variants collapse to full-width bottom button -- */
+        @media (max-width: 768px) {
+            .info-box-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+            }
+
+            .info-box-header h5 {
+                margin-bottom: 1rem;
+            }
+
+            /* Normalise all variants to bottom layout */
+            .info-box-cta,
+            .info-box-cta--top-right,
+            .info-box-cta--inline-right {
+                float: none;
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid rgba(139, 0, 0, 0.12);
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+
+            /* Full-width tap target on mobile */
+            .info-box-cta .btn,
+            .info-box-cta--top-right .btn,
+            .info-box-cta--inline-right .btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+		
         /* ── All Programs overview (bottom) ── */
         .all-programs-section {
             background: white;
             padding: 6rem 5%;
         }
 
-        /* ── Impact section ── */
+
+        /* ── Overall Impact stats bar ── */
         .impact-section {
-            background: linear-gradient(135deg, #8B0000, #0A3B1A);
-            color: white;
-            padding: 6rem 5%;
+            background: linear-gradient(90deg, #8B0000, #0A3B1A);
+            padding: 5rem 5%;
             text-align: center;
+            color: white;
         }
 
         .impact-section h3 {
-            font-size: 2.8rem;
-            font-weight: 900;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 1rem;
         }
 
-        .impact-section p {
-            font-size: 1.2rem;
-            max-width: 800px;
+        .impact-section > p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 700px;
             margin: 0 auto 3rem;
-            opacity: 0.95;
+            line-height: 1.7;
         }
 
         .impact-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -418,8 +599,12 @@
         /* ── Responsive ── */
         @media (max-width: 968px) {
             .program-header { grid-template-columns: 1fr; }
-            .program-header-content h3 { font-size: 2.2rem; }
-            .stats-bar { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .program-section-intro { flex-direction: column; align-items: flex-start; }
+            .program-section-intro-text h3 { font-size: 2rem; }
+            .program-image { display: none; }   /* hide decorative block on mobile */
         }
     </style>
 </head>
@@ -434,6 +619,27 @@
             <p>From groundbreaking mentoring initiatives to beloved cultural traditions, our programs create meaningful connections and lasting impact</p>
         </div>
     </section>
+
+    <!-- ── Programs Sub-Nav ── -->
+    <nav class="programs-subnav" aria-label="Programs sections">
+        <div class="subnav-container">
+            <a href="#overview" class="subnav-item active" data-target="overview">
+                📋 All Programs
+            </a>
+            <a href="#mentoring" class="subnav-item" data-target="mentoring">
+                🎓 Alumni Mentoring
+            </a>
+            <a href="#cultural-camp" class="subnav-item" data-target="cultural-camp">
+                🎭 Cultural Camp
+            </a>
+            <a href="#speakers" class="subnav-item" data-target="speakers">
+                💡 Speakers' Series
+            </a>
+            <a href="#up-streets" class="subnav-item" data-target="up-streets">
+                🎨 UP in the Streets
+            </a>
+        </div>
+    </nav>
 
 	<!-- ── Strategic Goals ── -->
 	<section class="strategic-goals" id="strategic-goals">
@@ -480,7 +686,7 @@
 	</section>
 
     <!-- ── Programs Overview ── -->
-    <section class="programs-overview">
+    <section class="programs-overview section-anchor" id="overview">
         <div class="overview-content">
             <div class="overview-intro">
                 <h3>Making a Difference Through Action</h3>
@@ -488,92 +694,109 @@
             </div>
 
             <div class="programs-grid">
-                <div class="program-summary-card fade-in" onclick="document.getElementById('mentoring').scrollIntoView({behavior:'smooth'})">
-                    <div class="icon">🎓</div>
+                <div class="program-summary-card fade-in">
+                    <div class="card-icon">🎓</div>
                     <h4>Alumni Mentoring Program</h4>
                     <p>Connect UP students with Bay Area professionals for career guidance and design thinking sessions.</p>
-                    <a href="#mentoring" class="learn-more">Learn More →</a>
+                    <div class="card-actions">
+                        <a href="#mentoring" class="learn-more">Overview →</a>
+                        <a href="./alumni-mentoring-program.html" class="view-page-btn">Full Page ↗</a>
+                    </div>
                 </div>
 
-                <div class="program-summary-card fade-in" onclick="document.getElementById('cultural-camp').scrollIntoView({behavior:'smooth'})">
-                    <div class="icon">🎭</div>
+                <div class="program-summary-card fade-in">
+                    <div class="card-icon">🎭</div>
                     <h4>Filipino Cultural Immersion Summer Camp</h4>
                     <p>Introduce youth to Filipino heritage, language, and traditions through our beloved annual program.</p>
-                    <a href="#cultural-camp" class="learn-more">Learn More →</a>
+                    <div class="card-actions">
+                        <a href="#cultural-camp" class="learn-more">Overview →</a>
+                        <span class="coming-soon-pill">📄 Page Coming Soon</span>
+                    </div>
                 </div>
 
-                <div class="program-summary-card fade-in" onclick="document.getElementById('speakers').scrollIntoView({behavior:'smooth'})">
-                    <div class="icon">💡</div>
+                <div class="program-summary-card fade-in">
+                    <div class="card-icon">💡</div>
                     <h4>Speakers' Series</h4>
                     <p>Engage with thought leaders and accomplished professionals on diverse topics and industries.</p>
-                    <a href="#speakers" class="learn-more">Learn More →</a>
+                    <div class="card-actions">
+                        <a href="#speakers" class="learn-more">Overview →</a>
+                        <span class="coming-soon-pill">📄 Page Coming Soon</span>
+                    </div>
                 </div>
 
-                <div class="program-summary-card fade-in" onclick="document.getElementById('up-streets').scrollIntoView({behavior:'smooth'})">
-                    <div class="icon">🎨</div>
+                <div class="program-summary-card fade-in">
+                    <div class="card-icon">🎨</div>
                     <h4>UP in the Streets</h4>
                     <p>Community engagement and public art initiatives celebrating UP pride and Filipino culture.</p>
-                    <a href="#up-streets" class="learn-more">Learn More →</a>
+                    <div class="card-actions">
+                        <a href="#up-streets" class="learn-more">Overview →</a>
+                        <span class="coming-soon-pill">📄 Page Coming Soon</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ── Alumni Mentoring Program ── -->
-    <section class="program-detail" id="mentoring">
+    <section class="program-detail section-anchor" id="mentoring">
         <div class="program-container">
-			<!--
-            <div class="program-header">
-                <div class="program-header-content">
+
+            <div class="program-section-intro">
+                <div class="program-section-intro-text">
                     <h3>Alumni Mentoring Program</h3>
                     <p class="tagline">Empowering the Next Generation of UP Leaders</p>
-                    <p>The UPAASF Alumni Mentoring Program represents a bold vision: connecting UP students in the Philippines with accomplished professionals in the San Francisco Bay Area to provide career guidance, share global perspectives, and foster the innovative thinking that will shape their futures.</p>
                 </div>
-                <div class="program-image">🎓</div>
+                <a href="./alumni-mentoring-program.html" class="view-full-page-cta">
+                    View Full Program Page ↗
+                </a>
             </div>
 
-            <div style="margin-bottom: 3rem;">
-                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">A First-of-Its-Kind Initiative</h4>
-                <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">Launched in November 2023, this program is the first of its kind among UP alumni chapters worldwide. Developed in partnership with UP Diliman's Office of Student Development Services, the program uses a design thinking approach that puts students' needs, desires, and challenges at the heart of the mentorship experience.</p>
-            </div>
-			-->
-			
             <div class="program-header">
                 <div class="program-header-content">
-                    <h3>Alumni Mentoring Program</h3>
-                    <p class="tagline">Empowering the Next Generation of UP Leaders</p>
                     <p>The UPAASF Alumni Mentoring Program represents a bold vision: connecting UP students in the Philippines with accomplished professionals in the San Francisco Bay Area to provide career guidance, share global perspectives, and foster the innovative thinking that will shape their futures.</p>
-					<p>Launched in November 2023, this program is the first of its kind among UP alumni chapters worldwide. Developed in partnership with UP Diliman's Office of Student Development Services, the program uses a design thinking approach that puts students' needs, desires, and challenges at the heart of the mentorship experience.</p>
-					
-					<!--
-					<p>UPAASF's Alumni Mentoring Program connects current UP students with experienced professionals in the San Francisco Bay Area. Through structured sessions focused on career guidance and design thinking, we help the next generation of iskolar ng bayan chart their path to success.</p>
-                    <p>Launched as a pioneering initiative, this program has become a model for UP alumni chapters globally, demonstrating how diaspora communities can give back meaningfully to their alma mater.</p>
+                    <p>Launched in November 2023, this program is the first of its kind among UP alumni chapters worldwide. Developed in partnership with UP Diliman's Office of Student Development Services, the program uses a design thinking approach that puts students' needs, desires, and challenges at the heart of the mentorship experience.</p>
+
+                    <!--
+					<div class="info-box">
+                        <h5>Program Cycle</h5>
+                        <p>Each cohort runs for <strong>six months</strong>, launching every <strong>November</strong>. Pairs are matched based on career interests, industries, and mentee goals.</p>
+                        <div class="info-box-cta">
+                            <a href="./alumni-mentoring-program.html" class="btn btn-primary">Learn More &amp; Apply</a>
+                        </div>
+                    </div>
+                    </div>
 					-->
                 </div>
-                <div class="program-image fade-in"  style="--img-label: 'Add Mentoring Photo'">🎓</div>
+                <div class="program-image fade-in" style="--img-label: 'Add Mentoring Photo'">🎓</div>
             </div>
 
             <div class="features-grid">
                 <div class="feature-box fade-in">
-                    <h5>One-on-One Mentorship</h5>
+                    <h5>🤝 One-on-One Mentorship</h5>
                     <p>Personalized career guidance conversations tailored to each student's goals and aspirations.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Design Thinking Workshops</h5>
+                    <h5>🧠 Design Thinking Workshops</h5>
                     <p>Collaborative sessions teaching innovative problem-solving and strategic planning skills.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Networking Access</h5>
-                    <p>Direct connections to the Bay Area professional community and UPAASF's extensive alumni network.</p>
+                    <h5>🌐 Network Access</h5>
+                    <p>Introductions to your mentor's professional network — a priceless head-start in a competitive market.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Virtual Sessions</h5>
-                    <p>Online mentoring makes geographic distance irrelevant—students from any UP campus can participate.</p>
+                    <h5>📄 Career Prep</h5>
+                    <p>Resume reviews, interview coaching, and application support tailored to your specific goals.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Industry Diversity</h5>
-                    <p>Mentors spanning tech, healthcare, finance, arts, academia, and entrepreneurship across the Bay Area.</p>
+                    <h5>🏢 Industry Insight</h5>
+                    <p>Gain an honest, candid view of your target industry through real-world experience.</p>
                 </div>
+				<!--
+                <div class="feature-box fade-in">
+                    <h5>🌏 UP Community</h5>
+                    <p>Join a lifelong community of fellow UP scholars navigating similar journeys in the Bay Area.</p>
+                </div>
+				-->
             </div>
 
             <div class="testimonial fade-in">
@@ -587,15 +810,15 @@
 
             <div class="stats-bar">
                 <div class="stat-item">
-                    <span class="stat-number">50+</span>
+                    <span class="stat-number">15</span>
                     <span class="stat-label">Students Mentored</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">200+</span>
-                    <span class="stat-label">Mentoring Hours</span>
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Colleges Represented</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">15+</span>
+                    <span class="stat-number">6+</span>
                     <span class="stat-label">Professional Fields</span>
                 </div>
                 <div class="stat-item">
@@ -633,30 +856,40 @@
     </section>
 
     <!-- ── Filipino Cultural Immersion Summer Camp ── -->
-    <section class="program-detail" id="cultural-camp">
+    <section class="program-detail section-anchor" id="cultural-camp">
         <div class="program-container">
+
+            <div class="program-section-intro">
+                <div class="program-section-intro-text">
+                    <h3>Filipino Cultural Immersion Summer Camp</h3>
+                    <p class="tagline">Passing Filipino Heritage to the Next Generation</p>
+                </div>
+                <span class="coming-soon-pill" style="font-size:0.85rem; padding:0.6rem 1.2rem; margin-top:0.5rem;">📄 Full Page Coming Soon</span>
+            </div>
+
             <div class="program-header">
                 <div class="program-image fade-in">🎭</div>
                 <div class="program-header-content">
-                    <h3>Filipino Cultural Immersion Summer Camp</h3>
-                    <p class="tagline">Passing Filipino Heritage to the Next Generation</p>
                     <p>Now in its 13th year, the UPAASF Annual Filipino Cultural Immersion Summer Camp has been a cornerstone of our mission to preserve and celebrate Filipino culture in the Bay Area. This beloved program introduces children and young adults to the rich tapestry of Filipino heritage.</p>
+
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <h5>2026 Camp Information</h5>
+                            <div class="info-box-cta info-box-cta--top-right">
+                                <a href="./contact.html" class="btn btn-primary">Register</a>
+                            </div>
+                        </div>
+                        <p>
+                            <strong>Dates:</strong> Week of July — TBD<br>
+                            <strong>Location:</strong> Venue TBD<br>
+                            <strong>Ages:</strong> 8–17 years old<br>
+                            <strong>Cost:</strong> $350 (scholarships available)<br>
+                            <strong>Registration Opens:</strong> Spring 2026
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="info-box">
-                <h5>2026 Camp Information</h5>
-                <p><strong>Dates:</strong> [Week of July/August - TBD]<br>
-                <strong>Location:</strong> [Venue - TBD]<br>
-                <strong>Ages:</strong> 8–17 years old<br>
-                <strong>Cost:</strong> $[Amount] (scholarships available)<br>
-                <strong>Registration Opens:</strong> [Date - TBD]</p>
-            </div>
-
-            <div style="margin: 3rem 0;">
-                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">What Campers Experience</h4>
-            </div>
-
+			
             <div class="features-grid">
                 <div class="feature-box fade-in">
                     <h5>🗣️ Filipino Language</h5>
@@ -717,24 +950,39 @@
             <div class="cta-box fade-in">
                 <h4>Register Your Child for Camp 2026</h4>
                 <p>Give your child the gift of cultural connection. Limited spots available!</p>
-                <!--
-                <a href="/contact" class="btn btn-primary">Join Waitlist</a>
-				<a href="#" class="btn btn-secondary" style="margin-left: 1rem;">Download Brochure</a>
-				-->
-                <a href="./contact.html" class="btn btn-primary">Join Waitlist</a>
-                <a href="/brochure.pdf" class="btn btn-secondary" style="margin-left: 1rem;">Download Brochure</a>
+                <a href="./contact.html" class="btn btn-primary">Join the Waitlist</a>
+				<a href="" class="btn btn-secondary" style="margin-left: 1rem;">Download Brochure</a
             </div>
         </div>
     </section>
 
     <!-- ── Speakers' Series ── -->
-    <section class="program-detail" id="speakers">
+    <section class="program-detail section-anchor" id="speakers">
         <div class="program-container">
-            <div class="program-header">
-                <div class="program-header-content">
+
+            <div class="program-section-intro">
+                <div class="program-section-intro-text">
                     <h3>Speakers' Series</h3>
                     <p class="tagline">Inspiring Conversations with Leaders and Innovators</p>
+                </div>
+                <span class="coming-soon-pill" style="font-size:0.85rem; padding:0.6rem 1.2rem; margin-top:0.5rem;">📄 Full Page Coming Soon</span>
+            </div>
+
+            <div class="program-header">
+                <div class="program-header-content">
                     <p>The UPAASF Speakers' Series brings together thought leaders, accomplished professionals, and inspiring change-makers for engaging conversations that educate, inspire, and connect our community.</p>
+					<div class="info-box">
+						<h5>Upcoming Speaker Event</h5>
+						<div class="info-box-cta info-box-cta--inline-right">
+							<a href="./contact.html" class="btn btn-primary">Register</a>
+						</div>
+		 
+						<p><strong>Date:</strong> [Date - TBD]<br>
+						<strong>Speaker:</strong> [Name, Title]<br>
+						<strong>Topic:</strong> "[Talk Title]"<br>
+						<strong>Format:</strong> In-person at [Location] + Virtual option<br>
+						<strong>Registration:</strong> Free for members, $[Amount] for guests</p>
+					</div>
                 </div>
                 <div class="program-image fade-in">💡</div>
             </div>
@@ -746,35 +994,33 @@
 
             <div class="features-grid">
                 <div class="feature-box fade-in">
-                    <h5>Technology &amp; Innovation</h5>
+                    <h5>💻 Technology &amp; Innovation</h5>
                     <p>Silicon Valley insights, emerging technologies, and digital transformation stories from industry leaders.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Filipino-American Experience</h5>
-                    <p>Stories of navigating identity, culture, and career as Filipino professionals in the United States.</p>
+                    <h5>🏥 Healthcare &amp; Science</h5>
+                    <p>Medical breakthroughs, public health policy, and career pathways in the healthcare sector.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Leadership &amp; Entrepreneurship</h5>
-                    <p>How to build organizations, lead teams, and create lasting impact in your community and industry.</p>
+                    <h5>📈 Business &amp; Finance</h5>
+                    <p>Entrepreneurship journeys, investment strategies, and financial literacy for professionals.</p>
                 </div>
                 <div class="feature-box fade-in">
                     <h5>Social Impact</h5>
                     <p>Conversations about giving back, advocacy, and making a difference for Philippine communities.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Healthcare & Medicine</h5>
-                    <p>Medical breakthroughs, public health, and healthcare innovation.</p>
+                    <h5>🏛️ Policy &amp; Advocacy</h5>
+                    <p>Immigration law, civil rights, community organizing, and the Filipino-American political voice.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Arts & Culture</h5>
-                    <p>Filipino arts, cultural preservation, and creative expression.</p>
+                    <h5>🌏 Culture &amp; Identity</h5>
+                    <p>Discussions on Filipino-American identity, heritage preservation, and intergenerational stories.</p>
                 </div>
-
                 <div class="feature-box fade-in">
-                    <h5>Education & Research</h5>
-                    <p>Academic excellence, research innovation, and educational policy.</p>
+                    <h5>🌱 Sustainability</h5>
+                    <p>Environmental initiatives, climate advocacy, and green career opportunities in the Bay Area.</p>
                 </div>
-
             </div>
 
             <div class="photo-gallery">
@@ -783,7 +1029,7 @@
                 <div class="gallery-item fade-in"><div class="gallery-placeholder" style="--img-label: 'Add Event Photo'">📸</div></div>
             </div>
 
-            <div style="margin: 3rem 0; background: #f8f9fa; padding: 3rem; border-radius: 20px;">
+            <div style="margin: 3rem 0; background: linear-gradient(to bottom, #f8f9fa, #ffffff); padding: 3rem; border-radius: 20px;">
                 <h4 style="font-size: 1.8rem; color: #8B0000; margin-bottom: 2rem;">Recent Speakers</h4>
                 <div style="display: grid; gap: 2rem;">
                     <div style="border-left: 4px solid #FFD700; padding-left: 1.5rem;">
@@ -802,66 +1048,62 @@
                         <p style="color: #666;">Brief description of the talk and key takeaways for attendees.</p>
                     </div>
                 </div>
-
-            <div class="info-box">
-                <h5>Upcoming Speaker Event</h5>
-                <p><strong>Date:</strong> [Date - TBD]<br>
-                <strong>Speaker:</strong> [Name, Title]<br>
-                <strong>Topic:</strong> "[Talk Title]"<br>
-                <strong>Format:</strong> In-person at [Location] + Virtual option<br>
-                <strong>Registration:</strong> Free for members, $[Amount] for guests</p>
-            </div>
+			</div>
 
             <div class="cta-box fade-in">
                 <h4>Suggest a Speaker</h4>
-                <p>Know someone whose story deserves to be shared? We'd love to hear your suggestions!</p>
+                <p>Know someone who'd make a compelling speaker? We'd love to hear your suggestions!</p>
                 <a href="./contact.html" class="btn btn-primary">Submit Speaker Idea</a>
             </div>
         </div>
     </section>
 
     <!-- ── UP in the Streets ── -->
-    <section class="program-detail" id="up-streets">
+    <section class="program-detail section-anchor" id="up-streets">
         <div class="program-container">
+
+            <div class="program-section-intro">
+                <div class="program-section-intro-text">
+                    <h3>UP in the Streets</h3>
+                    <p class="tagline">Celebrating UP Pride Through Community Art and Engagement</p>
+                </div>
+                <span class="coming-soon-pill" style="font-size:0.85rem; padding:0.6rem 1.2rem; margin-top:0.5rem;">📄 Full Page Coming Soon</span>
+            </div>
+
             <div class="program-header">
                 <div class="program-image fade-in">🎨</div>
                 <div class="program-header-content">
-                    <h3>UP in the Streets</h3>
-                    <p class="tagline">Celebrating UP Pride Through Community Art and Engagement</p>
                     <p>UP in the Streets brings the spirit of UP into the Bay Area community through public art projects, cultural celebrations, and community engagement initiatives that showcase Filipino pride and UP excellence.</p>
                 </div>
             </div>
 
-            <div style="margin: 3rem 0;">
-                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">Program Components</h4>
-            </div>
-
             <div class="features-grid">
                 <div class="feature-box fade-in">
-                    <h5>Public Murals</h5>
+                    <h5>🖼️ Public Murals</h5>
                     <p>Collaborative mural projects celebrating Filipino culture and UP heritage in Bay Area communities.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Community Events</h5>
+                    <h5>🎶 Community Events</h5>
                     <p>Street festivals, cultural showcases, and public celebrations of Filipino traditions.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Youth Engagement</h5>
+                    <h5>🙌 Youth Engagement</h5>
                     <p>Workshops and programs introducing young people to public art and community activism.</p>
                 </div>
                 <div class="feature-box fade-in">
-                    <h5>Cultural Education</h5>
+                    <h5>🏘️ Cultural Education</h5>
                     <p>Public programs teaching Filipino history, arts, and cultural traditions to diverse audiences.</p>
                 </div>
             </div>
 
             <div class="testimonial fade-in">
                 <div class="testimonial-content">
-                    <p>Seeing UP represented in public art makes me so proud. It's a reminder that we're not just alumni—we're ambassadors of Filipino excellence everywhere we go.</p>
+                    <p>Seeing UP represented in public art makes me so proud. It tells our story in a way that the whole Bay Area can see and appreciate.</p>
                     <div class="testimonial-author">
-                        Ramon Cruz <span>UPAASF Member, Class of 2010</span>
+                        UPAASF Member <span>UP in the Streets Volunteer</span>
                     </div>
                 </div>
+
             </div>
 
             <div class="photo-gallery">
@@ -871,13 +1113,13 @@
             </div>
 
             <div class="cta-box fade-in">
-                <h4>Get Involved</h4>
-                <p>Join us in bringing UP pride to the streets! Contact us to volunteer or collaborate on our next initiative.</p>
-                <a href="./contact.html" class="btn btn-primary">Get Involved</a>
+                <h4>Get Involved in Your Community</h4>
+                <p>Volunteer for our next event or propose a community project in your neighborhood.</p>
+                <a href="./contact.html" class="btn btn-primary">Volunteer Now</a>
             </div>
         </div>
     </section>
-	
+
     <!-- Additional Programs -->
     <section class="all-programs-section">
         <div style="max-width: 1400px; margin: 0 auto;">
@@ -987,14 +1229,37 @@
 
     <script src="./shared/site.js"></script>
     <script>
-        // Program summary card clicks — smooth scroll to respective sections.
-        // (The onclick attributes on each card also handle this; the event
-        // listeners below ensure the learn-more anchor links don't jump abruptly.)
-        document.querySelectorAll('.program-summary-card .learn-more').forEach(function (link) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                var target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
+        // ── Programs sub-nav: highlight active section on scroll ──
+        const sections    = ['overview', 'mentoring', 'cultural-camp', 'speakers', 'up-streets'];
+        const subnavItems = document.querySelectorAll('.subnav-item');
+
+        function setActiveSection(id) {
+            subnavItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.target === id);
+            });
+        }
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) setActiveSection(entry.target.id);
+            });
+        }, { rootMargin: '-25% 0px -65% 0px' });
+
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) sectionObserver.observe(el);
+        });
+
+        // ── Sub-nav smooth scroll (overrides shared site.js smooth scroll
+        //    to ensure the sticky sub-nav itself doesn't obscure headings) ──
+        document.querySelectorAll('.subnav-item').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
     </script>
