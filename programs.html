@@ -440,6 +440,108 @@
         .info-box p, .info-box li { color: #666; line-height: 1.7; }
         .info-box ul { margin-top: 0.8rem; padding-left: 1.5rem; }
         .info-box li { margin-bottom: 0.4rem; }
+		
+		/* ── Info-box CTA — three placement variants (optional) ──────────────────
+           All three collapse identically on mobile (see @media block).
+
+           VARIANT 1 — bottom (default)
+             Place <div class="info-box-cta"> as the last child.
+             Renders below all content with a divider line above.
+
+           VARIANT 2 — top-right
+             Wrap the h5 + cta together in <div class="info-box-header">.
+             Button sits flush right of the title on the same row.
+
+           VARIANT 3 — inline-right
+             Add class "info-box--has-inline-cta" to the parent .info-box.
+             Place <div class="info-box-cta info-box-cta--inline-right">
+             immediately after the h5 (before body content).
+             Button floats right; text wraps around it.
+        ─────────────────────────────────────────────────────────────── */
+
+        /* -- Base CTA (bottom, default) -- */
+        .info-box-cta {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(139, 0, 0, 0.12);
+        }
+
+        /* -- Shared button sizing inside any info-box -- */
+        .info-box .btn {
+            font-size: 0.9rem;
+            padding: 0.65rem 1.6rem;
+        }
+
+        /* -- top-right: header row that holds h5 + button side by side -- */
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem; /* replaces h5's own bottom margin */
+        }
+
+        .info-box-header h5 {
+            margin-bottom: 0; /* spacing handled by .info-box-header */
+        }
+
+        .info-box-cta--top-right {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+            flex-shrink: 0; /* prevent button from squishing the title */
+        }
+
+        /* -- inline-right: button floats right, body text wraps around it -- */
+        .info-box--has-inline-cta::after {
+            content: '';
+            display: table;
+            clear: both; /* clearfix so the box stretches around the float */
+        }
+
+        .info-box-cta--inline-right {
+            float: right;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* -- Mobile: all three variants collapse to full-width bottom button -- */
+        @media (max-width: 768px) {
+            .info-box-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+            }
+
+            .info-box-header h5 {
+                margin-bottom: 1rem;
+            }
+
+            /* Normalise all variants to bottom layout */
+            .info-box-cta,
+            .info-box-cta--top-right,
+            .info-box-cta--inline-right {
+                float: none;
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid rgba(139, 0, 0, 0.12);
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+
+            /* Full-width tap target on mobile */
+            .info-box-cta .btn,
+            .info-box-cta--top-right .btn,
+            .info-box-cta--inline-right .btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+		
         /* ── All Programs overview (bottom) ── */
         .all-programs-section {
             background: white;
@@ -658,6 +760,10 @@
 					<div class="info-box">
                         <h5>Program Cycle</h5>
                         <p>Each cohort runs for <strong>six months</strong>, launching every <strong>November</strong>. Pairs are matched based on career interests, industries, and mentee goals.</p>
+                        <div class="info-box-cta">
+                            <a href="./alumni-mentoring-program.html" class="btn btn-primary">Learn More &amp; Apply</a>
+                        </div>
+                    </div>
                     </div>
 					-->
                 </div>
@@ -767,7 +873,12 @@
                     <p>Now in its 13th year, the UPAASF Annual Filipino Cultural Immersion Summer Camp has been a cornerstone of our mission to preserve and celebrate Filipino culture in the Bay Area. This beloved program introduces children and young adults to the rich tapestry of Filipino heritage.</p>
 
                     <div class="info-box">
-                        <h5>2026 Camp Information</h5>
+                        <div class="info-box-header">
+                            <h5>2026 Camp Information</h5>
+                            <div class="info-box-cta info-box-cta--top-right">
+                                <a href="./contact.html" class="btn btn-primary">Register</a>
+                            </div>
+                        </div>
                         <p>
                             <strong>Dates:</strong> Week of July — TBD<br>
                             <strong>Location:</strong> Venue TBD<br>
@@ -778,11 +889,7 @@
                     </div>
                 </div>
             </div>
-
-            <div style="margin: 3rem 0;">
-                <h4 style="font-size: 2rem; color: #8B0000; margin-bottom: 1rem;">What Campers Experience</h4>
-            </div>
-
+			
             <div class="features-grid">
                 <div class="feature-box fade-in">
                     <h5>🗣️ Filipino Language</h5>
@@ -844,7 +951,7 @@
                 <h4>Register Your Child for Camp 2026</h4>
                 <p>Give your child the gift of cultural connection. Limited spots available!</p>
                 <a href="./contact.html" class="btn btn-primary">Join the Waitlist</a>
-				<a href="#" class="btn btn-secondary" style="margin-left: 1rem;">Download Brochure</a
+				<a href="" class="btn btn-secondary" style="margin-left: 1rem;">Download Brochure</a
             </div>
         </div>
     </section>
@@ -864,6 +971,18 @@
             <div class="program-header">
                 <div class="program-header-content">
                     <p>The UPAASF Speakers' Series brings together thought leaders, accomplished professionals, and inspiring change-makers for engaging conversations that educate, inspire, and connect our community.</p>
+					<div class="info-box">
+						<h5>Upcoming Speaker Event</h5>
+						<div class="info-box-cta info-box-cta--inline-right">
+							<a href="./contact.html" class="btn btn-primary">Register</a>
+						</div>
+		 
+						<p><strong>Date:</strong> [Date - TBD]<br>
+						<strong>Speaker:</strong> [Name, Title]<br>
+						<strong>Topic:</strong> "[Talk Title]"<br>
+						<strong>Format:</strong> In-person at [Location] + Virtual option<br>
+						<strong>Registration:</strong> Free for members, $[Amount] for guests</p>
+					</div>
                 </div>
                 <div class="program-image fade-in">💡</div>
             </div>
@@ -929,15 +1048,7 @@
                         <p style="color: #666;">Brief description of the talk and key takeaways for attendees.</p>
                     </div>
                 </div>
-
-            <div class="info-box">
-                <h5>Upcoming Speaker Event</h5>
-                <p><strong>Date:</strong> [Date - TBD]<br>
-                <strong>Speaker:</strong> [Name, Title]<br>
-                <strong>Topic:</strong> "[Talk Title]"<br>
-                <strong>Format:</strong> In-person at [Location] + Virtual option<br>
-                <strong>Registration:</strong> Free for members, $[Amount] for guests</p>
-            </div>
+			</div>
 
             <div class="cta-box fade-in">
                 <h4>Suggest a Speaker</h4>
