@@ -29,6 +29,8 @@
             /* Use the shared token so this tracks any nav height change */
             top: var(--nav-height);
             z-index: 999;
+            /* Mirror nav transition so filter bar tracks the shrinking nav */
+            transition: top 0.3s ease;
         }
 
         .filters-container {
@@ -362,6 +364,50 @@
             .events-grid { grid-template-columns: 1fr; }
             .newsletter-form { flex-direction: column; }
         }
+
+        @media (max-width: 768px) {
+            /* Compact filter bar: single tight row, no labels, smaller controls */
+            .event-filters {
+                padding: 0.65rem 4%;
+            }
+
+            .filters-container {
+                gap: 0.5rem;
+                flex-wrap: nowrap;
+            }
+
+            /* Hide text labels — the selects are self-explanatory on mobile */
+            .filter-group label {
+                display: none;
+            }
+
+            .filter-group select {
+                padding: 0.45rem 0.7rem;
+                font-size: 0.8rem;
+                border-radius: 20px;
+                border-width: 1.5px;
+            }
+
+            /* Compact view-toggle — icon-style narrow buttons */
+            .view-toggle {
+                gap: 0.3rem;
+                margin-left: auto;
+                flex-shrink: 0;
+            }
+
+            .view-btn {
+                padding: 0.45rem 0.7rem;
+                font-size: 0.75rem;
+                border-radius: 20px;
+                border-width: 1.5px;
+            }
+
+            /* Hide "Calendar" view button on mobile — too narrow to be useful */
+            .view-btn:last-child {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body data-page="events">

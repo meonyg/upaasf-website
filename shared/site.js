@@ -12,6 +12,7 @@
  *  8. Animated stat counters (.stat-number) — supports data-target and
  *     text-content patterns including $, K, + suffixes
  *  9. FAQ accordion (.faq-question / .faq-item) — auto-init when present
+ * 10. Nav dropdowns — hover on desktop, tap-to-open on mobile
  */
 
 (function () {
@@ -31,13 +32,169 @@
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="./index.html"     data-page="index">Home</a></li>
-                <li><a href="./about.html"     data-page="about">About</a></li>
-                <li><a href="./programs.html"  data-page="programs">Programs</a></li>
-                <li><a href="./events.html"    data-page="events">Events</a></li>
+                <li><a href="./index.html"      data-page="index">Home</a></li>
+                <li><a href="./about.html"      data-page="about">About</a></li>
+                <li><a href="./programs.html"   data-page="programs">Programs</a></li>
+                <li><a href="./events.html"     data-page="events">Events</a></li>
                 <li><a href="./membership.html" data-page="membership">Membership</a></li>
                 <li><a href="./community.html"  data-page="community">Community</a></li>
-                <li><a href="./contact.html"   data-page="contact">Contact</a></li>
+                <li><a href="./contact.html"    data-page="contact">Contact</a></li>
+                <li><a href="./membership.html" class="nav-cta">Join Now</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"
+                    aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>`;
+
+    const EXTENDED_NAV_HTML = `
+    <nav id="nav">
+        <div class="nav-container">
+            <a href="./index.html" class="logo" aria-label="UPAASF Home">
+                <div class="logo-icon">UP</div>
+                <div class="logo-text">
+                    <h1>UPAASF</h1>
+                    <p>University of the Philippines Alumni</p>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="./index.html"      data-page="index">Home</a></li>
+                <li><a href="./about.html"      data-page="about">About</a></li>
+
+                <!-- Programs with dropdown -->
+                <li id="programsNavItem">
+                    <a href="./programs.html" data-page="programs" class="dropdown-toggle">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="./alumni-mentoring-program.html">
+                                <span class="submenu-icon">🎓</span>
+                                <span class="submenu-label">
+                                    Alumni Mentoring Program
+                                    <!-- <span>Connect with Bay Area professionals</span> -->
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <!-- <a href="./cultural-immersion-camp.html"> -->
+							<a href="#">
+                                <span class="submenu-icon">🎭</span>
+                                <span class="submenu-label">
+                                    Filipino Cultural Immersion Camp
+                                    <!-- <span>Heritage &amp; traditions for youth</span> -->
+                                </span>
+								<span class="badge-soon">Coming Soon</span>
+                            </a>
+                        </li>
+                        <li>
+                            <!-- <a href="./speakers-series.html"> -->
+							<a href="#">
+                                <span class="submenu-icon">💡</span>
+                                <span class="submenu-label">
+                                    Speakers' Series
+                                    <!-- <span>Inspiring conversations with leaders</span> -->
+                                </span>
+								<span class="badge-soon">Coming Soon</span>
+                            </a>
+                        </li>
+                        <li>
+                            <!-- <a href="./up-in-the-streets.html"> -->
+							<a href="#">
+                                <span class="submenu-icon">🎨</span>
+                                <span class="submenu-label">
+                                    UP in the Streets
+                                    <!-- <span>Community &amp; public art initiatives</span> -->
+                                </span>
+								<span class="badge-soon">Coming Soon</span>
+                            </a>
+                        </li>
+                        <hr class="dropdown-divider">
+                        <li>
+                            <a href="#">
+                                <span class="submenu-icon">🏅</span>
+                                <span class="submenu-label">
+                                    Scholarship Programs
+                                    <!-- <span>Supporting UP students</span> -->
+                                </span>
+                                <span class="badge-soon">Coming Soon</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="submenu-icon">❤️</span>
+                                <span class="submenu-label">
+                                    Disaster Relief &amp; Philanthropy
+                                    <!-- <span>Giving back to our communities</span> -->
+                                </span>
+                                <span class="badge-soon">Coming Soon</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li><a href="./events.html"     data-page="events">Events</a></li>
+                <li><a href="./membership.html" data-page="membership">Membership</a></li>
+				
+				<!-- Community without dropdown -->
+                <li><a href="./community.html"  data-page="community">Community</a></li>
+                <!-- Community with dropdown -->
+				<!--
+                <li id="communityNavItem">
+                    <a href="./community.html" data-page="community" class="dropdown-toggle">Community</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="./community.html#alumni-stories">
+                                <span class="submenu-icon">🌟</span>
+                                <span class="submenu-label">
+                                    Alumni Stories &amp; Spotlights
+                                    <span>Member success &amp; journeys</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./community.html#news-updates">
+                                <span class="submenu-icon">📰</span>
+                                <span class="submenu-label">
+                                    News &amp; Updates
+                                    <span>Latest bulletins &amp; press</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./community.html#member-blog">
+                                <span class="submenu-icon">✍️</span>
+                                <span class="submenu-label">
+                                    Member Blog
+                                    <span>Stories written by alumni</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./community.html#photo-gallery">
+                                <span class="submenu-icon">📸</span>
+                                <span class="submenu-label">
+                                    Photo Gallery
+                                    <span>Event &amp; program photos</span>
+                                </span>
+                            </a>
+                        </li>
+                        <hr class="dropdown-divider">
+                        <li>
+                            <a href="./community.html#up-system">
+                                <span class="submenu-icon">🎓</span>
+                                <span class="submenu-label">
+                                    UP System Connection
+                                    <span>Stay linked to alma mater</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>				
+				-->
+
+                <li><a href="./contact.html"    data-page="contact">Contact</a></li>
                 <li><a href="./membership.html" class="nav-cta">Join Now</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn"
@@ -56,75 +213,78 @@
             <p>Established 1973 &bull; Serving the Bay Area for 50+ Years</p>
         </div>
     </footer>`;
-	
-	const EXTENDED_FOOTER_HTML = `
-	<footer>
-		<div class="footer-grid">
-			<div class="footer-brand">
-				<h3>UPAASF</h3>
-				<p>University of the Philippines Alumni Association of San Francisco. Serving the Bay Area UP community since 1973. Iskolar ng Bayan, united in the Bay.</p>
-				<div class="footer-social">
-					<a class="social-btn" href="#" aria-label="Facebook">📘</a>
-					<a class="social-btn" href="#" aria-label="Instagram">📷</a>
-					<a class="social-btn" href="#" aria-label="LinkedIn">💼</a>
-					<a class="social-btn" href="#" aria-label="YouTube">▶️</a>
-				</div>
-			</div>
-			<div class="footer-col">
-				<h4>Community</h4>
-				<ul>
-					<li><a href="#alumni-stories">Alumni Stories</a></li>
-					<li><a href="#news-updates">News &amp; Updates</a></li>
-					<li><a href="#member-blog">Member Blog</a></li>
-					<li><a href="#photo-gallery">Photo Gallery</a></li>
-					<li><a href="#up-system">UP System</a></li>
-				</ul>
-			</div>
-			<div class="footer-col">
-				<h4>Organization</h4>
-				<ul>
-					<li><a href="./about.html">About UPAASF</a></li>
-					<li><a href="./programs.html">Programs</a></li>
-					<li><a href="./events.html">Events</a></li>
-					<li><a href="./membership.html">Membership</a></li>
-					<li><a href="./contact.html">Contact Us</a></li>
-				</ul>
-			</div>
-			<div class="footer-col">
-				<h4>Resources</h4>
-				<ul>
-					<li><a href="#">Member Directory</a></li>
-					<li><a href="#">Annual Reports</a></li>
-					<li><a href="#">Scholarship Fund</a></li>
-					<li><a href="#">Media Kit</a></li>
-					<li><a href="#">Privacy Policy</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<p>© 2025 University of the Philippines Alumni Association of San Francisco. All rights reserved. | Established 1973 | 501(c)(3) Non-Profit Organization</p>
-		</div>
-	</footer>`;	
+
+    const EXTENDED_FOOTER_HTML = `
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>UPAASF</h3>
+                <p>University of the Philippines Alumni Association of San Francisco.
+                   Serving the Bay Area UP community since 1973. Iskolar ng Bayan, united in the Bay.</p>
+                <div class="footer-social">
+                    <a class="social-btn" href="#" aria-label="Facebook">📘</a>
+                    <a class="social-btn" href="#" aria-label="Instagram">📷</a>
+                    <a class="social-btn" href="#" aria-label="LinkedIn">💼</a>
+                    <a class="social-btn" href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="./alumni-mentoring-program.html">Alumni Mentoring</a></li>
+                    <li><a href="./programs.html#cultural-camp">Cultural Camp</a></li>
+                    <li><a href="./programs.html#speakers">Speakers' Series</a></li>
+                    <li><a href="./programs.html#up-streets">UP in the Streets</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Organization</h4>
+                <ul>
+                    <li><a href="./about.html">About UPAASF</a></li>
+                    <li><a href="./events.html">Events</a></li>
+                    <li><a href="./membership.html">Membership</a></li>
+                    <li><a href="./community.html">Community</a></li>
+                    <li><a href="./contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Member Directory</a></li>
+                    <li><a href="#">Annual Reports</a></li>
+                    <li><a href="#">Scholarship Fund</a></li>
+                    <li><a href="#">Media Kit</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 University of the Philippines Alumni Association of San Francisco.
+               All rights reserved. | Established 1973 | 501(c)(3) Non-Profit Organization</p>
+        </div>
+    </footer>`;
 
     /* ------------------------------------------------------------------
-       2. Inject components
+       2. Inject nav & footer
     ------------------------------------------------------------------ */
-    function inject(id, html) {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = html;
+    function injectNav(html) {
+        var header = document.getElementById('site-header');
+        if (header) header.innerHTML = html || NAV_HTML;
+    }
+
+    function injectFooter(html) {
+        var footer = document.getElementById('site-footer');
+        if (footer) footer.innerHTML = html || FOOTER_HTML;
     }
 
     /* ------------------------------------------------------------------
-       3. Highlight the active nav link
-         Page key resolution order:
-           1. data-page attribute on <body>  — explicit, reliable, works in
-              any environment (local file, subdirectory, dev server, etc.)
-           2. Filename fallback              — derived from the URL pathname,
-              e.g. "about.html" → "about"; used when no data-page is set
+       3. Highlight active nav link
+          Priority:
+          1. Explicit data-page attribute on <body>
+          2. Filename fallback — derived from the URL pathname,
+             e.g. "about.html" → "about"; used when no data-page is set
     ------------------------------------------------------------------ */
     function setActiveLink() {
-        // Prefer the explicit data-page attribute on <body> if present;
-        // fall back to parsing the filename from the URL pathname.
         const page = document.body.dataset.page
             || window.location.pathname.split('/').pop().replace('.html', '')
             || 'index';
@@ -140,7 +300,7 @@
        4. Mobile hamburger toggle
     ------------------------------------------------------------------ */
     function initMobileMenu() {
-        const btn = document.getElementById('mobileMenuBtn');
+        const btn   = document.getElementById('mobileMenuBtn');
         const links = document.getElementById('navLinks');
         if (!btn || !links) return;
 
@@ -149,9 +309,11 @@
             btn.setAttribute('aria-expanded', isOpen);
         });
 
-        // Close menu when any nav link is tapped
+        // Close menu when a nav link is tapped — but NOT when the tapped
+        // link is a dropdown toggle (that's handled by initDropdowns below).
         links.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
+                if (link.classList.contains('dropdown-toggle')) return;
                 links.classList.remove('open');
                 btn.setAttribute('aria-expanded', 'false');
             });
@@ -159,13 +321,31 @@
     }
 
     /* ------------------------------------------------------------------
-       5. Scroll: compact nav
+       5. Scroll: compact nav + keep --nav-height in sync with actual height
+          The CSS token is a static 92px approximation that matches the
+          full nav. When nav gains .scrolled (padding halved) its rendered
+          height shrinks to ~71px — sticky sub-navs stuck at 92px then
+          show a visible gap. Updating the variable on every scroll event
+          keeps the sub-nav flush regardless of nav state.
     ------------------------------------------------------------------ */
     function initScrollBehavior() {
         var nav = document.getElementById('nav');
         if (!nav) return;
+
+        function syncNavHeight() {
+            document.documentElement.style.setProperty('--nav-height', nav.offsetHeight + 'px');
+        }
+
+        // Set immediately so the value is correct before any scroll
+        syncNavHeight();
+
         window.addEventListener('scroll', function () {
             nav.classList.toggle('scrolled', window.scrollY > 80);
+            syncNavHeight();
+            // Also sync after the nav transition finishes (transition: all 0.3s ease)
+            // so the CSS variable reflects the final settled height
+            clearTimeout(window._navSyncTimer);
+            window._navSyncTimer = setTimeout(syncNavHeight, 320);
         }, { passive: true });
     }
 
@@ -185,10 +365,12 @@
     }
 
     /* ------------------------------------------------------------------
-       7. Intersection Observer for .fade-in elements
+       7. Fade-in on scroll (Intersection Observer)
     ------------------------------------------------------------------ */
     function initFadeIn() {
-        if (!window.IntersectionObserver) return;
+        var items = document.querySelectorAll('.fade-in');
+        if (!items.length) return;
+
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
@@ -196,80 +378,54 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(function (el) {
-            observer.observe(el);
-        });
+        items.forEach(function (item) { observer.observe(item); });
     }
 
     /* ------------------------------------------------------------------
        8. Animated stat counters
-          Handles two patterns found across pages:
-            a) data-target="500"  → counts 0 → 500, appends "+"
-            b) Text content "500+", "$500K+", "100%"  → parses value + suffixes
-          Supported suffixes: + (plus), $ (dollar prefix), K, % (percent)
-          Triggered by IntersectionObserver so off-screen counters only
-          animate when they scroll into view. Each counter fires once.
+          Supports: plain number, number+suffix ($, K, +, K+, $K+, etc.)
+          Reads from data-target if present, otherwise parses text content.
     ------------------------------------------------------------------ */
-    function animateSingleCounter(el) {
-        var text       = el.textContent.trim();
-        var dataTarget = el.getAttribute('data-target');
-
-        var hasPlus    = dataTarget !== null || text.indexOf('+') !== -1;
-        var hasDollar  = text.indexOf('$') !== -1;
-        var hasK       = text.indexOf('K') !== -1;
-        var hasPercent = text.indexOf('%') !== -1;
-
-        var target = dataTarget !== null
-            ? parseInt(dataTarget, 10)
-            : parseFloat(text.replace(/[^0-9.]/g, '')) || 0;
-
-        if (!target) return;
-
-        var steps     = 50;
-        var duration  = 1500;
-        var stepTime  = duration / steps;
-        var increment = target / steps;
-        var current   = 0;
-
-        var timer = setInterval(function () {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            var display = Math.floor(current);
-            if (hasDollar)  display = '$' + display;
-            if (hasK)       display = display + 'K';
-            if (hasPercent) display = display + '%';
-            if (hasPlus)    display = display + '+';
-            el.textContent = display;
-        }, stepTime);
-    }
-
     function initStatCounters() {
         var counters = document.querySelectorAll('.stat-number');
         if (!counters.length) return;
 
-        if (!window.IntersectionObserver) {
-            // Fallback: animate immediately for old browsers
-            counters.forEach(animateSingleCounter);
-            return;
-        }
-
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (!entry.isIntersecting) return;
-                var el = entry.target;
-                if (el.dataset.animated) return; // run once only
-                el.dataset.animated = 'true';
-                observer.unobserve(el);
-                animateSingleCounter(el);
-            });
-        }, { threshold: 0.4 });
+                observer.unobserve(entry.target);
 
-        counters.forEach(function (el) { observer.observe(el); });
+				const validPrefixes = ['$'];
+				const validSuffixes = ['K+', 'K', '%', '+'];
+
+                var el       = entry.target;
+                var raw      = el.dataset.target || el.textContent.trim();
+                var prefix   = validPrefixes.find(s => raw.startsWith(s)) || '';;
+				//var prefix   = raw.match(/^\$/)       ? '$'  : '';
+				var suffix   = validSuffixes.find(s => raw.endsWith(s)) || '';
+                //var suffix   = raw.match(/K\+?$/)     ? (raw.endsWith('+') ? 'K+' : 'K')
+                //             : raw.match(/\+$/)       ? '+'  : '';
+                var target   = parseFloat(raw.replace(/[^0-9.]/g, '')) || 0;
+                var duration = 1800;
+                var start    = null;
+
+                function step(ts) {
+                    if (!start) start = ts;
+                    var progress = Math.min((ts - start) / duration, 1);
+                    var ease     = 1 - Math.pow(1 - progress, 3);
+                    var current  = Math.floor(ease * target);
+                    el.textContent = prefix + current.toLocaleString() + suffix;
+                    if (progress < 1) requestAnimationFrame(step);
+                    else el.textContent = prefix + target.toLocaleString() + suffix;
+                }
+
+                requestAnimationFrame(step);
+            });
+        }, { threshold: 0.3 });
+
+        counters.forEach(function (counter) { observer.observe(counter); });
     }
 
     /* ------------------------------------------------------------------
@@ -277,36 +433,59 @@
           Collapses all .faq-item siblings, toggles the clicked one.
           No-ops silently when no .faq-question elements are present.
     ------------------------------------------------------------------ */
-    function initFaqAccordion() {
+    function initFAQ() {
         var questions = document.querySelectorAll('.faq-question');
         if (!questions.length) return;
 
-        questions.forEach(function (question) {
-            question.addEventListener('click', function () {
-                var faqItem = this.parentElement;
-                var isActive = faqItem.classList.contains('active');
+        questions.forEach(function (q) {
+            q.addEventListener('click', function () {
+                var item   = q.closest('.faq-item');
+                var isOpen = item.classList.contains('open');
 
-                // Collapse all
-                document.querySelectorAll('.faq-item').forEach(function (item) {
-                    item.classList.remove('active');
+                // Close all
+                document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+                    openItem.classList.remove('open');
                 });
 
-                // Re-open if it wasn't already open
-                if (!isActive) {
-                    faqItem.classList.add('active');
+                // Open clicked (unless it was already open)
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    }
+
+    /* ------------------------------------------------------------------
+      10. Nav dropdowns
+          - Desktop: CSS hover handles show/hide; no JS needed.
+          - Mobile:  tap the dropdown-toggle link to open/close the panel.
+          Iterates a list of known dropdown nav item IDs so new dropdowns
+          can be added just by appending to the array.
+    ------------------------------------------------------------------ */
+    function initDropdowns() {
+        ['programsNavItem', 'communityNavItem'].forEach(function (id) {
+            var item = document.getElementById(id);
+            if (!item) return;
+
+            item.addEventListener('click', function (e) {
+                if (window.innerWidth > 768) return; // desktop — CSS handles it
+
+                // Only intercept clicks on the toggle link itself
+                var toggle = e.target.closest('.dropdown-toggle');
+                if (toggle) {
+                    e.preventDefault();
+                    item.classList.toggle('open');
                 }
             });
         });
     }
 
     /* ------------------------------------------------------------------
-       Bootstrap — run after the DOM is ready
+       Init: run everything after the DOM is ready
     ------------------------------------------------------------------ */
     function init() {
-        inject('site-header', NAV_HTML);
-        inject('site-footer', FOOTER_HTML);
+        injectNav(EXTENDED_NAV_HTML);
+        injectFooter();
         setActiveLink();
-		
+						
         // Patch the "Join Now" CTA href based on the optional data-join-href
         // attribute on <body>. This allows pages with their own membership
         // section (e.g. membership.html with <body data-join-href="#join">)
@@ -316,18 +495,20 @@
             'href',
             document.body.dataset.joinHref || './membership.html'
         );
-		
+
         initMobileMenu();
         initScrollBehavior();
         initSmoothScroll();
         initFadeIn();
         initStatCounters();
-        initFaqAccordion();
+        initFAQ();
+        initDropdowns();
     }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
-        init(); // DOMContentLoaded already fired
+        init();  // DOMContentLoaded already fired
     }
-})();
+
+}());
