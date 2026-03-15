@@ -28,7 +28,7 @@
             position: sticky;
             /* Use the shared token so this tracks any nav height change */
             top: var(--nav-height);
-            z-index: 999;
+            z-index: 900;
             /* Mirror nav transition so filter bar tracks the shrinking nav */
             transition: top 0.3s ease;
         }
@@ -366,33 +366,53 @@
         }
 
         @media (max-width: 768px) {
-            /* Compact filter bar: single tight row, no labels, smaller controls */
+            /*
+             * Two-row layout on mobile:
+             *   Row 1 — the three filter selects, equal width, no overflow.
+             *   Row 2 — the view-toggle buttons, right-aligned.
+             *
+             * The previous flex-wrap: nowrap forced all controls onto one line
+             * (~500px+ on a 390px phone), overflowing the viewport width.
+             * That overflow widened the browser's initial containing block,
+             * which caused position:fixed on the nav to scroll horizontally
+             * with the page — hiding the hamburger and breaking sticky behaviour.
+             */
             .event-filters {
                 padding: 0.65rem 4%;
             }
 
             .filters-container {
-                gap: 0.5rem;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;            /* was nowrap — the overflow root cause */
+                gap: 0.4rem 0.5rem;
             }
 
-            /* Hide text labels — the selects are self-explanatory on mobile */
+            /* Each filter group grows equally to fill row 1 */
+            .filter-group {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            /* Hide text labels — selects are self-explanatory on mobile */
             .filter-group label {
                 display: none;
             }
 
+            /* Selects fill their flex parent */
             .filter-group select {
-                padding: 0.45rem 0.7rem;
-                font-size: 0.8rem;
+                width: 100%;
+                min-width: 0;
+                padding: 0.45rem 0.5rem;
+                font-size: 0.78rem;
                 border-radius: 20px;
                 border-width: 1.5px;
             }
 
-            /* Compact view-toggle — icon-style narrow buttons */
+            /* View toggle — forced to its own row, right-aligned */
             .view-toggle {
+                flex-basis: 100%;
+                justify-content: flex-end;
+                margin-left: 0;
                 gap: 0.3rem;
-                margin-left: auto;
-                flex-shrink: 0;
             }
 
             .view-btn {

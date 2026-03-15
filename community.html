@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./shared/styles.css">
     <style>
 		/* ── Page Hero: bottom padding adjust to account for the sub navigation ── */
-        .page-hero { padding-bottom: 10px; }
+        .page-hero { padding-bottom: 50px; }
 		
         /* ── Page Hero: centered emoji watermark override ── */		
 		.page-hero::before {
@@ -22,11 +22,25 @@
             transform: translate(-50%, -50%);
             background: none;
             pointer-events: none;
+            padding: 0;
         }
 
         .page-hero-content {
             max-width: 750px;
         }
+
+        .hero-actions {
+            margin-top: 2rem; /* This provides a consistent, controlled gap */
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+		
+        /*
+		.page-hero p {
+			margin-top: 0.75rem;
+		}
+        */
 
         /* Hero badge (community-specific pill label above h2) */
         .page-hero-badge {
@@ -41,9 +55,10 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 1.2rem;
-        }
+        }		
 
         /* Community-density button sizing overrides */
+		/*
         .btn-gold {
             display: inline-flex;
             align-items: center;
@@ -82,9 +97,11 @@
         .btn-outline-white:hover {
 			border-color: white;
 			background: rgba(255,255,255,0.1);
-			}
+		}
+		*/
 
         /* Override shared .btn-primary / .btn-secondary to community density */
+        /*
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -125,6 +142,7 @@
 			color: white;
 			transform: translateY(-2px);
 		}
+        */
 
         /* ── Section scaffolding ── */
 
@@ -529,7 +547,7 @@
             gap: 1rem;
         }
 
-        .blog-categories 
+        .blog-categories {
 			display: flex;
 			gap: 0.5rem;
 			flex-wrap: wrap;
@@ -928,8 +946,66 @@
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
             .gallery-item.wide { grid-column: span 1; }
             .upsystem-grid { grid-template-columns: 1fr; }
-            .upsystem-banner { flex-direction: column; text-align: center; }
-            .upsystem-banner-ctas { justify-content: center; }
+
+            /*
+             * Stack CTA button pairs vertically on mobile.
+             * These containers had no flex-wrap, causing two long buttons
+             * with white-space:nowrap to overflow the viewport width —
+             * widening the page and breaking position:fixed on the nav.
+             */
+             /*
+            .story-cta,
+            .gallery-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.85rem;
+            }
+            .story-cta > *,
+            .gallery-actions > * {
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+            }
+            */
+
+            /* Story CTA and Gallery Actions:
+            side-by-side equal-width buttons with text wrapping allowed */
+            .story-cta,
+            .gallery-actions {
+                align-items: stretch;  /* stretch children to equal height */
+                gap: 0.75rem;
+            }
+
+            .story-cta > *,
+            .gallery-actions > * {
+                flex: 1;                  /* equal width, fills available space */
+                white-space: normal;      /* override .btn's nowrap — allow text to wrap */
+                text-align: center;
+                min-width: 0;             /* allow shrinking below content size */
+                line-height: 1.35;        /* comfortable line height for wrapped text */
+                padding: 0.75rem 1rem;    /* slightly reduce horizontal padding to gain width */
+
+                /* Each button: centre text both axes within the equal height */
+                 display: flex;
+                align-items: center;
+                justify-content: center;
+            }            
+
+            /* Banner: tighter padding on mobile + stack the CTA buttons */
+            .upsystem-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+            .upsystem-banner-ctas {
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                width: 100%;
+            }
+            .upsystem-banner-ctas > * {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -943,9 +1019,9 @@
             <div class="page-hero-badge">Our Community</div>
             <h2>Where Iskolar ng Bayan Connect</h2>
             <p>Share stories, celebrate milestones, stay informed, and keep your bond with UP and fellow alumni alive — wherever life takes you.</p>
-            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top: 2rem;">
-                <a href="#alumni-stories" class="btn-gold">Explore Stories</a>
-                <a href="#member-blog" class="btn-outline-white">Write for the Blog</a>
+            <div class="hero-actions">
+                <a href="#alumni-stories" class="btn btn-gold">Explore Stories</a>
+                <a href="#member-blog" class="btn btn-outline-white">Write for the Blog</a>
             </div>
         </div>
     </section>
@@ -1009,7 +1085,7 @@
                         <span class="story-tag">🎓 UP Diliman</span>
                         <span class="story-tag">💼 Leadership</span>
                         <br><br>
-                        <a href="#" class="btn-primary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">Read Full Story →</a>
+                        <a href="#" class="btn btn-primary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">Read Full Story →</a>
                     </div>
                 </div>
 
@@ -1047,8 +1123,8 @@
             </div>
 
             <div class="story-cta">
-                <a href="#" class="btn-secondary">View All Stories</a>
-                <a href="#" class="btn-primary">Submit Your Story ✍️</a>
+                <a href="#" class="btn btn-secondary">View All Stories</a>
+                <a href="#" class="btn btn-primary">Submit Your Story ✍️</a>
             </div>
         </div>
     </section>
@@ -1131,7 +1207,7 @@
                     </div>
 
                     <div style="margin-top: 1.5rem; text-align:center;">
-                        <a href="#" class="btn-secondary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">View All News →</a>
+                        <a href="#" class="btn btn-secondary" style="font-size:0.85rem; padding: 0.55rem 1.3rem;">View All News →</a>
                     </div>
                 </div>
 
@@ -1141,7 +1217,7 @@
                         <div class="widget-title">📬 UPAASF Bulletin</div>
                         <p>Get the monthly digest straight to your inbox — events, news, member spotlights.</p>
                         <input type="email" class="newsletter-input" placeholder="your@email.com">
-                        <button class="btn-gold" style="width:100%; justify-content:center; font-size:0.85rem; padding:0.6rem;">Subscribe →</button>
+                        <button class="btn btn-gold" style="width:100%; justify-content:center; font-size:0.85rem; padding:0.6rem;">Subscribe →</button>
                     </div>
 
                     <div class="sidebar-widget">
@@ -1394,8 +1470,8 @@
             </div>
 
             <div class="gallery-actions">
-                <a href="#" class="btn-outline-white">View Full Gallery</a>
-                <a href="#" class="btn-gold">📤 Submit Photos</a>
+                <a href="#" class="btn btn-outline-white">View Full Gallery</a>
+                <a href="#" class="btn btn-gold">📤 Submit Photos</a>
             </div>
         </div>
     </section>
@@ -1490,8 +1566,8 @@
                     <p>UPAASF is an officially recognized UP alumni chapter, connected to the UP Alumni Association and the Office of Alumni Relations. Your membership here keeps you tied to a worldwide family of over 200,000 Iskolars ng Bayan.</p>
                 </div>
                 <div class="upsystem-banner-ctas">
-                    <a href="#" class="btn-gold">Explore UP Alumni Network</a>
-                    <a href="./membership.html" class="btn-outline-white">Renew UPAASF Membership</a>
+                    <a href="#" class="btn btn-gold">Explore UP Alumni Network</a>
+                    <a href="./membership.html" class="btn btn-outline-white">Renew UPAASF Membership</a>
                 </div>
             </div>
         </div>
