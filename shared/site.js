@@ -225,9 +225,9 @@
                 <p>University of the Philippines Alumni Association of San Francisco.
                    Serving the Bay Area UP community since 1973. Iskolar ng Bayan, united in the Bay.</p>
                 <div class="footer-social">
-                    <a class="social-btn" href="#" aria-label="Facebook">📘</a>
-                    <a class="social-btn" href="#" aria-label="Instagram">📷</a>
-                    <a class="social-btn" href="#" aria-label="LinkedIn">💼</a>
+                    <a class="social-btn" href="https://www.linkedin.com/in/up-alumni-association-of-san-francisco-upaasf-10592a276/" aria-label="Facebook">📘</a>
+                    <a class="social-btn" href="https://www.instagram.com/upaa_sf/" aria-label="Instagram">📷</a>
+                    <a class="social-btn" href="https://www.linkedin.com/in/up-alumni-association-of-san-francisco-upaasf-10592a276/" aria-label="LinkedIn">💼</a>
                     <a class="social-btn" href="#" aria-label="YouTube">▶️</a>
                 </div>
             </div>
