@@ -1169,7 +1169,7 @@ nav.scrolled {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--up-green);
-    box-shadow: 0 0 0 3px rgba(10, 59, 26, 0.08);
+    box-shadow: 0 0 0 3px var(--up-green-light);
 }
 
 .form-group textarea {

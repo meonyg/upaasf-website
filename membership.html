@@ -40,18 +40,18 @@
             border-radius: 20px;
             box-shadow: 0 6px 30px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            border-left: 5px solid #8B0000;
+            border-left: 5px solid var(--up-maroon);
         }
 
         .benefit-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-            border-left-color: #FFD700;
+            border-left-color: var(--up-gold);
         }
 
         .benefit-card h4 {
             font-size: 1.6rem;
-            color: #8B0000;
+            color: var(--up-maroon);
             margin-bottom: 1rem;
             font-weight: 700;
             display: flex;
@@ -76,7 +76,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: #0A3B1A;
+            color: var(--up-green);
             font-weight: 700;
         }
 
@@ -109,7 +109,7 @@
         }
 
         .tier-card.featured {
-            border-color: #FFD700;
+            border-color: var(--up-gold);
             transform: scale(1.05);
             box-shadow: 0 8px 40px rgba(255, 215, 0, 0.3);
         }
@@ -121,7 +121,7 @@
 
         .tier-badge {
             display: inline-block;
-            background: #8B0000;
+            background: var(--up-maroon);
             color: white;
             padding: 0.4rem 1rem;
             border-radius: 20px;
@@ -131,13 +131,13 @@
         }
 
         .tier-card.featured .tier-badge {
-            background: #FFD700;
-            color: #8B0000;
+            background: var(--up-gold);
+            color: var(--up-maroon);
         }
 
         .tier-name {
             font-size: 1.8rem;
-            color: #8B0000;
+            color: var(--up-maroon);
             font-weight: 800;
             margin-bottom: 1rem;
         }
@@ -173,14 +173,14 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: #0A3B1A;
+            color: var(--up-green);
             font-weight: 700;
         }
 
         .tier-button {
             width: 100%;
             padding: 1rem 2rem;
-            background: #8B0000;
+            background: var(--up-maroon);
             color: white;
             border: none;
             border-radius: 50px;
@@ -191,7 +191,7 @@
         }
 
         .tier-button:hover {
-            background: #660000;
+            background: var(--up-maroon-dark);
             transform: translateY(-2px);
         }
 
@@ -212,7 +212,7 @@
             background: #f8f9fa;
             padding: 2.5rem;
             border-radius: 20px;
-            border-left: 5px solid #FFD700;
+            border-left: 5px solid var(--up-gold);
         }
 
         .testimonial-text {
@@ -232,7 +232,7 @@
         .author-image {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -244,7 +244,7 @@
         }
 
         .author-info h5 {
-            color: #8B0000;
+            color: var(--up-maroon);
             font-weight: 700;
             margin-bottom: 0.3rem;
         }
@@ -267,7 +267,7 @@
 
         /* ── Value prop section ── */
         .value-prop {
-            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
             color: white;
             padding: 6rem 5%;
             text-align: center;
@@ -300,7 +300,7 @@
         .value-stat-number {
             font-size: 3rem;
             font-weight: 900;
-            color: #FFD700;
+            color: var(--up-gold);
             display: block;
         }
 
