@@ -9,6 +9,20 @@
     --nav-height: 92px;
     /* Breathing room between the bottom of the fixed nav and the hero content */
     --hero-gap: 48px;
+
+    /* ── UP Official Brand Colors ──
+       Maroon, Green, and Gold — all three should be visually present throughout the site.
+       Use these variables for all new rules; use hex literals only for legacy/inline overrides. */
+    --up-maroon:      #8B0000;
+    --up-maroon-dark: #660000;
+    --up-maroon-glow: rgba(139, 0, 0, 0.3);
+    --up-green:       #0A3B1A;
+    --up-green-dark:  #062412;
+    --up-green-mid:   #155724;
+    --up-green-light: rgba(10, 59, 26, 0.08);
+    --up-gold:        #FFD700;
+    --up-gold-dark:   #FFC700;
+    --up-gold-glow:   rgba(255, 215, 0, 0.4);
 }
 
 /* ----- Reset & Base ----- */
@@ -64,7 +78,7 @@ nav.scrolled {
 .logo-icon {
     width: 55px;
     height: 55px;
-    background: linear-gradient(135deg, #8B0000 0%, #0A3B1A 100%);
+    background: linear-gradient(135deg, var(--up-maroon) 0%, var(--up-green) 100%);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -72,20 +86,20 @@ nav.scrolled {
     color: white;
     font-weight: 900;
     font-size: 1.3rem;
-    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+    box-shadow: 0 4px 15px var(--up-maroon-glow);
     flex-shrink: 0;
 }
 
 .logo-text h1 {
     font-size: 1.3rem;
-    color: #8B0000;
+    color: var(--up-maroon);
     font-weight: 800;
     letter-spacing: 1px;
 }
 
 .logo-text p {
     font-size: 0.75rem;
-    color: #0A3B1A;
+    color: var(--up-green);
     font-weight: 500;
     margin-top: 2px;
 	width: 65%;
@@ -121,15 +135,15 @@ nav.scrolled {
 }
 
 .nav-links a:hover {
-    color: #8B0000;
+    color: var(--up-maroon);
 }
 
 .nav-links a.active {
-    color: #8B0000;
+    color: var(--up-maroon);
 }
 
 .nav-cta {
-    background: #8B0000;
+    background: var(--up-maroon);
     color: white !important;
     padding: 0.6rem 1.5rem;
     border-radius: 25px;
@@ -137,9 +151,9 @@ nav.scrolled {
 }
 
 .nav-cta:hover {
-    background: #660000 !important;
+    background: var(--up-maroon-dark) !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+    box-shadow: 0 4px 15px var(--up-maroon-glow);
     color: white !important;
 }
 
@@ -190,7 +204,7 @@ nav.scrolled {
     padding: calc(0.5rem + 10px) 0 0.5rem;
     margin-top: 0;
     z-index: 2000;
-    border-top: 3px solid #8B0000;
+    border-top: 3px solid var(--up-maroon);
 }
 
 .nav-links > li:hover .dropdown-menu,
@@ -219,16 +233,16 @@ nav.scrolled {
 
 .dropdown-menu a:hover {
     background: #fdf2f2;
-    color: #8B0000;
+    color: var(--up-maroon);
     padding-left: 1.5rem;
 }
 
 /* Active state — highlighted when that section is in view (driven by JS) */
 .dropdown-menu a.active-section {
     background: #fdf2f2;
-    color: #8B0000;
+    color: var(--up-maroon);
     padding-left: 1.5rem;
-    border-left: 3px solid #8B0000;
+    border-left: 3px solid var(--up-maroon);
 }
 
 .submenu-icon {
@@ -287,7 +301,7 @@ nav.scrolled {
     display: block;
     width: 25px;
     height: 3px;
-    background: #8B0000;
+    background: var(--up-maroon);
     border-radius: 3px;
     transition: all 0.3s ease;
 }
@@ -379,7 +393,7 @@ nav.scrolled {
         border-radius: 50px;
         
         /* Ensure it maintains its brand colors */
-        background-color: var(--upaasf-maroon, #8B0000); 
+        background-color: var(--upaasf-maroon, var(--up-maroon)); 
         color: white;
     }
 
@@ -432,14 +446,13 @@ nav.scrolled {
         align-items: center;
         justify-content: center;
         width: 44px;
-        width: 44px;
         height: 44px;
         flex-shrink: 0;
         background: none;
         border: none;
         cursor: pointer;
         padding: 0;
-        color: #8B0000;
+        color: var(--up-maroon);
 		pointer-events: auto; /* re-enable tapping on mobile */
     }
 
@@ -486,40 +499,66 @@ nav.scrolled {
 }
 
 .btn-primary {
-    background: #8B0000;
+    background: var(--up-maroon);
     color: white;
-    box-shadow: 0 4px 20px rgba(139, 0, 0, 0.3);
+    box-shadow: 0 4px 20px var(--up-maroon-glow);
 }
 
 .btn-primary:hover {
-    background: #660000;
+    background: var(--up-maroon-dark);
     transform: translateY(-3px);
     box-shadow: 0 8px 30px rgba(139, 0, 0, 0.4);
 }
 
 .btn-secondary {
     background: transparent;
-    color: #8B0000;
-    border: 2px solid #8B0000;
+    color: var(--up-maroon);
+    border: 2px solid var(--up-maroon);
 }
 
 .btn-secondary:hover {
-    background: #8B0000;
+    background: var(--up-maroon);
     color: white;
     transform: translateY(-3px);
 }
 
 /* Gold variant — for use on dark (hero/CTA) backgrounds */
 .btn-gold {
-    background: #FFD700;
-    color: #8B0000;
-    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+    background: var(--up-gold);
+    color: var(--up-maroon);
+    box-shadow: 0 6px 25px var(--up-gold-glow);
 }
 
 .btn-gold:hover {
-    background: #FFC700;
+    background: var(--up-gold-dark);
     transform: translateY(-3px);
     box-shadow: 0 8px 35px rgba(255, 215, 0, 0.5);
+}
+
+/* ── NEW: Green variant — for use on light backgrounds, secondary CTA contexts ── */
+.btn-green {
+    background: var(--up-green);
+    color: white;
+    box-shadow: 0 4px 20px rgba(10, 59, 26, 0.3);
+}
+
+.btn-green:hover {
+    background: var(--up-green-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(10, 59, 26, 0.4);
+}
+
+/* Green outline variant — for use on light backgrounds */
+.btn-outline-green {
+    background: transparent;
+    color: var(--up-green);
+    border: 2px solid var(--up-green);
+}
+
+.btn-outline-green:hover {
+    background: var(--up-green);
+    color: white;
+    transform: translateY(-3px);
 }
 
 /* White outline variant — for use on dark backgrounds */
@@ -579,7 +618,7 @@ nav.scrolled {
 
 /* ----- Page Hero (inner pages) ----- */
 .page-hero {
-    background: linear-gradient(135deg, #8B0000 0%, #660000 50%, #0A3B1A 100%);
+    background: linear-gradient(135deg, var(--up-maroon) 0%, var(--up-maroon-dark) 50%, var(--up-green) 100%);
     color: white;
     padding: calc(var(--nav-height) + var(--hero-gap)) 5% 80px;
     text-align: center;
@@ -636,7 +675,7 @@ nav.scrolled {
     display: inline-block;
     background: rgba(255, 215, 0, 0.2);
     border: 1px solid rgba(255, 215, 0, 0.5);
-    color: #FFD700;
+    color: var(--up-gold);
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -683,13 +722,13 @@ nav.scrolled {
 }
 
 .breadcrumb-container a {
-    color: #8B0000;
+    color: var(--up-maroon);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s;
 }
 
-.breadcrumb-container a:hover { color: #660000; }
+.breadcrumb-container a:hover { color: var(--up-maroon-dark); }
 
 .breadcrumb-sep { color: #ccc; }
 
@@ -725,7 +764,7 @@ nav.scrolled {
 .stat-number {
     font-size: 3rem;
     font-weight: 900;
-    color: #8B0000;
+    color: var(--up-maroon);
     line-height: 1;
     margin-bottom: 0.4rem;
 }
@@ -794,14 +833,19 @@ nav.scrolled {
     cursor: pointer;
 }
 
+/* ── UPDATED: subnav hover uses green to distinguish from active (maroon) ── */
 .subnav-item:hover {
-    color: #8B0000;
+    /*
+    color: var(--up-maroon);
     border-bottom-color: rgba(139,0,0,0.3);
+    */
+    color: var(--up-green);
+    border-bottom-color: rgba(10, 59, 26, 0.35);
 }
 
 .subnav-item.active {
-    color: #8B0000;
-    border-bottom-color: #8B0000;
+    color: var(--up-maroon);
+    border-bottom-color: var(--up-maroon);
 }
 
 /* Scroll-fade hint on the right edge — tells users there are more tabs */
@@ -832,12 +876,18 @@ nav.scrolled {
 .strategic-goals {
     padding: 6rem 5%;
 	
+    /* ── UPDATED: subtle green-mint tint instead of gold-cream,
+       reinforcing that green is a co-primary UP brand color ── */
+    background: linear-gradient(to bottom, #eef6f1, #f8f9fa);
+
 	/* warm cream/gold-tinted light background option -- changed #ffffff to #f8f9fa */
+    /*
 	background: linear-gradient(to bottom, #fff8e8, #f8f9fa);
+    */
 
 	/* dark green background option */
 	/* 
-    background: linear-gradient(to bottom, #0A3B1A, #062412);
+    background: linear-gradient(to bottom, var(--up-green), var(--up-green-dark));
     color: white;
 	*/
 }
@@ -853,9 +903,9 @@ nav.scrolled {
 
 .strategic-goals .section-header h3 {
 	/* warm cream/gold-tinted light background option */
-	color: #8B0000;
+	color: var(--up-maroon);
 	/* dark green background option */
-    /* color: #FFD700; */
+    /* color: var(--up-gold); */
 }
 
 .strategic-goals .section-header p {
@@ -875,7 +925,9 @@ nav.scrolled {
 .goal-card {
 	/* warm cream/gold-tinted light background option */
     background: white;
-    border: 2px solid #f0e8d0;
+
+    border: 2px solid #e8f0eb;
+    /* border: 2px solid #f0e8d0; */
     box-shadow: 0 4px 20px rgba(139, 0, 0, 0.06);
 	
 	/* dark green background option */
@@ -895,11 +947,15 @@ nav.scrolled {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 4px;
-	
+
+    /* ── UPDATED: 3-color stripe — all three UP brand colors ── */
+    background: linear-gradient(90deg, var(--up-maroon) 33%, var(--up-green) 66%, var(--up-gold));
+
 	/* warm cream/gold-tinted light background option */
-    background: linear-gradient(90deg, #8B0000, #FFD700);	
+    /* background: linear-gradient(90deg, var(--up-maroon), var(--up-gold)); */
+
 	/* dark green background option */
-    /* background: linear-gradient(90deg, #FFD700, #FFA500); */
+    /* background: linear-gradient(90deg, var(--up-gold), #FFA500); */
 
     transform: scaleX(0);
     transform-origin: left;
@@ -907,9 +963,16 @@ nav.scrolled {
 }
 
 .goal-card:hover {
+    /* UPDATED: green background */
+    border-color: var(--up-green);
+    box-shadow: 0 10px 40px rgba(10, 59, 26, 0.12);
+
 	/* warm cream/gold-tinted light background option */
-	border-color: #FFD700;
+	/* 
+    border-color: var(--up-gold);
     box-shadow: 0 10px 40px rgba(139, 0, 0, 0.12);
+    */
+
 	/* dark green background option */
 	/* 	
     background: rgba(255, 255, 255, 0.1);
@@ -926,9 +989,13 @@ nav.scrolled {
 .goal-number {
     font-size: 3.5rem;
     font-weight: 900;
-	
+
+    /* light green background option */
+    color: rgba(10, 59, 26, 0.1);
+
 	/* warm cream/gold-tinted light background option */
-	color: rgba(139, 0, 0, 0.12);
+	/* color: rgba(139, 0, 0, 0.12); */
+
 	/* dark green background option */
 	/* color: rgba(255, 215, 0, 0.25); */
 	
@@ -940,11 +1007,15 @@ nav.scrolled {
 .goal-card h4 {
     font-size: 1.3rem;
     font-weight: 800;
+
+    /* Green */
+    color: var(--up-green);
 	
 	/* warm cream/gold-tinted light background option */
-	color: #8B0000;
+	/* color: var(--up-maroon); */
+
 	/* dark green background option */
-    /* color: #FFD700; */
+    /* color: var(--up-gold); */
 
     margin-bottom: 0.75rem;
 }
@@ -968,7 +1039,7 @@ nav.scrolled {
 
 /* ----- CTA Section ----- */
 .cta-section {
-    background: linear-gradient(135deg, #8B0000, #0A3B1A);
+    background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
     padding: 5rem 5%;
     text-align: center;
     color: white;
@@ -1000,13 +1071,13 @@ nav.scrolled {
 }
 
 .cta-section .btn-primary {
-    background: #FFD700;
-    color: #8B0000;
-    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+    background: var(--up-gold);
+    color: var(--up-maroon);
+    box-shadow: 0 6px 25px var(--up-gold-glow);
 }
 
 .cta-section .btn-primary:hover {
-    background: #FFC700;
+    background: var(--up-gold-dark);
     box-shadow: 0 8px 35px rgba(255, 215, 0, 0.5);
 }
 
@@ -1017,7 +1088,7 @@ nav.scrolled {
 
 .cta-section .btn-secondary:hover {
     background: white;
-    color: #8B0000;
+    color: var(--up-maroon);
 }
 
 /* ----- Section Container & Header ----- */
@@ -1033,9 +1104,27 @@ nav.scrolled {
 
 .section-header h3 {
     font-size: 3rem;
-    color: #8B0000;
+    color: var(--up-maroon);
     margin-bottom: 1rem;
     font-weight: 800;
+}
+
+/* ── NEW: Triple-stripe underline — maroon | green | gold ──
+   Appears under every .section-header h3, reinforcing all three
+   UP official brand colors wherever a section heading is used. */
+.section-header h3::after {
+    content: '';
+    display: block;
+    width: 90px;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        var(--up-maroon)  0%   33.3%,
+        var(--up-green)   33.3% 66.6%,
+        var(--up-gold)    66.6% 100%
+    );
+    margin: 0.75rem auto 0.75rem;
+    border-radius: 2px;
 }
 
 .section-header p {
@@ -1049,7 +1138,6 @@ nav.scrolled {
 @media (max-width: 768px) {
     .section-header h3 { font-size: 2.2rem; }
 }
-/* Original location of footer */
 
 /* ----- Shared Form Styles (contact, membership) ----- */
 .form-group {
@@ -1075,11 +1163,13 @@ nav.scrolled {
     transition: all 0.3s;
 }
 
+/* ── UPDATED: green focus border to reduce all-maroon dominance ── */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #8B0000;
+    border-color: var(--up-green);
+    box-shadow: 0 0 0 3px rgba(10, 59, 26, 0.08);
 }
 
 .form-group textarea {
@@ -1110,8 +1200,10 @@ nav.scrolled {
 	*/
 }
 
+/* ── UPDATED: open-state accent uses green instead of maroon ── */
 .faq-item.open {
-    border-color: rgba(139,0,0,0.15);
+    border: 2px solid rgba(10, 59, 26, 0.18);
+    /* border-color: rgba(139,0,0,0.15); */
 }
 
 .faq-question {
@@ -1131,13 +1223,13 @@ nav.scrolled {
 }
 
 .faq-question:hover {
-    color: #8B0000;
+    color: var(--up-maroon);
     background: #f8f9fa; /* #f0f0f0 */
 }
 
 .faq-icon {
     font-size: 1.5rem;  /* 1.4rem */
-    color: #8B0000;
+    color: var(--up-green);
     flex-shrink: 0;
     transition: transform 0.3s; /* transform 0.3s ease; */
 	/* line-height: 1; */
@@ -1187,8 +1279,12 @@ nav.scrolled {
 }
 
 /* ----- Footer ----- */
+/* ── UPDATED: deep forest green gradient instead of dark maroon-tinted ──
+   Green anchors the footer, giving the brand color equal structural weight
+   across the page lifecycle (hero = maroon-to-green, footer = green-to-dark). */
 footer {
-    background: linear-gradient(135deg, #1a1a1a, #2d1a1a);
+    background: linear-gradient(135deg, var(--up-green-dark), #1a1a1a);
+    /* background: linear-gradient(135deg, #1a1a1a, #2d1a1a); */
     color: white;
     padding: 3rem 5%;
     text-align: center;
@@ -1204,6 +1300,18 @@ footer p + p {
     margin-top: 0.5rem;
 }
 
+/* ── Gold accent on footer links / highlight text ── */
+footer a {
+    color: var(--up-gold);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--up-gold-dark);
+    text-decoration: underline;
+}
+
 /* ── Large extended footer CSS (kept for future activation) ── */
 /* ── Base Grid (Desktop) ── */
 .footer-grid {
@@ -1211,7 +1319,6 @@ footer p + p {
 
     /* Brand gets 2 parts, Links Wrapper gets 3 parts (one for each link column) */
     grid-template-columns: 2fr 3fr;
-	/* grid-template-columns: 2fr 1fr 1fr 1fr; */
 
 	gap: 3rem;
 	max-width: 1200px;
@@ -1265,7 +1372,7 @@ footer p + p {
     .footer-links-container {
         grid-template-columns: 1fr;
     }
-}    
+}
 
 .footer-brand h3 { font-size: 1.8rem; font-weight: 900; color: white; margin-bottom: 0.75rem; }
 .footer-brand p { color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.5rem; }
@@ -1280,7 +1387,7 @@ footer p + p {
 	transition: background 0.2s;
 }
 .social-btn:hover { background: rgba(255,255,255,0.2); }
-.footer-col h4 { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #FFD700; margin-bottom: 1.2rem; }
+.footer-col h4 { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--up-gold); margin-bottom: 1.2rem; }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
 .footer-col ul li a:hover { color: white; }
@@ -1289,4 +1396,90 @@ footer p + p {
 
 @media (max-width: 480px) {
     .footer-social { justify-content: center; }
+}
+
+
+/* =============================================================
+   COLOR UTILITY CLASSES
+   Use these to introduce green and maintain consistency without
+   writing page-specific overrides for every component.
+   ============================================================= */
+
+/* ── Section background utilities ── */
+
+/* Warm gold-cream tint — for sections that need warm emphasis */
+.section-gold-bg {
+    background: linear-gradient(to bottom, #fff8e8, #f8f9fa);
+}
+
+/* ── NEW: Fresh green-mint tint — for alternating sections ── */
+.section-green-bg {
+    background: linear-gradient(to bottom, #eef6f1, #f5fbf7);
+}
+
+/* ── Highlight / callout boxes ── */
+
+/* Existing gold highlight box (defined in page-specific styles, replicated here for reference) */
+.highlight-box {
+    background: #fff3cd;
+    border-left: 4px solid var(--up-gold);
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+}
+
+.highlight-box p  { color: #555; margin: 0; font-size: 1.05rem; }
+.highlight-box strong { color: var(--up-maroon); }
+
+/* ── NEW: Green highlight box ── */
+.highlight-green {
+    background: #e8f5ec;
+    border-left: 4px solid var(--up-green);
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+}
+
+.highlight-green p  { color: #555; margin: 0; font-size: 1.05rem; }
+.highlight-green strong { color: var(--up-green); }
+
+/* ── Section tag / pill label badges ── */
+/* Maroon variant (existing in community.html inline styles — now shared) */
+.section-tag {
+    display: inline-block;
+    background: #fdf2f2;
+    color: var(--up-maroon);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+/* ── NEW: Green variant for section tag pills ── */
+.section-tag-green {
+    display: inline-block;
+    background: #e8f5ec;
+    color: var(--up-green);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+/* ── NEW: Gold variant for section tag pills ── */
+.section-tag-gold {
+    display: inline-block;
+    background: #fff8e1;
+    color: #8a6200;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
 }

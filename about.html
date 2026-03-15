@@ -12,6 +12,7 @@
     <style>
         /* ============================================================
            PAGE-SPECIFIC STYLES & OVERRIDES
+           -- 2026/03/15 — GREEN ENHANCEMENT PATCH
            ============================================================ */
 
         /* ----- Who We Are – two-column layout ----- */
@@ -108,6 +109,7 @@
             border-top: 5px solid #8B0000;
         }
 
+        /* Card 2 = green top border, Card 3 = gold top border */
         .value-card:nth-child(2) { border-top-color: #0A3B1A; }
         .value-card:nth-child(3) { border-top-color: #FFD700; }
 
@@ -118,10 +120,16 @@
 
         .value-card h4 {
             font-size: 1.8rem;
-            color: #8B0000;
+            color: #8B0000;     /* Card 1: maroon */
             margin-bottom: 0.5rem;
             font-weight: 800;
         }
+
+        /* ── GREEN UPDATE: card 2 h4 matches its green top border ── */
+        .value-card:nth-child(2) h4 { color: #0A3B1A; }
+
+        /* ── GREEN UPDATE: card 3 h4 in dark gold/amber for contrast ── */
+        .value-card:nth-child(3) h4 { color: #8a6200; }
 
         .value-card .tagalog {
             font-size: 1.1rem;
@@ -151,13 +159,14 @@
             position: relative;
         }
 
+        /* ── GREEN UPDATE: timeline spine becomes a 3-color gradient ── */
         .timeline::before {
             content: '';
             position: absolute;
             left: 50%;
             top: 0; bottom: 0;
             width: 4px;
-            background: linear-gradient(to bottom, #8B0000, #0A3B1A);
+            background: linear-gradient(to bottom, #8B0000, #0A3B1A, #FFD700, #0A3B1A, #8B0000);
             transform: translateX(-50%);
         }
 
@@ -173,6 +182,7 @@
 
         .timeline-item:nth-child(even) {
             padding-left: calc(50% + 2rem);
+            text-align: left;
         }
 
         .timeline-dot {
@@ -186,13 +196,25 @@
             border-radius: 50%;
             transform: translateX(-50%);
             box-shadow: 0 0 0 4px white;
+            transition: transform 0.3s ease;
+        }
+
+        /* ── GREEN UPDATE: even timeline dots use green border ── */
+        .timeline-item:nth-child(even) .timeline-dot {
+            border-color: #0A3B1A;
+            background: #FFD700;
         }
 
         .timeline-year {
             font-size: 2rem;
             font-weight: 900;
-            color: #8B0000;
+            color: #8B0000;      /* odd items: maroon */
             margin-bottom: 0.5rem;
+        }
+
+        /* ── GREEN UPDATE: even timeline years display in green ── */
+        .timeline-item:nth-child(even) .timeline-year {
+            color: #0A3B1A;
         }
 
         .timeline-content h5 {
@@ -211,7 +233,7 @@
             .timeline-item:nth-child(even) {
                 padding-left: 2rem;
                 padding-right: 0;
-                text-align: left;
+                text-align: left !important;
             }
 
             .timeline-dot { left: 0; }
@@ -279,10 +301,12 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
 
+        /* ── GREEN UPDATE: leader image placeholder uses green → maroon gradient ──
+        Alternating direction vs. hero (maroon→green) for visual variety */
         .leader-image {
             width: 100%;
             height: 280px;
-            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            background: linear-gradient(135deg, #0A3B1A, #8B0000);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -300,9 +324,10 @@
             font-weight: 700;
         }
 
+        /* ── GREEN UPDATE: position label in green instead of all-maroon ── */
         .leader-info .position {
-            color: #8B0000;
-            font-weight: 600;
+            color: #0A3B1A;
+            font-weight: 700;
             margin-bottom: 0.5rem;
             font-size: 1rem;
         }
@@ -349,15 +374,17 @@
             box-shadow: 0 8px 35px rgba(139, 0, 0, 0.4);
         }
 
+        /* ── GREEN UPDATE: secondary CTA button becomes green for visual balance ── */
         .about-cta .btn-secondary {
-            color: #8B0000;
-            border-color: #8B0000;
+            color: #0A3B1A;
+            border-color: #0A3B1A;
         }
 
         .about-cta .btn-secondary:hover {
-            background: #8B0000;
+            background: #0A3B1A;
             color: white;
         }
+
     </style>
 </head>
 <body data-page="about" data-join-href="#join">
