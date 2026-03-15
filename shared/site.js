@@ -28,7 +28,7 @@
                 <div class="logo-icon">UP</div>
                 <div class="logo-text">
                     <h1>UPAASF</h1>
-                    <p>University of the Philippines Alumni</p>
+                    <p>University of the Philippines Alumni Association of San Francisco</p>
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -57,7 +57,7 @@
                 <div class="logo-icon">UP</div>
                 <div class="logo-text">
                     <h1>UPAASF</h1>
-                    <p>University of the Philippines Alumni</p>
+                    <p>University of the Philippines Alumni Association of San Francisco</p>
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -66,7 +66,10 @@
 
                 <!-- Programs with dropdown -->
                 <li id="programsNavItem">
-                    <a href="./programs.html" data-page="programs" class="dropdown-toggle">Programs</a>
+                    <a href="./programs.html" data-page="programs">Programs</a>
+					<button class="dropdown-chevron" aria-label="Expand Programs menu" aria-expanded="false">
+						<span></span>
+					</button>		
                     <ul class="dropdown-menu">
                         <li>
                             <a href="./alumni-mentoring-program.html">
@@ -79,7 +82,7 @@
                         </li>
                         <li>
                             <!-- <a href="./cultural-immersion-camp.html"> -->
-							<a href="#">
+							<a href="./programs.html#cultural-camp">
                                 <span class="submenu-icon">🎭</span>
                                 <span class="submenu-label">
                                     Filipino Cultural Immersion Camp
@@ -90,7 +93,7 @@
                         </li>
                         <li>
                             <!-- <a href="./speakers-series.html"> -->
-							<a href="#">
+							<a href="./programs.html#speakers">
                                 <span class="submenu-icon">💡</span>
                                 <span class="submenu-label">
                                     Speakers' Series
@@ -101,7 +104,7 @@
                         </li>
                         <li>
                             <!-- <a href="./up-in-the-streets.html"> -->
-							<a href="#">
+							<a href="./programs.html#up-streets">
                                 <span class="submenu-icon">🎨</span>
                                 <span class="submenu-label">
                                     UP in the Streets
@@ -228,6 +231,8 @@
                     <a class="social-btn" href="#" aria-label="YouTube">▶️</a>
                 </div>
             </div>
+
+            <div class="footer-links-container">
             <div class="footer-col">
                 <h4>Programs</h4>
                 <ul>
@@ -257,10 +262,11 @@
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
+            </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 University of the Philippines Alumni Association of San Francisco.
-               All rights reserved. | Established 1973 | 501(c)(3) Non-Profit Organization</p>
+               All rights reserved. | Established 1973</p>
         </div>
     </footer>`;
 
@@ -455,24 +461,61 @@
 
     /* ------------------------------------------------------------------
       10. Nav dropdowns
-          - Desktop: CSS hover handles show/hide; no JS needed.
-          - Mobile:  tap the dropdown-toggle link to open/close the panel.
-          Iterates a list of known dropdown nav item IDs so new dropdowns
-          can be added just by appending to the array.
+          - Desktop: CSS :hover on the <li> handles show/hide. The chevron
+                     is decorative only (pointer-events: none).
+          - Mobile:  The <a> navigates normally. The .dropdown-chevron
+                     button exclusively toggles the panel open/closed.
+          - iOS ghost-click fix: touchend fires first and sets a flag;
+                     the synthetic click that iOS fires ~300ms later is
+                     ignored, preventing the toggle from firing twice and
+                     immediately undoing itself.
+          - Tapping outside any open dropdown closes it.
     ------------------------------------------------------------------ */
     function initDropdowns() {
         ['programsNavItem', 'communityNavItem'].forEach(function (id) {
             var item = document.getElementById(id);
             if (!item) return;
 
-            item.addEventListener('click', function (e) {
-                if (window.innerWidth > 768) return; // desktop — CSS handles it
+            var chevron = item.querySelector('.dropdown-chevron');
+            if (!chevron) return;
 
-                // Only intercept clicks on the toggle link itself
-                var toggle = e.target.closest('.dropdown-toggle');
-                if (toggle) {
-                    e.preventDefault();
-                    item.classList.toggle('open');
+            // Flag that a real touch already handled this interaction.
+            // Prevents the iOS ghost click (~300ms later) from toggling back.
+            var touchHandled = false;
+
+            function toggleDropdown(e) {
+                e.stopPropagation();
+                var isOpen = item.classList.toggle('open');
+                chevron.setAttribute('aria-expanded', String(isOpen));
+            }
+
+            // touchend: handles the real finger-lift on iOS/Android.
+            // preventDefault() stops the browser generating a ghost click.
+            chevron.addEventListener('touchend', function (e) {
+                e.preventDefault();
+                touchHandled = true;
+                toggleDropdown(e);
+                // Reset flag after the ghost-click window (~500ms)
+                setTimeout(function () { touchHandled = false; }, 500);
+            });
+
+            // click: handles mouse clicks on desktop (pointer-events: none
+            // keeps this from firing for the decorative desktop chevron, but
+            // pointer-events: auto in the mobile media query re-enables it as
+            // a true fallback for non-iOS touch browsers).
+            chevron.addEventListener('click', function (e) {
+                if (touchHandled) return; // ghost click — already handled above
+                toggleDropdown(e);
+            });
+        });
+
+        // Close all open dropdowns when tapping/clicking anywhere outside them.
+        document.addEventListener('click', function (e) {
+            document.querySelectorAll('.nav-links > li.open').forEach(function (openItem) {
+                if (!openItem.contains(e.target)) {
+                    openItem.classList.remove('open');
+                    var chevron = openItem.querySelector('.dropdown-chevron');
+                    if (chevron) chevron.setAttribute('aria-expanded', 'false');
                 }
             });
         });
@@ -483,7 +526,7 @@
     ------------------------------------------------------------------ */
     function init() {
         injectNav(EXTENDED_NAV_HTML);
-        injectFooter();
+        injectFooter(EXTENDED_FOOTER_HTML);
         setActiveLink();
 						
         // Patch the "Join Now" CTA href based on the optional data-join-href
