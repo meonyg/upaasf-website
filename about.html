@@ -24,7 +24,7 @@
 
         .content-section h3 {
             font-size: 2.5rem;
-            color: #8B0000;
+            color: var(--up-maroon);
             margin-bottom: 1.5rem;
             font-weight: 800;
         }
@@ -45,8 +45,8 @@
         }
 
         .anniversary-badge {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #8B0000;
+            background: linear-gradient(135deg, var(--up-gold), #FFA500);
+            color: var(--up-maroon);
             padding: 3rem;
             border-radius: 20px;
             text-align: center;
@@ -65,7 +65,7 @@
         .anniversary-badge p {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #8B0000;
+            color: var(--up-maroon);
             margin: 0;
         }
 
@@ -106,12 +106,12 @@
             border-radius: 20px;
             box-shadow: 0 6px 30px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            border-top: 5px solid #8B0000;
+            border-top: 5px solid var(--up-maroon);
         }
 
         /* Card 2 = green top border, Card 3 = gold top border */
-        .value-card:nth-child(2) { border-top-color: #0A3B1A; }
-        .value-card:nth-child(3) { border-top-color: #FFD700; }
+        .value-card:nth-child(2) { border-top-color: var(--up-green); }
+        .value-card:nth-child(3) { border-top-color: var(--up-gold); }
 
         .value-card:hover {
             transform: translateY(-10px);
@@ -120,20 +120,20 @@
 
         .value-card h4 {
             font-size: 1.8rem;
-            color: #8B0000;     /* Card 1: maroon */
+            color: var(--up-maroon);     /* Card 1: maroon */
             margin-bottom: 0.5rem;
             font-weight: 800;
         }
 
         /* ── GREEN UPDATE: card 2 h4 matches its green top border ── */
-        .value-card:nth-child(2) h4 { color: #0A3B1A; }
+        .value-card:nth-child(2) h4 { color: var(--up-green); }
 
         /* ── GREEN UPDATE: card 3 h4 in dark gold/amber for contrast ── */
         .value-card:nth-child(3) h4 { color: #8a6200; }
 
         .value-card .tagalog {
             font-size: 1.1rem;
-            color: #0A3B1A;
+            color: var(--up-green);
             font-style: italic;
             margin-bottom: 1rem;
             font-weight: 600;
@@ -166,7 +166,7 @@
             left: 50%;
             top: 0; bottom: 0;
             width: 4px;
-            background: linear-gradient(to bottom, #8B0000, #0A3B1A, #FFD700, #0A3B1A, #8B0000);
+            background: linear-gradient(to bottom, var(--up-maroon), var(--up-green), var(--up-gold), var(--up-green), var(--up-maroon));
             transform: translateX(-50%);
         }
 
@@ -191,8 +191,8 @@
             top: 0;
             width: 20px;
             height: 20px;
-            background: #FFD700;
-            border: 4px solid #8B0000;
+            background: var(--up-gold);
+            border: 4px solid var(--up-maroon);
             border-radius: 50%;
             transform: translateX(-50%);
             box-shadow: 0 0 0 4px white;
@@ -201,20 +201,20 @@
 
         /* ── GREEN UPDATE: even timeline dots use green border ── */
         .timeline-item:nth-child(even) .timeline-dot {
-            border-color: #0A3B1A;
-            background: #FFD700;
+            border-color: var(--up-green);
+            background: var(--up-gold);
         }
 
         .timeline-year {
             font-size: 2rem;
             font-weight: 900;
-            color: #8B0000;      /* odd items: maroon */
+            color: var(--up-maroon);      /* odd items: maroon */
             margin-bottom: 0.5rem;
         }
 
         /* ── GREEN UPDATE: even timeline years display in green ── */
         .timeline-item:nth-child(even) .timeline-year {
-            color: #0A3B1A;
+            color: var(--up-green);
         }
 
         .timeline-content h5 {
@@ -241,7 +241,7 @@
 
         /* ----- Impact Stats ----- */
         .impact-stats {
-            background: linear-gradient(135deg, #8B0000, #0A3B1A);
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
             color: white;
             padding: 5rem 5%;
             text-align: center;
@@ -260,7 +260,7 @@
         .stat-number {
             font-size: 4rem;
             font-weight: 900;
-            color: #FFD700;
+            color: var(--up-gold);
             display: block;
             margin-bottom: 0.5rem;
         }
@@ -306,7 +306,7 @@
         .leader-image {
             width: 100%;
             height: 280px;
-            background: linear-gradient(135deg, #0A3B1A, #8B0000);
+            background: linear-gradient(135deg, var(--up-green), var(--up-maroon));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -326,7 +326,7 @@
 
         /* ── GREEN UPDATE: position label in green instead of all-maroon ── */
         .leader-info .position {
-            color: #0A3B1A;
+            color: var(--up-green);
             font-weight: 700;
             margin-bottom: 0.5rem;
             font-size: 1rem;
@@ -346,13 +346,13 @@
         }
 
         .leader-social a {
-            color: #0A3B1A;
+            color: var(--up-green);
             font-size: 1.2rem;
             transition: color 0.3s;
             text-decoration: none;
         }
 
-        .leader-social a:hover { color: #8B0000; }
+        .leader-social a:hover { color: var(--up-maroon); }
 
         /* about.html overrides the shared CTA section colours to white-on-dark */
         .about-cta.cta-section {
@@ -360,28 +360,28 @@
             padding: 6rem 5%;
         }
 
-        .about-cta .cta-content h3 { color: #8B0000; }
+        .about-cta .cta-content h3 { color: var(--up-maroon); }
         .about-cta .cta-content p  { color: #666; }
 
         .about-cta .btn-primary {
-            background: #8B0000;
+            background: var(--up-maroon);
             color: white;
-            box-shadow: 0 6px 25px rgba(139, 0, 0, 0.3);
+            box-shadow: 0 6px 25px var(--up-marron-glow);
         }
 
         .about-cta .btn-primary:hover {
-            background: #660000;
+            background: var(--up-maroon-dark);
             box-shadow: 0 8px 35px rgba(139, 0, 0, 0.4);
         }
 
         /* ── GREEN UPDATE: secondary CTA button becomes green for visual balance ── */
         .about-cta .btn-secondary {
-            color: #0A3B1A;
-            border-color: #0A3B1A;
+            color: var(--up-green);
+            border-color: var(--up-green);
         }
 
         .about-cta .btn-secondary:hover {
-            background: #0A3B1A;
+            background: var(--up-green);
             color: white;
         }
 
@@ -412,7 +412,7 @@
 
                 <p>We lead with the values that define our university—excellence, honor, service—while embracing the spirit of innovation that defines our region. Whether you graduated decades ago or just joined us from Diliman, Los Baños, Manila, or any UP campus, you have a home here.</p>
 
-                <p style="font-size: 1.3rem; font-weight: 700; color: #8B0000; margin-top: 2rem;">This is more than an alumni association. This is a community.</p>
+                <p style="font-size: 1.3rem; font-weight: 700; color: var(--up-maroon); margin-top: 2rem;">This is more than an alumni association. This is a community.</p>
             </div>
 
             <div class="anniversary-badge">
@@ -453,14 +453,14 @@
             <h3 style="margin-top: 3rem;">Leading with Purpose</h3>
             <p>Today, UPAASF stands as UP's premier alumni organization in the San Francisco Bay Area. We lead with the values that define our university—excellence, honor, service—while embracing the spirit of innovation that defines our region. Whether you graduated decades ago or just joined us from Diliman, Los Baños, Manila, or any UP campus, you have a home here.</p>
 
-            <p style="font-size: 1.3rem; font-weight: 700; color: #8B0000; margin-top: 2rem;">This is more than an alumni association. This is a community.</p>
+            <p style="font-size: 1.3rem; font-weight: 700; color: var(--up-maroon); margin-top: 2rem;">This is more than an alumni association. This is a community.</p>
         </div>
     </section>
 
     <!-- ==================== CORE VALUES ==================== -->
     <section class="values-section">
         <div style="max-width: 1400px; margin: 0 auto; text-align: center;">
-            <h3 style="font-size: 2.5rem; color: #8B0000; margin-bottom: 1rem;">Our Core Values</h3>
+            <h3 style="font-size: 2.5rem; color: var(--up-maroon); margin-bottom: 1rem;">Our Core Values</h3>
             <p style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto;">These pillars guide everything we do—from mentoring students to preserving culture, from hosting events to supporting our alma mater.</p>
         </div>
 
@@ -488,7 +488,7 @@
     <!-- ==================== TIMELINE ==================== -->
     <section class="timeline-section">
         <div>
-            <h3 style="font-size: 2.5rem; color: #8B0000; margin-bottom: 1rem;">Our Journey Through the Years</h3>
+            <h3 style="font-size: 2.5rem; color: var(--up-maroon); margin-bottom: 1rem;">Our Journey Through the Years</h3>
             <p style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto;">Five decades of community building, cultural preservation, and service to UP</p>
         </div>
 
@@ -585,7 +585,7 @@
     <!-- ==================== BOARD OF DIRECTORS ==================== -->
     <section class="leadership-section">
         <div>
-            <h3 style="font-size: 2.5rem; color: #8B0000; margin-bottom: 1rem;">Board of Directors</h3>
+            <h3 style="font-size: 2.5rem; color: var(--up-maroon); margin-bottom: 1rem;">Board of Directors</h3>
             <p style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto;">Meet the dedicated leaders guiding UPAASF's mission and vision</p>
         </div>
 
@@ -672,7 +672,7 @@
         <div style="text-align: center; margin-top: 3rem;">
             <p style="font-size: 1.1rem; color: #666;">
                 Interested in serving on the board?
-                <a href="./contact.html" style="color: #8B0000; font-weight: 700; text-decoration: none;">Contact us</a>
+                <a href="./contact.html" style="color: var(--up-maroon); font-weight: 700; text-decoration: none;">Contact us</a>
                 to learn about opportunities.
             </p>
         </div>
