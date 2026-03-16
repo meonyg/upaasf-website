@@ -516,6 +516,289 @@
 
             .scroll-indicator { display: none; }   /* No need to show on mobile */
         }
+
+        /* ============================================================
+        FEATURED EVENT SPOTLIGHT  — reusable promo section
+        To promote a different event: swap the emoji in ::before,
+        update .emblem-icon, .spotlight-details li, .spotlight-title,
+        .spotlight-body, .spotlight-highlights, and .spotlight-cta-row.
+        To hide when no spotlight is active: add display:none to the section.
+        ============================================================ */
+
+        .event-spotlight {
+            position: relative;
+            padding: 5.5rem 5%;
+            background: linear-gradient(
+                135deg,
+                var(--up-green-dark)  0%,
+                var(--up-green)       55%,
+                #1e6035             100%
+            );
+            overflow: hidden;
+        }
+
+        /* Watermark background icon — change emoji to match the event */
+        .event-spotlight::before {
+            content: var(--spotlight-watermark, '🎭'); /* fallback emoji if unset */
+            position: absolute;
+            font-size: 30rem;
+            right: -4rem;
+            bottom: -5rem;
+            opacity: 0.04;
+            pointer-events: none;
+            line-height: 1;
+            transform: rotate(-12deg);
+        }
+
+        /* Radial gold glow — top-left atmospheric accent */
+        .event-spotlight::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255,215,0,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .spotlight-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.75fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        /* ── Left: Visual panel ── */
+        .spotlight-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .spotlight-emblem {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            border: 2px solid rgba(255,215,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 0 0 10px rgba(255,215,0,0.05),
+                0 0 55px rgba(255,215,0,0.12);
+            animation: spotlightPulse 3.5s ease-in-out infinite;
+        }
+
+        @keyframes spotlightPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 10px rgba(255,215,0,0.05), 0 0 55px rgba(255,215,0,0.12);
+            }
+            50% {
+                box-shadow: 0 0 0 18px rgba(255,215,0,0.02), 0 0 75px rgba(255,215,0,0.22);
+            }
+        }
+
+        .emblem-icon::before {
+            content: var(--spotlight-watermark, '🎭');
+            font-size: 7rem;
+            line-height: 1;
+        }
+
+        /* Year badge inside the emblem circle */
+        .emblem-year {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            background: var(--up-gold);
+            color: var(--up-maroon);
+            font-size: 0.9rem;
+            font-weight: 900;
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Event detail pills (date, location, audience) */
+        .spotlight-details {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .spotlight-details li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.13);
+            padding: 0.65rem 1.1rem;
+            border-radius: 10px;
+            color: rgba(255,255,255,0.92);
+            font-size: 0.92rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .spotlight-details li .detail-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* ── Right: Content panel ── */
+        .spotlight-content {
+            color: white;
+        }
+
+        /* Animated "Registration Opening Soon" eyebrow badge */
+        .spotlight-eyebrow {
+            display: inline-block;
+            background: rgba(255,215,0,0.14);
+            border: 1px solid rgba(255,215,0,0.42);
+            color: var(--up-gold);
+            padding: 0.4rem 1.1rem;
+            border-radius: 25px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            animation: eyebrowGlow 2.8s ease-in-out infinite;
+        }
+
+        @keyframes eyebrowGlow {
+            0%, 100% { box-shadow: 0 0 0   0px rgba(255,215,0,0.0); }
+            50%       { box-shadow: 0 0 0   5px rgba(255,215,0,0.15); }
+        }
+
+        .spotlight-title {
+            font-size: 2.9rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 0.65rem;
+        }
+
+        /* Colored word in the title */
+        .spotlight-title .title-accent {
+            color: var(--up-gold);
+        }
+
+        .spotlight-lead {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.68);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .spotlight-body {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.82);
+            line-height: 1.82;
+            margin-bottom: 1.8rem;
+        }
+
+        /* Feature highlights — 2-column grid */
+        .spotlight-highlights {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem 2.5rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .spotlight-highlights li {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 0.93rem;
+            color: rgba(255,255,255,0.88);
+            font-weight: 500;
+        }
+
+        .spotlight-hi-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* CTA button row */
+        .spotlight-cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1.1rem;
+        }
+
+        .spotlight-footnote {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.48);
+            font-style: italic;
+        }
+
+        /* ── Responsive: tablet ── */
+        @media (max-width: 960px) {
+            .spotlight-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .spotlight-visual {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem;
+            }
+            .spotlight-emblem {
+                width: 190px;
+                height: 190px;
+                flex-shrink: 0;
+            }
+            .emblem-icon { font-size: 5rem; }
+            .spotlight-details {
+                flex: 1;
+                min-width: 210px;
+            }
+            .spotlight-title { font-size: 2.3rem; }
+        }
+
+        /* ── Responsive: mobile ── */
+        @media (max-width: 600px) {
+            .event-spotlight { padding: 4rem 5%; }
+            .spotlight-highlights { grid-template-columns: 1fr; }
+            .spotlight-cta-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .spotlight-title { font-size: 1.85rem; }
+            .spotlight-emblem {
+                width: 160px;
+                height: 160px;
+            }
+            .emblem-icon { font-size: 4rem; }
+        }
+        
+        /* ── Spotlight CTA row: stack buttons vertically on mobile ── */
+        @media (max-width: 480px) {
+            .spotlight-cta-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .spotlight-cta-row > * {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body data-join-href="#join">
@@ -584,7 +867,7 @@
                     <div class="program-icon">🎭</div>
                     <h4>Filipino Cultural Immersion Camp</h4>
                     <p>Introduce young participants to Filipino culture, heritage, and traditions through our beloved annual summer program running for over 20 years.</p>
-                    <a href="./programs.html" class="program-link">Learn More →</a>
+                    <a href="#summer-camp-spotlight" class="program-link">Learn More →</a>
                 </div>
 
                 <div class="program-card fade-in">
@@ -603,6 +886,88 @@
             </div>
         </div>
     </section>
+
+    <!-- ==================== FEATURED EVENT SPOTLIGHT ====================
+        REUSABLE TEMPLATE — to promote a different event or program:
+        • Update the ::before emoji in CSS (.event-spotlight::before)
+        • Swap .emblem-icon text
+        • Update .spotlight-details li items (date, location, audience)
+        • Change .spotlight-eyebrow text
+        • Update .spotlight-title and .title-accent
+        • Edit .spotlight-lead, .spotlight-body, .spotlight-highlights
+        • Point .spotlight-cta-row links to the correct pages
+        To deactivate the spotlight: add  style="display:none;"  to the <section>.
+        ==================================================================== -->
+    <section class="event-spotlight fade-in" id="summer-camp-spotlight" style="--spotlight-watermark: '🎭'" aria-label="Featured Event: 2026 Filipino Cultural Summer Camp">
+        <div class="spotlight-inner">
+
+            <!-- ── Left: Emblem + Key Details ── -->
+            <div class="spotlight-visual">
+                <div class="spotlight-emblem">
+                    <div class="emblem-icon" aria-hidden="true"></div>
+                    <div class="emblem-year">2026</div>
+                </div>
+
+                <ul class="spotlight-details" aria-label="Event details">
+                    <li><span class="detail-icon" aria-hidden="true">📅</span><span>July 21 – 25, 2026</span></li>
+                    <li><span class="detail-icon" aria-hidden="true">📍</span><span>San Francisco Bay Area</span></li>
+                    <li><span class="detail-icon" aria-hidden="true">👧</span><span>Youth Ages 5 – 17</span></li>
+                    <li><span class="detail-icon" aria-hidden="true">⏳</span><span>Registration Opening Soon</span></li>
+                </ul>
+            </div>
+
+            <!-- ── Right: Headline, Description, CTAs ── -->
+            <div class="spotlight-content">
+                <span class="spotlight-eyebrow">🏕️ Annual Program &nbsp;·&nbsp; Registration Opening Soon</span>
+
+                <h3 class="spotlight-title">
+                    Filipino Cultural<br>
+                    <span class="title-accent">Immersion Summer Camp</span>
+                </h3>
+                <p class="spotlight-lead">Kamusta! A week of culture, heritage, and unforgettable fun.</p>
+                <p class="spotlight-body">
+                    No on it's 13ht year, UPAASF's beloved summer camp has introduced Bay Area youth to the
+                    richness of Filipino language, traditions, arts, and community values — forging
+                    lifelong friendships and a deep, joyful pride in Filipino heritage.
+                </p>
+
+                <ul class="spotlight-highlights" aria-label="Program highlights">
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">🇵🇭</span>
+                        <span>Filipino language &amp; cultural immersion</span>
+                    </li>
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">💃</span>
+                        <span>Traditional dance, music &amp; the arts</span>
+                    </li>
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">🎨</span>
+                        <span>Workshops, games &amp; hands-on activities</span>
+                    </li>
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">🤝</span>
+                        <span>Community bonds &amp; lasting friendships</span>
+                    </li>
+                </ul>
+
+                <div class="spotlight-cta-row">
+                    <!-- Primary CTA: link to a registration/notify form — update href when form is ready -->
+                    <a href="./contact.html?ref=summer-camp-2026" class="btn btn-gold">
+                        🔔 Notify Me When Registration Opens
+                    </a>
+                    <!-- Secondary CTA: links to the Cultural Camp section on programs.html -->
+                    <a href="./programs.html#cultural-camp" class="btn btn-outline-white">
+                        Learn More →
+                    </a>
+                </div>
+
+                <p class="spotlight-footnote">
+                    Limited spots available &nbsp;·&nbsp; UPAASF members receive priority registration access
+                </p>
+            </div>
+
+        </div>
+    </section>    
 
     <!-- ==================== BENEFITS ==================== -->
     <section class="benefits-section" id="membership">
