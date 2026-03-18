@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+    <title>UPAASF | University of the Philippines Alumni Association of San Francisco</title>
+    <meta name="description" content="Join the Bay Area's premier UP alumni community. Connect with fellow iskolar ng bayan, mentor students, celebrate Filipino culture, and support our alma mater. Established 1973.">
+    -->
+    <title>UPAASF UX Concept Website</title>
+    <meta name="description" content="This is a reconceptualization for the UPAASF website.">
+
+    <!-- Shared stylesheet (nav, footer, buttons, page-hero, CTA, utilities) -->
+    <link rel="stylesheet" href="./shared/styles.css">
+
+    <style>
+        /* ============================================================
+           PAGE-SPECIFIC STYLES & OVERRIDES
+           ============================================================ */
+
+        /* ----- Hero ----- */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column; /* Stacks content and indicator vertically */
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--up-maroon) 0%, var(--up-maroon-dark) 50%, var(--up-green) 100%);
+            overflow: hidden;
+            /* Uses the variable for consistent top spacing, and 3rem at the bottom */
+            padding: calc(var(--nav-height) + 80px) 5% 3rem;
+        }
+
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="60" fill="rgba(255,255,255,0.1)">UP</text></svg>');
+            background-repeat: repeat;
+            background-size: 150px;
+            animation: bgFloat 60s infinite linear;
+        }
+
+        @keyframes bgFloat {
+            from { transform: translateX(0) translateY(0); }
+            to   { transform: translateX(50px) translateY(-50px); }
+        }
+
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+            border-radius: 50%;
+            animation: floatParticle 25s infinite ease-in-out;
+        }
+
+        @keyframes floatParticle {
+            0%,  100% { transform: translateY(0)     translateX(0)    scale(1);   }
+            25%        { transform: translateY(-120px) translateX(60px) scale(1.1); }
+            50%        { transform: translateY(-80px)  translateX(-40px) scale(0.9); }
+            75%        { transform: translateY(-140px) translateX(30px) scale(1.2); }
+        }
+
+        .hero-content {
+            flex: 1;                   /* tells the text area to expand and take up all the space */
+            /* max-width: 1200px;  */
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;   /* Keeps the text vertically centered in the middle */
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            color: white;
+
+            /*
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 1200px;
+            padding: 2rem;
+            */
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid var(--up-gold);
+            color: var(--up-gold);
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-badge::before { content: "✨"; font-size: 1.2rem; }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h2 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero h2 .highlight { color: var(--up-gold); }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--up-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero > .hero-content > p:not(.tagline) {
+            font-size: 1.35rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.5s both;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 3rem 0;
+            animation: fadeInUp 1s ease 0.7s both;
+            flex-wrap: wrap;
+            margin-top: 0rem;
+        }
+
+        .stat { text-align: center; }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--up-gold);
+            display: block;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.9s both;
+			margin-bottom: 0rem;
+        }
+
+        /* Override btn colours for the hero (gold primary on dark bg) */
+        .hero .btn-primary {
+            background: var(--up-gold);
+            color: var(--up-maroon);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+        }
+        .hero .btn-primary:hover {
+            background: var(--up-gold-dark);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.5);
+        }
+        .hero .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+        .hero .btn-secondary:hover {
+            background: white;
+            color: var(--up-maroon);
+        }
+
+		/* Add CT h4 */
+        .cta-content h4 {
+            font-size: 1.4rem;
+            font-style: italic;
+            /* color: var(--up-gold); */
+            margin-bottom: 1rem;
+            font-weight: 600;
+            /* animation: fadeInUp 1s ease 0.4s both; */
+        }
+
+        /* ── Scroll Indicator: Perfect Vertical Alignment ── */
+        .scroll-indicator {
+            position: relative; /* Re-enters the document flow */
+            bottom: 0;          /* Resets the absolute anchor */
+            left: 0;            /* Resets the absolute anchor */
+            transform: none;    /* Centering is now handled by the .hero flex layout */
+
+            /* 2. Create an internal flex context to center the text AND the icon */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;          /* Controlled spacing between text and mouse icon */
+            
+            /* 3. External spacing */
+            margin-top: 2rem;
+            
+            z-index: 2;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            animation: bounce 2s infinite;            
+        }
+
+         /* Ensure the span doesn't have stray margins */
+        .scroll-indicator span {
+            display: block;
+            margin: 0;
+            text-align: center;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40%  { transform: translateY(-10px); }
+            60%  { transform: translateY(-5px); }
+        }
+
+        .scroll-indicator svg {
+            width: 32px;
+            height: 32px;
+            color: rgba(255,255,255,0.7);
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        }
+
+        /* ----- Programs Section ----- */
+        .programs-section {
+            padding: 7rem 5%;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .program-card {
+            background: white;
+            padding: 2.8rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--up-maroon), var(--up-green));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .program-card:hover::before { transform: scaleX(1); }
+
+        .program-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 12px 45px rgba(0,0,0,0.15);
+            border-color: var(--up-gold);
+        }
+
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+            font-size: 2.3rem;
+            box-shadow: 0 4px 20px rgba(139, 0, 0, 0.2);
+        }
+
+        .program-card h4 {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .program-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-link {
+            color: var(--up-maroon);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .program-link:hover { gap: 0.6rem; }
+
+        /* ----- Benefits Section ----- */
+        .benefits-section {
+            padding: 7rem 5%;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: #f8f9fa;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ----- Testimonials ----- */
+        .testimonials-section {
+            padding: 7rem 5%;
+            background: linear-gradient(135deg, #f8f9fa, #fff5f5);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 5rem;
+            color: var(--up-gold);
+            font-family: Georgia, serif;
+            line-height: 1;
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+            padding-top: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--up-maroon);
+            font-size: 1.05rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+
+        /* ----- Events Preview ----- */
+        .events-section {
+            padding: 7rem 5%;
+            background: #f8f9fa;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid #f0f0f0;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 45px rgba(0,0,0,0.15);
+        }
+
+        .event-image {
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
+            padding: 2.5rem;
+            text-align: center;
+            font-size: 4rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .event-type {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .event-body { padding: 2rem; }
+
+        .event-body h4 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .event-date {
+            color: var(--up-maroon);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-body p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ----- Responsive overrides ----- */
+        @media (max-width: 768px) {
+            .hero h2       { font-size: 2.5rem; }
+			/* .hero > .hero-content > p:not(.tagline)       { font-size: 1rem; } */
+			.hero-badge    { font-size: 0.85rem; gap: 0.2rem; padding: 0.2rem 0.8rem; }
+			.hero-badge::before { font-size: 1.0rem; }
+            .hero-stats    { gap: 2rem; flex-direction: column; }
+            .stat-number   { font-size: 2.5rem; }
+
+            .scroll-indicator { display: none; }   /* No need to show on mobile */
+        }
+
+        /* ============================================================
+        FEATURED EVENT SPOTLIGHT  — reusable promo section
+        To promote a different event: swap the emoji in ::before,
+        update .emblem-icon, .spotlight-details li, .spotlight-title,
+        .spotlight-body, .spotlight-highlights, and .spotlight-cta-row.
+        To hide when no spotlight is active: add display:none to the section.
+        ============================================================ */
+
+        .event-spotlight {
+            --spot-rgb-white:       255,255,255;
+            --spot-rgb-gold:        255,215,0;
+        
+            /* Default color scheme -- Green */
+            --spot-modifier-name:   'Default Green';
+
+            /* Background */
+            --spot-bg-from:         var(--up-green-dark);
+            --spot-bg-mid:          var(--up-green);
+            --spot-bg-to:           #1e6035;
+
+            --spot-rgba-color:      var(--spot-rgb-gold);                 /* Use this as the rgb color base for rgba() */
+
+            /* Emblem circle */
+            --spot-emblem-bg:       rgba(255,255,255,0.07);
+            --spot-emblem-border:   rgba(255,215,0,0.35);
+
+            --spot-emblem-text-color: var(--up-maroon);
+
+            /* Year badge on emblem */
+            --spot-year-bg:         var(--up-gold);
+            --spot-year-color:      var(--up-maroon);
+
+            /* Detail pills (date, location, audience) */
+            --spot-detail-bg:       rgba(255,255,255,0.08);
+            --spot-detail-border:   rgba(255,255,255,0.13);
+            --spot-detail-color:    rgba(255,255,255,0.92);
+
+            /* Eyebrow badge */
+            --spot-eyebrow-bg:      rgba(var(--rgb-gold), 0.14);
+            --spot-eyebrow-border:  rgba(255,215,0,0.42);
+            --spot-eyebrow-color:   var(--up-gold);
+
+            /* Text */
+            --spot-title-color:       white;
+            --spot-accent-color:      var(--up-gold);     /* title-accent span */
+            --spot-lead-color:        rgba(255, 255, 255, 0.68);
+            --spot-body-color:        rgba(255, 255, 255, 0.82);
+            --spot-highlight-color:   rgba(255, 255, 255, 0.88);
+            --spot-footnote-color:    rgba(255, 255, 255, 0.48);            
+
+            /* Primary button — gold filled */
+            --spot-btn-primary-bg:           var(--up-gold);
+            --spot-btn-primary-color:        var(--up-maroon);
+            --spot-btn-primary-border:       var(--up-gold);
+            --spot-btn-primary-bg-hover:     var(--up-gold-dark);
+            --spot-btn-primary-border-hover: var(--up-gold-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-gold-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(255,215,0,0.5);
+
+            /* Secondary button — white outline */
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        white;
+            --spot-btn-secondary-border:       rgba(255,255,255,0.8);
+            --spot-btn-secondary-bg-hover:     rgba(255,255,255,0.1);
+            --spot-btn-secondary-border-hover: white;            
+
+            position: relative;
+            padding: 5.5rem 5%;
+            background: linear-gradient(
+                135deg,
+                var(--spot-bg-from)	   0%,
+                var(--spot-bg-mid)	  55%,
+                var(--spot-bg-to)	 100%
+            );
+            overflow: hidden;
+        }
+
+        /* ── Maroon modifier ── */
+        .event-spotlight--maroon {
+            --spot-modifier-name:   'MAROON';
+
+            --spot-bg-from:     var(--up-maroon-dark);
+            --spot-bg-mid:      var(--up-maroon);
+            --spot-bg-to:       #a00000;
+        }
+
+        /* ── Gold modiffier ── */
+        .event-spotlight--gold {
+            --spot-modifier-name:     'GOLD';
+
+            --spot-bg-from:           #3d1a00;
+            --spot-bg-mid:            #6b3200;
+            --spot-bg-to:             #8a4500;
+
+            --spot-emblem-bg:         rgba(255, 215, 0, 0.12);
+            --spot-emblem-border:     rgba(255, 215, 0, 0.50);
+
+            --spot-year-bg:           var(--up-gold);
+            --spot-year-color:        #3d1a00;
+
+            --spot-detail-bg:         rgba(255, 215, 0, 0.10);
+            --spot-detail-border:     rgba(255, 215, 0, 0.25);
+            --spot-detail-color:      var(--up-gold);
+
+            --spot-eyebrow-bg:        rgba(255, 215, 0, 0.15);
+            --spot-eyebrow-border:    rgba(255, 215, 0, 0.45);
+            --spot-eyebrow-color:     var(--up-gold);
+
+            --spot-title-color:       white;
+            --spot-accent-color:      var(--up-gold);
+            --spot-lead-color:        rgba(255, 255, 255, 0.68);
+            --spot-body-color:        rgba(255, 255, 255, 0.85);
+            --spot-highlight-color:   rgba(255, 255, 255, 0.90);
+            --spot-footnote-color:    rgba(255, 255, 255, 0.40);
+
+            --spot-btn-primary-bg:           var(--up-gold);
+            --spot-btn-primary-color:        #3d1a00;
+            --spot-btn-primary-border:       var(--up-gold);
+            --spot-btn-primary-bg-hover:     var(--up-gold-dark);
+            --spot-btn-primary-border-hover: var(--up-gold-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-gold-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(255, 215, 0, 0.5);
+
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        var(--up-gold);
+            --spot-btn-secondary-border:       rgba(255, 215, 0, 0.60);
+            --spot-btn-secondary-bg-hover:     rgba(255, 215, 0, 0.10);
+            --spot-btn-secondary-border-hover: var(--up-gold);
+        }
+
+        /* ── Cream / Maroon modifier ── */
+        .event-spotlight--cream-maroon {
+            --spot-modifier-name:     'CREAM - MAROON';
+
+            --spot-bg-from:           #fdf6e3;
+            --spot-bg-mid:            #fef9f0;
+            --spot-bg-to:             #ffffff;
+
+            --spot-emblem-bg:         rgba(139, 0, 0, 0.06);
+            --spot-emblem-border:     rgba(139, 0, 0, 0.25);
+
+            --spot-year-bg:           var(--up-maroon);
+            --spot-year-color:        white;
+
+            --spot-detail-bg:         rgba(139, 0, 0, 0.05);
+            --spot-detail-border:     rgba(139, 0, 0, 0.15);
+            --spot-detail-color:      #5a0f0f;
+
+            --spot-eyebrow-bg:        rgba(139, 0, 0, 0.08);
+            --spot-eyebrow-border:    rgba(139, 0, 0, 0.25);
+            --spot-eyebrow-color:     var(--up-maroon);
+
+            --spot-title-color:       var(--up-maroon);
+            --spot-accent-color:      var(--up-green);
+            --spot-lead-color:        #888;
+            --spot-body-color:        #555;
+            --spot-highlight-color:   #444;
+            --spot-footnote-color:    #999;
+
+            --spot-btn-primary-bg:           var(--up-maroon);
+            --spot-btn-primary-color:        white;
+            --spot-btn-primary-border:       var(--up-maroon);
+            --spot-btn-primary-bg-hover:     var(--up-maroon-dark);
+            --spot-btn-primary-border-hover: var(--up-maroon-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-maroon-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(139, 0, 0, 0.4);
+
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        var(--up-maroon);
+            --spot-btn-secondary-border:       rgba(139, 0, 0, 0.5);
+            --spot-btn-secondary-bg-hover:     rgba(139, 0, 0, 0.06);
+            --spot-btn-secondary-border-hover: var(--up-maroon);
+        }
+        
+        /* ── Green-to-Maroon gradient + Gold accents ── */
+        .event-spotlight--green-maroon-gradient {
+            --spot-modifier-name:     'GREEN-TO-MAROON GRADIENT + GOLD';
+
+            --spot-bg-from:           #062412;
+            --spot-bg-mid:            #3d1500;
+            --spot-bg-to:             #6b2800;
+
+            --spot-emblem-bg:         rgba(255, 215, 0, 0.10);
+            --spot-emblem-border:     rgba(255, 215, 0, 0.45);
+
+            --spot-year-bg:           var(--up-gold);
+            --spot-year-color:        #062412;
+
+            --spot-detail-bg:         rgba(255, 215, 0, 0.09);
+            --spot-detail-border:     rgba(255, 215, 0, 0.23);
+            --spot-detail-color:      var(--up-gold);
+
+            --spot-eyebrow-bg:        rgba(255, 215, 0, 0.13);
+            --spot-eyebrow-border:    rgba(255, 215, 0, 0.40);
+            --spot-eyebrow-color:     var(--up-gold);
+
+            --spot-title-color:       white;
+            --spot-accent-color:      var(--up-gold);
+            --spot-lead-color:        rgba(255, 255, 255, 0.68);
+            --spot-body-color:        rgba(255, 255, 255, 0.85);
+            --spot-highlight-color:   rgba(255, 255, 255, 0.90);
+            --spot-footnote-color:    rgba(255, 255, 255, 0.40);
+
+            --spot-btn-primary-bg:           var(--up-gold);
+            --spot-btn-primary-color:        #062412;
+            --spot-btn-primary-border:       var(--up-gold);
+            --spot-btn-primary-bg-hover:     var(--up-gold-dark);
+            --spot-btn-primary-border-hover: var(--up-gold-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-gold-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(255, 215, 0, 0.5);
+
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        var(--up-gold);
+            --spot-btn-secondary-border:       rgba(255, 215, 0, 0.55);
+            --spot-btn-secondary-bg-hover:     rgba(255, 215, 0, 0.10);
+            --spot-btn-secondary-border-hover: var(--up-gold);
+        }
+
+        /* ── Green/Maroon even split + Gold accents ── */
+        .event-spotlight--green-maroon-split {
+            /* Inherits all tokens from .event-spotlight--green-maroon-gradient, 
+               or any other event-spotlight modifier class.
+            */
+            --spot-modifier-name:     'GREEN/MAROON SPLIT';
+
+            /* Override only the background — four stops for the crisp split */
+            background: linear-gradient(135deg,
+                #062412  0%,
+                #062412 40%,
+                #6b0000 60%,
+                #8B0000 100%
+            );
+        }
+
+        /* Watermark background icon — change emoji to match the event */
+        .event-spotlight::before {
+            content: var(--spotlight-watermark, '🎭'); /* fallback emoji if unset */
+            position: absolute;
+            font-size: 30rem;
+            right: -4rem;
+            bottom: -5rem;
+            opacity: 0.04;
+            pointer-events: none;
+            line-height: 1;
+            transform: rotate(-12deg);
+        }
+
+        /* Radial gold glow — top-left atmospheric accent */
+        .event-spotlight::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(var(--spot-rgba-color), 0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .spotlight-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.75fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        /* ── Left: Visual panel ── */
+        .spotlight-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .spotlight-emblem {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: var(--spot-emblem-bg);
+            border: 2px solid var(--spot-emblem-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 0 0 10px rgba(var(--spot-rgba-color), 0.05),
+                0 0 55px rgba(var(--spot-rgba-color), 0.12);
+            animation: spotlightPulse 3.5s ease-in-out infinite;
+        }
+
+        @keyframes spotlightPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 10px rgba(var(--spot-rgba-color), 0.05), 0 0 55px rgba(var(--spot-rgba-color), 0.12);
+            }
+            50% {
+                box-shadow: 0 0 0 18px rgba(var(--spot-rgba-color), 0.02), 0 0 75px rgba(var(--spot-rgba-color), 0.22);
+            }
+        }
+
+        .emblem-icon::before {
+            content: var(--spotlight-watermark, '🎭');
+            font-size: 7rem;
+            line-height: 1;
+        }
+
+        /* Year badge inside the emblem circle */
+        .emblem-year {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            background: var(--spot-year-bg);
+            color: var(--spot-year-color);
+            font-size: 0.9rem;
+            font-weight: 900;
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Event detail pills (date, location, audience) */
+        .spotlight-details {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .spotlight-details li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--spot-detail-bg);
+            border: 1px solid var(--spot-detail-border);
+            padding: 0.65rem 1.1rem;
+            border-radius: 10px;
+            color: var(--spot-detail-color);
+            font-size: 0.92rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .spotlight-details li .detail-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* ── Right: Content panel ── */
+        .spotlight-content {
+            color: white;
+        }
+
+        /* Animated "Registration Opening Soon" eyebrow badge */
+        .spotlight-eyebrow {
+            display: inline-block;
+            background: var(--spot-eyebrow-bg);
+            border: 1px solid var(--spot-eyebrow-border);
+            color: var(--spot-eyebrow-color);
+            padding: 0.4rem 1.1rem;
+            border-radius: 25px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            animation: eyebrowGlow 2.8s ease-in-out infinite;
+        }
+
+        @keyframes eyebrowGlow {
+            0%, 100% { box-shadow: 0 0 0   0px rgba(var(--spot-rgba-color), 0.0); }
+            50%       { box-shadow: 0 0 0   5px rgba(var(--spot-rgba-color), 0.15); }
+        }
+
+        .spotlight-title {
+            font-size: 2.9rem;
+            font-weight: 900;
+            color: var(--spot-title-color);
+            line-height: 1.1;
+            margin-bottom: 0.65rem;
+        }
+
+        /* Colored word in the title */
+        .spotlight-title .title-accent {
+            color: var(--spot-accent-color);
+        }
+
+        .spotlight-lead {
+            font-size: 1.1rem;
+            color: var(--spot-lead-color);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .spotlight-body {
+            font-size: 1rem;
+            color: var(--spot-body-color);
+            line-height: 1.82;
+            margin-bottom: 1.8rem;
+        }
+
+        /* Feature highlights — 2-column grid */
+        .spotlight-highlights {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem 2.5rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .spotlight-highlights li {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 0.93rem;
+            color: var(--spot-highlight-color);
+            font-weight: 500;
+        }
+
+        .spotlight-hi-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* ── Spotlight semantic buttons ──
+        These read their appearance entirely from custom properties
+        set by .event-spotlight and overridden by modifier classes.
+        HTML only ever uses btn-spotlight-primary / btn-spotlight-secondary. */
+
+        .btn-spotlight-primary {
+            background:    var(--spot-btn-primary-bg);
+            color:         var(--spot-btn-primary-color);
+            border:        2px solid var(--spot-btn-primary-border);
+            box-shadow:    var(--spot-btn-primary-shadow, none);
+        }
+
+        .btn-spotlight-primary:hover {
+            background:    var(--spot-btn-primary-bg-hover);
+            border-color:  var(--spot-btn-primary-border-hover);
+            transform:     translateY(-3px);
+            box-shadow:    var(--spot-btn-primary-shadow-hover, none);
+        }
+
+        .btn-spotlight-secondary {
+            background:    var(--spot-btn-secondary-bg);
+            color:         var(--spot-btn-secondary-color);
+            border:        2px solid var(--spot-btn-secondary-border);
+        }
+
+        .btn-spotlight-secondary:hover {
+            background:    var(--spot-btn-secondary-bg-hover);
+            border-color:  var(--spot-btn-secondary-border-hover);
+            transform:     translateY(-3px);
+        }
+
+        /* CTA button row */
+        .spotlight-cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1.1rem;
+        }
+
+        .spotlight-footnote {
+            font-size: 0.82rem;
+            color: var(--spot-footnote-color);
+            font-style: italic;
+        }
+
+        /* ── Responsive: tablet ── */
+        @media (max-width: 960px) {
+            .spotlight-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .spotlight-visual {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem;
+            }
+            .spotlight-emblem {
+                width: 190px;
+                height: 190px;
+                flex-shrink: 0;
+            }
+            .emblem-icon { font-size: 5rem; }
+            .spotlight-details {
+                flex: 1;
+                min-width: 210px;
+            }
+            .spotlight-title { font-size: 2.3rem; }
+        }
+
+        /* ── Responsive: mobile ── */
+        @media (max-width: 600px) {
+            .event-spotlight { padding: 4rem 5%; }
+            .spotlight-highlights { grid-template-columns: 1fr; }
+            .spotlight-cta-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .spotlight-title { font-size: 1.85rem; }
+            .spotlight-emblem {
+                width: 160px;
+                height: 160px;
+            }
+            .emblem-icon { font-size: 4rem; }
+        }
+        
+        /* ── Spotlight CTA row: stack buttons vertically on mobile ── */
+        @media (max-width: 480px) {
+            .spotlight-cta-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .spotlight-cta-row > * {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body data-join-href="#join">
+    <!-- Shared header injected by site.js -->
+    <div id="site-header"></div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-particles" id="particles"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">Celebrating 50+ Years of Excellence</div>
+
+            <h2>Iskolar ng Bayan,<br>United in the <span class="highlight">Bay Area</span></h2>
+
+            <p class="tagline">Honor &amp; Excellence &bull; Leadership &amp; Service &bull; Community &amp; Culture</p>
+
+            <p>For over five decades, UPAASF has connected UP alumni, mentored hundreds of students, and celebrated Filipino heritage in San Francisco. Join our thriving community of leaders, innovators, and change-makers.</p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="50+">0</span>
+                    <span class="stat-label">Years of Service</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="500+">0</span>
+                    <span class="stat-label">Active Members</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="15+">0</span>
+                    <span class="stat-label">Students Mentored</span>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#membership" class="btn btn-primary">Become a Member</a>
+                <a href="#programs" class="btn btn-secondary">Explore Programs</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== PROGRAMS ==================== -->
+    <section class="programs-section" id="programs">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Programs That Connect, Empower, and Inspire</h3>
+                <p>From groundbreaking mentoring initiatives to beloved cultural traditions, our programs create meaningful connections and lasting impact.</p>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card fade-in">
+                    <div class="program-icon">🎓</div>
+                    <h4>Alumni Mentoring Program</h4>
+                    <p>The first of its kind among UP chapters worldwide. Connect UP students with Bay Area professionals for career guidance and design thinking.</p>
+                    <a href="./programs.html" class="program-link">Learn More →</a>
+                </div>
+
+                <div class="program-card fade-in">
+                    <div class="program-icon">🎭</div>
+                    <h4>Filipino Cultural Immersion Camp</h4>
+                    <p>Introduce young participants to Filipino culture, heritage, and traditions through our beloved annual summer program running for over 20 years.</p>
+                    <a href="#summer-camp-spotlight" class="program-link">Learn More →</a>
+                </div>
+
+                <div class="program-card fade-in">
+                    <div class="program-icon">🎉</div>
+                    <h4>UP Rising! Gala</h4>
+                    <p>Our flagship annual gala celebrating UP excellence, honoring distinguished alumni, and raising funds for student scholarships.</p>
+                    <a href="./events.html" class="program-link">Learn More →</a>
+                </div>
+				
+                <div class="program-card">
+                    <div class="program-icon">💡</div>
+                    <h4>Speakers' Series</h4>
+                    <p>Engage with thought leaders and accomplished professionals through our educational speaker series covering diverse topics and industries.</p>
+                    <a href="#speakers" class="program-link">Learn More →</a>
+                </div>				
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FEATURED EVENT SPOTLIGHT ====================
+        REUSABLE TEMPLATE — to promote a different event or program:
+        • Update the color modifier (event-spotlight--maroon) or delete it to use the default
+        • Update the ::before emoji in CSS (.event-spotlight::before)
+        • Update --spotlight-watermark icon/text; to use a different emblem-icon, add text there to override the watermark
+        • Update .spotlight-details li items (date, location, audience)
+        • Change .spotlight-eyebrow text
+        • Update .spotlight-title and .title-accent
+        • Edit .spotlight-lead, .spotlight-body, .spotlight-highlights
+        • Point .spotlight-cta-row links to the correct pages
+        To deactivate the spotlight: add  style="display:none;"  to the <section>.
+        ==================================================================== -->
+    <!--  Currently testing, different schemes. When done, update the scheme of choice, delete the test <section> and uncomment the one chosen
+    <section class="event-spotlight event-spotlight--gold fade-in" id="summer-camp-spotlight" style="--spotlight-watermark: '🎭'" aria-label="Featured Event: 2026 Filipino Cultural Summer Camp">
+    -->
+    <section class="event-spotlight fade-in" id="spotlight-template" style="--spotlight-watermark: '🎭'" aria-label="Featured Event: 2026 Filipino Cultural Summer Camp">
+        <span class="spotlight-scheme-badge" style="color: black; font-weight: 900;"></span>
+        <div class="spotlight-inner">
+
+            <!-- ── Left: Emblem + Key Details ── -->
+            <div class="spotlight-visual">
+                <div class="spotlight-emblem">
+                    <div class="emblem-icon" aria-hidden="true"></div>
+                    <div class="emblem-year">2026</div>
+                </div>
+
+                <ul class="spotlight-details" aria-label="Event details">
+                    <li><span class="detail-icon" aria-hidden="true">📅</span><span>July 21 – 25, 2026</span></li>
+                    <li><span class="detail-icon" aria-hidden="true">📍</span><span>San Francisco Bay Area</span></li>
+                    <li><span class="detail-icon" aria-hidden="true">👧</span><span>Youth Ages 5 – 17</span></li>
+                    <li><span class="detail-icon" aria-hidden="true">⏳</span><span>Registration Opening Soon</span></li>
+                </ul>
+            </div>
+
+            <!-- ── Right: Headline, Description, CTAs ── -->
+            <div class="spotlight-content">
+                <span class="spotlight-eyebrow">🏕️ Annual Program &nbsp;·&nbsp; Registration Opening Soon</span>
+
+                <h3 class="spotlight-title">
+                    Filipino Cultural<br>
+                    <span class="title-accent">Immersion Summer Camp</span>
+                </h3>
+                <p class="spotlight-lead">Kamusta! A week of culture, heritage, and unforgettable fun.</p>
+                <p class="spotlight-body">
+                    For over a decade, UPAASF's beloved summer camp has introduced Bay Area youth to the
+                    richness of Filipino language, traditions, arts, and community values — forging
+                    lifelong friendships and a deep, joyful pride in Filipino heritage.
+                </p>
+
+                <ul class="spotlight-highlights" aria-label="Program highlights">
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">🇵🇭</span>
+                        <span>Filipino language &amp; cultural immersion</span>
+                    </li>
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">💃</span>
+                        <span>Traditional dance, music &amp; the arts</span>
+                    </li>
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">🎨</span>
+                        <span>Workshops, games &amp; hands-on activities</span>
+                    </li>
+                    <li>
+                        <span class="spotlight-hi-icon" aria-hidden="true">🤝</span>
+                        <span>Community bonds &amp; lasting friendships</span>
+                    </li>
+                </ul>
+
+                <div class="spotlight-cta-row">
+                    <!-- Primary CTA: link to a registration/notify form — update href when form is ready -->
+                    <a href="./contact.html?ref=summer-camp-2026" class="btn btn-spotlight-primary">
+                        🔔 Notify Me When Registration Opens
+                    </a>
+                    <!-- Secondary CTA: links to the Cultural Camp section on programs.html -->
+                    <a href="./programs.html#cultural-camp" class="btn btn-spotlight-secondary">
+                        Learn More →
+                    </a>
+                </div>
+
+                <p class="spotlight-footnote">
+                    Limited spots available &nbsp;·&nbsp; UPAASF members receive priority registration access
+                </p>
+            </div>
+
+        </div>
+    </section>    
+
+    <!-- ==================== BENEFITS ==================== -->
+    <section class="benefits-section" id="membership">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Why Join UPAASF?</h3>
+                <p>Membership opens doors to a lifetime network of UP alumni, cultural events, and opportunities to give back.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <span class="benefit-icon">🤝</span>
+                    <h4>Professional Network</h4>
+                    <p>Connect with 500+ UP alumni across the Bay Area's top companies and institutions.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-icon">🎓</span>
+                    <h4>Mentoring Opportunities</h4>
+                    <p>Give back by mentoring UP students, or find your own mentor to accelerate your career.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-icon">🌺</span>
+                    <h4>Cultural Connection</h4>
+                    <p>Stay rooted in Filipino heritage through festivals, camps, and community celebrations.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <span class="benefit-icon">💡</span>
+                    <h4>Leadership Development</h4>
+                    <p>Grow as a leader through volunteer opportunities and governance within the organization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EVENTS ==================== -->
+    <section class="events-section" id="events">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Upcoming Events</h3>
+                <p>Join us at these exciting gatherings celebrating community and culture</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card fade-in">
+                    <div class="event-image">🤝</div>
+                    <div class="event-body">
+                        <h4>Spring Alumni Mixer</h4>
+                        <p class="event-date">March 15, 2026</p>
+                        <p>Casual networking event with fellow UP alumni. Enjoy food trucks, drinks, and great conversations.</p>
+                    </div>
+                </div>
+                
+                <div class="event-card fade-in">
+                    <div class="event-image">🎉</div>
+                    <div class="event-body">
+                        <h4>UP Rising! Gala 2026</h4>
+                        <p class="event-date">October 25, 2026</p>
+                        <p>Our signature fundraising gala celebrating Filipino excellence while supporting UP students.</p>
+                    </div>
+                </div>
+                
+                <div class="event-card fade-in">
+                    <div class="event-image">🎭</div>
+                    <div class="event-body">
+                        <h4>Filipino Cultural Camp</h4>
+                        <p class="event-date">July 21-25, 2026</p>
+                        <p>Week-long summer camp introducing youth to Filipino language, culture, and traditions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="./events.html" class="btn btn-secondary" style="color: var(--up-maroon); border-color: var(--up-maroon);">View All Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS ==================== -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Voices of Our Community</h3>
+                <p>Hear from the alumni whose lives have been shaped by UPAASF.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">UPAASF gave me my first professional network in the US. Within months of joining, I had a mentor who helped me land my dream job in tech.</p>
+                    <div class="testimonial-author">Maria Santos</div>
+                    <div class="testimonial-role">UP Diliman '15, Software Engineer</div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">The mentoring program changed my life. My UPAASF mentor introduced me to the right people and I'm forever grateful to UPAASF.</p>
+                    <div class="testimonial-author">Ramon Cruz</div>
+                    <div class="testimonial-role">UP Manila '08, Healthcare Administrator</div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <p class="testimonial-text">Through UPAASF's cultural programs, my children are learning about their Filipino heritage. It's a gift that keeps on giving.</p>
+                    <div class="testimonial-author">Lisa Reyes</div>
+                    <div class="testimonial-role">UP Los Baños '02, Parent &amp; Member</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <section class="cta-section" id="join">
+        <div class="cta-content">
+            <h3>Are you a UP Alumni? Join UPAASF!</h3>
+			<h4>Connect, Belong, Support, and Thrive!</p>
+            <p>Become part of the Bay Area's premier UP alumni organization. Connect with fellow iskolar ng bayan, give back to UP, and celebrate Filipino heritage.</p>
+            <div class="cta-buttons">
+                <a href="./membership.html" class="btn btn-primary">Become a Member</a>
+                <a href="./contact.html" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shared footer injected by site.js -->
+    <div id="site-footer"></div>
+
+    <!-- Shared site components (nav, footer, mobile menu, scroll, fade-in) -->
+    <script src="./shared/site.js"></script>
+
+    <!-- Page-specific scripts -->
+    <script>
+        /* Floating particles — only this page has a #particles container */
+        function createParticles() {
+            var container = document.getElementById('particles');
+            if (!container) return;
+            for (var i = 0; i < 25; i++) {
+                var p = document.createElement('div');
+                p.className = 'particle';
+                var size = Math.random() * 70 + 30;
+                p.style.cssText = [
+                    'width:'  + size + 'px',
+                    'height:' + size + 'px',
+                    'left:'   + (Math.random() * 100) + '%',
+                    'top:'    + (Math.random() * 100) + '%',
+                    'animation-delay:'    + (Math.random() * 25) + 's',
+                    'animation-duration:' + (Math.random() * 15 + 20) + 's'
+                ].join(';');
+                container.appendChild(p);
+            }
+        }
+
+        window.addEventListener('load', createParticles);
+
+        /* ── SPOTLIGHT SCHEME TESTER — remove when done ── */
+        (function () {
+            var schemes = [
+                ['event-spotlight--maroon'],
+                ['event-spotlight--cream-maroon'],
+                ['event-spotlight--green-maroon-gradient', 'event-spotlight--green-maroon-split'],
+                ['event-spotlight--green-maroon-gradient'],
+                ['event-spotlight--gold'],
+            ];
+
+            var template = document.getElementById('spotlight-template');
+            if (!template) return;
+
+            schemes.forEach(function (modifiers) {
+                var section = template.cloneNode(true);
+                section.removeAttribute('id');
+                section.classList.remove('fade-in');
+                modifiers.forEach(function (cls) {
+                    section.classList.add(cls);
+                });
+
+                template.parentNode.insertBefore(section, template.nextSibling);
+                
+                /* ── Read --spot-modifier-name and populate the badge ── */
+                var name = getComputedStyle(section)
+                            .getPropertyValue('--spot-modifier-name')
+                            .trim()
+                            .replace(/['"]/g, '');  // strips the CSS quotes
+
+                if (!name) return;
+
+                var badge = section.querySelector('.spotlight-scheme-badge');
+                if (badge) badge.textContent = name;
+
+
+            });
+        }());
+        /* ── END SPOTLIGHT SCHEME TESTER ── */
+    </script>
+</body>
+</html>
