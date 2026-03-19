@@ -1187,7 +1187,18 @@ nav.scrolled {
     .form-row { grid-template-columns: 1fr; }
 }
 
-/* ----- FAQ Accordion (contact, membership, AMP) ----- */
+/* ----- FAQ Accordion (contact, membership, AMP, Camp) ----- */
+.faq-section {
+    background: #f8f9fa;
+    padding: 6rem 5%;
+}
+
+.faq-list {
+    max-width: 900px;
+    margin: 3rem auto 0;
+}
+
+
 .faq-item {
     background: white;  /* #f8f9fa */
     margin-bottom: 1.5rem; /* 1.2 */
