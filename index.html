@@ -80,15 +80,6 @@
             z-index: 2;
             position: relative;
             color: white;
-
-            /*
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            max-width: 1200px;
-            padding: 2rem;
-            */
         }
 
         .hero-badge {
@@ -526,15 +517,229 @@
         ============================================================ */
 
         .event-spotlight {
+            --spot-rgb-white:       255,255,255;
+            --spot-rgb-gold:        255,215,0;
+        
+            /* Default color scheme -- Green */
+            --spot-modifier-name:   'Default Green';
+
+            /* Background */
+            --spot-bg-from:         var(--up-green-dark);
+            --spot-bg-mid:          var(--up-green);
+            --spot-bg-to:           #1e6035;
+
+            --spot-rgba-color:      var(--spot-rgb-gold);                 /* Use this as the rgb color base for rgba() */
+
+            /* Emblem circle */
+            --spot-emblem-bg:       rgba(255,255,255,0.07);
+            --spot-emblem-border:   rgba(255,215,0,0.35);
+
+            --spot-emblem-text-color: var(--up-maroon);
+
+            /* Year badge on emblem */
+            --spot-year-bg:         var(--up-gold);
+            --spot-year-color:      var(--up-maroon);
+
+            /* Detail pills (date, location, audience) */
+            --spot-detail-bg:       rgba(255,255,255,0.08);
+            --spot-detail-border:   rgba(255,255,255,0.13);
+            --spot-detail-color:    rgba(255,255,255,0.92);
+
+            /* Eyebrow badge */
+            --spot-eyebrow-bg:      rgba(var(--rgb-gold), 0.14);
+            --spot-eyebrow-border:  rgba(255,215,0,0.42);
+            --spot-eyebrow-color:   var(--up-gold);
+
+            /* Text */
+            --spot-title-color:       white;
+            --spot-accent-color:      var(--up-gold);     /* title-accent span */
+            --spot-lead-color:        rgba(255, 255, 255, 0.68);
+            --spot-body-color:        rgba(255, 255, 255, 0.82);
+            --spot-highlight-color:   rgba(255, 255, 255, 0.88);
+            --spot-footnote-color:    rgba(255, 255, 255, 0.48);            
+
+            /* Primary button — gold filled */
+            --spot-btn-primary-bg:           var(--up-gold);
+            --spot-btn-primary-color:        var(--up-maroon);
+            --spot-btn-primary-border:       var(--up-gold);
+            --spot-btn-primary-bg-hover:     var(--up-gold-dark);
+            --spot-btn-primary-border-hover: var(--up-gold-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-gold-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(255,215,0,0.5);
+
+            /* Secondary button — white outline */
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        white;
+            --spot-btn-secondary-border:       rgba(255,255,255,0.8);
+            --spot-btn-secondary-bg-hover:     rgba(255,255,255,0.1);
+            --spot-btn-secondary-border-hover: white;            
+
             position: relative;
             padding: 5.5rem 5%;
             background: linear-gradient(
                 135deg,
-                var(--up-green-dark)  0%,
-                var(--up-green)       55%,
-                #1e6035             100%
+                var(--spot-bg-from)	   0%,
+                var(--spot-bg-mid)	  55%,
+                var(--spot-bg-to)	 100%
             );
             overflow: hidden;
+        }
+
+        /* ── Maroon modifier ── */
+        .event-spotlight--maroon {
+            --spot-modifier-name:   'MAROON';
+
+            --spot-bg-from:     var(--up-maroon-dark);
+            --spot-bg-mid:      var(--up-maroon);
+            --spot-bg-to:       #a00000;
+        }
+
+        /* ── Gold modiffier ── */
+        .event-spotlight--gold {
+            --spot-modifier-name:     'GOLD';
+
+            --spot-bg-from:           #3d1a00;
+            --spot-bg-mid:            #6b3200;
+            --spot-bg-to:             #8a4500;
+
+            --spot-emblem-bg:         rgba(255, 215, 0, 0.12);
+            --spot-emblem-border:     rgba(255, 215, 0, 0.50);
+
+            --spot-year-bg:           var(--up-gold);
+            --spot-year-color:        #3d1a00;
+
+            --spot-detail-bg:         rgba(255, 215, 0, 0.10);
+            --spot-detail-border:     rgba(255, 215, 0, 0.25);
+            --spot-detail-color:      var(--up-gold);
+
+            --spot-eyebrow-bg:        rgba(255, 215, 0, 0.15);
+            --spot-eyebrow-border:    rgba(255, 215, 0, 0.45);
+            --spot-eyebrow-color:     var(--up-gold);
+
+            --spot-title-color:       white;
+            --spot-accent-color:      var(--up-gold);
+            --spot-lead-color:        rgba(255, 255, 255, 0.68);
+            --spot-body-color:        rgba(255, 255, 255, 0.85);
+            --spot-highlight-color:   rgba(255, 255, 255, 0.90);
+            --spot-footnote-color:    rgba(255, 255, 255, 0.40);
+
+            --spot-btn-primary-bg:           var(--up-gold);
+            --spot-btn-primary-color:        #3d1a00;
+            --spot-btn-primary-border:       var(--up-gold);
+            --spot-btn-primary-bg-hover:     var(--up-gold-dark);
+            --spot-btn-primary-border-hover: var(--up-gold-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-gold-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(255, 215, 0, 0.5);
+
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        var(--up-gold);
+            --spot-btn-secondary-border:       rgba(255, 215, 0, 0.60);
+            --spot-btn-secondary-bg-hover:     rgba(255, 215, 0, 0.10);
+            --spot-btn-secondary-border-hover: var(--up-gold);
+        }
+
+        /* ── Cream / Maroon modifier ── */
+        .event-spotlight--cream-maroon {
+            --spot-modifier-name:     'CREAM - MAROON';
+
+            --spot-bg-from:           #fdf6e3;
+            --spot-bg-mid:            #fef9f0;
+            --spot-bg-to:             #ffffff;
+
+            --spot-emblem-bg:         rgba(139, 0, 0, 0.06);
+            --spot-emblem-border:     rgba(139, 0, 0, 0.25);
+
+            --spot-year-bg:           var(--up-maroon);
+            --spot-year-color:        white;
+
+            --spot-detail-bg:         rgba(139, 0, 0, 0.05);
+            --spot-detail-border:     rgba(139, 0, 0, 0.15);
+            --spot-detail-color:      #5a0f0f;
+
+            --spot-eyebrow-bg:        rgba(139, 0, 0, 0.08);
+            --spot-eyebrow-border:    rgba(139, 0, 0, 0.25);
+            --spot-eyebrow-color:     var(--up-maroon);
+
+            --spot-title-color:       var(--up-maroon);
+            --spot-accent-color:      var(--up-green);
+            --spot-lead-color:        #888;
+            --spot-body-color:        #555;
+            --spot-highlight-color:   #444;
+            --spot-footnote-color:    #999;
+
+            --spot-btn-primary-bg:           var(--up-maroon);
+            --spot-btn-primary-color:        white;
+            --spot-btn-primary-border:       var(--up-maroon);
+            --spot-btn-primary-bg-hover:     var(--up-maroon-dark);
+            --spot-btn-primary-border-hover: var(--up-maroon-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-maroon-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(139, 0, 0, 0.4);
+
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        var(--up-maroon);
+            --spot-btn-secondary-border:       rgba(139, 0, 0, 0.5);
+            --spot-btn-secondary-bg-hover:     rgba(139, 0, 0, 0.06);
+            --spot-btn-secondary-border-hover: var(--up-maroon);
+        }
+        
+        /* ── Green-to-Maroon gradient + Gold accents ── */
+        .event-spotlight--green-maroon-gradient {
+            --spot-modifier-name:     'GRENN-TO-MAROON GRADIENT + GOLD';
+
+            --spot-bg-from:           #062412;
+            --spot-bg-mid:            #3d1500;
+            --spot-bg-to:             #6b2800;
+
+            --spot-emblem-bg:         rgba(255, 215, 0, 0.10);
+            --spot-emblem-border:     rgba(255, 215, 0, 0.45);
+
+            --spot-year-bg:           var(--up-gold);
+            --spot-year-color:        #062412;
+
+            --spot-detail-bg:         rgba(255, 215, 0, 0.09);
+            --spot-detail-border:     rgba(255, 215, 0, 0.23);
+            --spot-detail-color:      var(--up-gold);
+
+            --spot-eyebrow-bg:        rgba(255, 215, 0, 0.13);
+            --spot-eyebrow-border:    rgba(255, 215, 0, 0.40);
+            --spot-eyebrow-color:     var(--up-gold);
+
+            --spot-title-color:       white;
+            --spot-accent-color:      var(--up-gold);
+            --spot-lead-color:        rgba(255, 255, 255, 0.68);
+            --spot-body-color:        rgba(255, 255, 255, 0.85);
+            --spot-highlight-color:   rgba(255, 255, 255, 0.90);
+            --spot-footnote-color:    rgba(255, 255, 255, 0.40);
+
+            --spot-btn-primary-bg:           var(--up-gold);
+            --spot-btn-primary-color:        #062412;
+            --spot-btn-primary-border:       var(--up-gold);
+            --spot-btn-primary-bg-hover:     var(--up-gold-dark);
+            --spot-btn-primary-border-hover: var(--up-gold-dark);
+            --spot-btn-primary-shadow:       0 6px 25px var(--up-gold-glow);
+            --spot-btn-primary-shadow-hover: 0 8px 35px rgba(255, 215, 0, 0.5);
+
+            --spot-btn-secondary-bg:           transparent;
+            --spot-btn-secondary-color:        var(--up-gold);
+            --spot-btn-secondary-border:       rgba(255, 215, 0, 0.55);
+            --spot-btn-secondary-bg-hover:     rgba(255, 215, 0, 0.10);
+            --spot-btn-secondary-border-hover: var(--up-gold);
+        }
+
+        /* ── Green/Maroon even split + Gold accents ── */
+        .event-spotlight--green-maroon-split {
+            /* Inherits all tokens from .event-spotlight--green-maroon-gradient, 
+               or any other event-spotlight modifier class.
+            */
+            --spot-modifier-name:     'GREEN/MAROON SPLIT';
+
+            /* Override only the background — four stops for the crisp split */
+            background: linear-gradient(135deg,
+                #062412  0%,
+                #062412 40%,
+                #6b0000 60%,
+                #8B0000 100%
+            );
         }
 
         /* Watermark background icon — change emoji to match the event */
@@ -550,7 +755,7 @@
             transform: rotate(-12deg);
         }
 
-        /* Radial gold glow — top-left atmospheric accent */
+        /* Radial color glow — top-left atmospheric accent */
         .event-spotlight::after {
             content: '';
             position: absolute;
@@ -558,7 +763,7 @@
             left: -100px;
             width: 450px;
             height: 450px;
-            background: radial-gradient(circle, rgba(255,215,0,0.07) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--spot-rgba-color), 0.07) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -586,23 +791,23 @@
             width: 260px;
             height: 260px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.07);
-            border: 2px solid rgba(255,215,0,0.35);
+            background: var(--spot-emblem-bg);
+            border: 2px solid var(--spot-emblem-border);
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow:
-                0 0 0 10px rgba(255,215,0,0.05),
-                0 0 55px rgba(255,215,0,0.12);
+                0 0 0 10px rgba(var(--spot-rgba-color), 0.05),
+                0 0 55px rgba(var(--spot-rgba-color), 0.12);
             animation: spotlightPulse 3.5s ease-in-out infinite;
         }
 
         @keyframes spotlightPulse {
             0%, 100% {
-                box-shadow: 0 0 0 10px rgba(255,215,0,0.05), 0 0 55px rgba(255,215,0,0.12);
+                box-shadow: 0 0 0 10px rgba(var(--spot-rgba-color), 0.05), 0 0 55px rgba(var(--spot-rgba-color), 0.12);
             }
             50% {
-                box-shadow: 0 0 0 18px rgba(255,215,0,0.02), 0 0 75px rgba(255,215,0,0.22);
+                box-shadow: 0 0 0 18px rgba(var(--spot-rgba-color), 0.02), 0 0 75px rgba(var(--spot-rgba-color), 0.22);
             }
         }
 
@@ -617,8 +822,8 @@
             position: absolute;
             bottom: 14px;
             right: 14px;
-            background: var(--up-gold);
-            color: var(--up-maroon);
+            background: var(--spot-year-bg);
+            color: var(--spot-year-color);
             font-size: 0.9rem;
             font-weight: 900;
             padding: 0.3rem 0.85rem;
@@ -639,11 +844,11 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.13);
+            background: var(--spot-detail-bg);
+            border: 1px solid var(--spot-detail-border);
             padding: 0.65rem 1.1rem;
             border-radius: 10px;
-            color: rgba(255,255,255,0.92);
+            color: var(--spot-detail-color);
             font-size: 0.92rem;
             font-weight: 600;
             backdrop-filter: blur(4px);
@@ -663,9 +868,9 @@
         /* Animated "Registration Opening Soon" eyebrow badge */
         .spotlight-eyebrow {
             display: inline-block;
-            background: rgba(255,215,0,0.14);
-            border: 1px solid rgba(255,215,0,0.42);
-            color: var(--up-gold);
+            background: var(--spot-eyebrow-bg);
+            border: 1px solid var(--spot-eyebrow-border);
+            color: var(--spot-eyebrow-color);
             padding: 0.4rem 1.1rem;
             border-radius: 25px;
             font-size: 0.78rem;
@@ -677,33 +882,33 @@
         }
 
         @keyframes eyebrowGlow {
-            0%, 100% { box-shadow: 0 0 0   0px rgba(255,215,0,0.0); }
-            50%       { box-shadow: 0 0 0   5px rgba(255,215,0,0.15); }
+            0%, 100% { box-shadow: 0 0 0   0px rgba(var(--spot-rgba-color), 0.0); }
+            50%       { box-shadow: 0 0 0   5px rgba(var(--spot-rgba-color), 0.15); }
         }
 
         .spotlight-title {
             font-size: 2.9rem;
             font-weight: 900;
-            color: white;
+            color: var(--spot-title-color);
             line-height: 1.1;
             margin-bottom: 0.65rem;
         }
 
         /* Colored word in the title */
         .spotlight-title .title-accent {
-            color: var(--up-gold);
+            color: var(--spot-accent-color);
         }
 
         .spotlight-lead {
             font-size: 1.1rem;
-            color: rgba(255,255,255,0.68);
+            color: var(--spot-lead-color);
             font-style: italic;
             margin-bottom: 1rem;
         }
 
         .spotlight-body {
             font-size: 1rem;
-            color: rgba(255,255,255,0.82);
+            color: var(--spot-body-color);
             line-height: 1.82;
             margin-bottom: 1.8rem;
         }
@@ -722,13 +927,44 @@
             align-items: center;
             gap: 0.65rem;
             font-size: 0.93rem;
-            color: rgba(255,255,255,0.88);
+            color: var(--spot-highlight-color);
             font-weight: 500;
         }
 
         .spotlight-hi-icon {
             font-size: 1.1rem;
             flex-shrink: 0;
+        }
+
+        /* ── Spotlight semantic buttons ──
+        These read their appearance entirely from custom properties
+        set by .event-spotlight and overridden by modifier classes.
+        HTML only ever uses btn-spotlight-primary / btn-spotlight-secondary. */
+
+        .btn-spotlight-primary {
+            background:    var(--spot-btn-primary-bg);
+            color:         var(--spot-btn-primary-color);
+            border:        2px solid var(--spot-btn-primary-border);
+            box-shadow:    var(--spot-btn-primary-shadow, none);
+        }
+
+        .btn-spotlight-primary:hover {
+            background:    var(--spot-btn-primary-bg-hover);
+            border-color:  var(--spot-btn-primary-border-hover);
+            transform:     translateY(-3px);
+            box-shadow:    var(--spot-btn-primary-shadow-hover, none);
+        }
+
+        .btn-spotlight-secondary {
+            background:    var(--spot-btn-secondary-bg);
+            color:         var(--spot-btn-secondary-color);
+            border:        2px solid var(--spot-btn-secondary-border);
+        }
+
+        .btn-spotlight-secondary:hover {
+            background:    var(--spot-btn-secondary-bg-hover);
+            border-color:  var(--spot-btn-secondary-border-hover);
+            transform:     translateY(-3px);
         }
 
         /* CTA button row */
@@ -742,7 +978,7 @@
 
         .spotlight-footnote {
             font-size: 0.82rem;
-            color: rgba(255,255,255,0.48);
+            color: var(--spot-footnote-color);
             font-style: italic;
         }
 
@@ -889,8 +1125,9 @@
 
     <!-- ==================== FEATURED EVENT SPOTLIGHT ====================
         REUSABLE TEMPLATE — to promote a different event or program:
+        • Add or update the color modifier of the section class (i.e. add event-spotlight--maroon in the class list)
         • Update the ::before emoji in CSS (.event-spotlight::before)
-        • Swap .emblem-icon text
+        • Update --spotlight-watermark icon/text; to use a different emblem-icon, add text there to override the watermark
         • Update .spotlight-details li items (date, location, audience)
         • Change .spotlight-eyebrow text
         • Update .spotlight-title and .title-accent
@@ -898,7 +1135,8 @@
         • Point .spotlight-cta-row links to the correct pages
         To deactivate the spotlight: add  style="display:none;"  to the <section>.
         ==================================================================== -->
-    <section class="event-spotlight fade-in" id="summer-camp-spotlight" style="--spotlight-watermark: '🎭'" aria-label="Featured Event: 2026 Filipino Cultural Summer Camp">
+    <section class="event-spotlight fade-in" id="summer-camp-spotlight" 
+             style="--spotlight-watermark: '🎭'" aria-label="Featured Event: 2026 Filipino Cultural Summer Camp">
         <div class="spotlight-inner">
 
             <!-- ── Left: Emblem + Key Details ── -->
@@ -952,11 +1190,11 @@
 
                 <div class="spotlight-cta-row">
                     <!-- Primary CTA: link to a registration/notify form — update href when form is ready -->
-                    <a href="./contact.html?ref=summer-camp-2026" class="btn btn-gold">
+                    <a href="./contact.html?ref=summer-camp-2026" class="btn btn-spotlight-primary">
                         🔔 Notify Me When Registration Opens
                     </a>
                     <!-- Secondary CTA: links to the Cultural Camp section on programs.html -->
-                    <a href="./programs.html#cultural-camp" class="btn btn-outline-white">
+                    <a href="./programs.html#cultural-camp" class="btn btn-spotlight-secondary">
                         Learn More →
                     </a>
                 </div>
