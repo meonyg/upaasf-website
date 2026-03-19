@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino Cultural Immersion Summer Camp | UPAASF</title>
+    <meta name="description" content="UPAASF Filipino Cultural Immersion Summer Camp — 13th Annual! July 13–17, 2026. For Filipino-American youth ages 7–15. Celebrating Heritage. Building Identity. Strengthening Community.">
+
+    <!-- Google Fonts: Playfair Display (headings) + Nunito (body) -->
+    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    -->
+
+    <!-- Shared stylesheet (nav, footer, buttons, page-hero, utilities) -->
+    <link rel="stylesheet" href="./shared/styles.css">
+
+    <style>
+        /* ============================================================
+           CAMP PAGE — PAGE-SPECIFIC STYLES
+           All shared tokens (--up-maroon, --up-green, --up-gold, etc.)
+           and shared patterns (page-hero, section-header, btn, fade-in,
+           faq-item, breadcrumb, cta-section) come from styles.css.
+           ============================================================ */
+
+        /* ── Font override: friendlier for a youth/family page ── */
+        /* 
+        body { font-family: 'Nunito', -apple-system, sans-serif; }
+        */
+
+        /* ── Playfair Display for display headings ── */
+        /*
+        .display-font {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        */
+
+        /* ============================================================
+           SUMMER CAM PAGE-SPECIFIC STYLES
+           Anything already in shared/styles.css is removed from here.
+        ============================================================ */
+        /* Hero: swap the shared tiled "UP" watermark for  Filipino-inspired chevron/diamond texture overlay */
+        .page-hero {
+            /* This keeps the nav clearance but reduces the extra gap to 1.5rem (~24px) */
+            padding-top: calc(var(--nav-height)) !important;
+            /*padding-bottom: 1.5rem !important;*/
+        }
+
+        .page-hero::before {
+            /* inset: 0; */
+            /*
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='30'%3E%3Cpath d='M0 15 L15 0 L30 15 L45 0 L60 15 L45 30 L30 15 L15 30 Z' fill='none' stroke='rgba(255,215,0,0.07)' stroke-width='1'/%3E%3C/svg%3E");
+            */
+            background-image: url("./img/Summer Camp Logo.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 400px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Warm radial glow on the right */
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.06) 0%, transparent 65%);
+            top: -250px;
+            right: -150px;
+            pointer-events: none;
+        }
+
+        /* Camp logo */
+        .camp-logo-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .camp-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            background-color: #fef9f0;;
+            /* Black background of the logo blends naturally with the dark hero */
+        }
+
+        /* Hero text tweaks — slightly larger than standard inner-page hero */
+        .page-hero h2 { 
+            font-size: 3.5rem; 
+            line-height: 1.15;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h2 { font-size: 2.4rem; }
+        }        
+        
+        /* Emphasis text properties */
+        .page-hero h2 em {
+            font-style: italic;
+            color: var(--up-gold);
+        }
+
+        /* Copied from index.html */
+        .hero-tagline {
+            font-size: 1.1rem !important;
+            font-style: italic;
+            color: var(--up-gold);
+            margin-bottom: 0.5rem !important;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-tagline span {
+            color: var(--up-gold);
+        }
+
+        /* Quick info pills */
+        .camp-meta-pills {
+            display: flex;
+            justify-content: center;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            margin: 1.8rem 0;
+        }
+
+        .camp-meta-pill {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .hero-actions {
+            margin-top: 4rem; /* This provides a consistent, controlled gap */
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* ============================================================
+           ZIGZAG DECORATIVE BORDERS (Filipino textile-inspired)
+           ============================================================ */
+        .zigzag-bar {
+            height: 28px;
+            background-repeat: repeat-x;
+            background-size: 120px 28px;
+        }
+
+        .zigzag-bar.maroon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28'%3E%3Cpath d='M0,28 L20,0 L40,28 L60,0 L80,28 L100,0 L120,28 Z' fill='%238B0000'/%3E%3C/svg%3E");
+        }
+
+        .zigzag-bar.gold {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28'%3E%3Cpath d='M0,28 L20,0 L40,28 L60,0 L80,28 L100,0 L120,28 Z' fill='%23FFD700'/%3E%3C/svg%3E");
+        }
+
+        .zigzag-bar.green {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 28'%3E%3Cpath d='M0,28 L20,0 L40,28 L60,0 L80,28 L100,0 L120,28 Z' fill='%230A3B1A'/%3E%3C/svg%3E");
+        }
+
+        .zigzag-bar.flip {
+            transform: scaleY(-1);
+        }
+
+        /* ============================================================
+           2026 ANNOUNCEMENT SECTION
+           ============================================================ */
+        .announce-section {
+            background: linear-gradient(135deg, #FFF9E6, #FFF3CD);
+            padding: 5rem 5%;
+            border-top: 4px solid var(--up-gold);
+            border-bottom: 4px solid var(--up-gold);
+        }
+
+        .announce-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .announce-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .announce-eyebrow {
+            display: inline-block;
+            background: var(--up-maroon);
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .announce-header h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--up-maroon);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .announce-header p {
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        /* ── Two-camp row: cards + OR divider ── */
+        .camps-row {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Detail card */
+        .announce-details {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+        }
+
+        .announce-details h3 {
+            font-size: 1.2rem;
+            color: var(--up-maroon);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--up-gold);
+        }
+
+        /* ── OR divider between the two cards ── */
+        .or-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .or-divider-line {
+            width: 2px;
+            flex: 1;
+            background: linear-gradient(to bottom, transparent, #ddd, transparent);
+            border-radius: 2px;
+            max-height: 80px;
+        }
+
+        .or-divider-pill {
+            background: var(--up-maroon);
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.5rem 0.9rem;
+            border-radius: 50px;
+            white-space: nowrap;
+            box-shadow: 0 3px 12px rgba(139,0,0,0.25);
+        }
+
+        /* ── Venue pending callout ── */
+        .venue-callout {
+            background: #FFFBEA;
+            border: 1.5px solid var(--up-gold);
+            border-radius: 14px;
+            padding: 1.1rem 1.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.65;
+        }
+
+        .venue-callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+        .venue-callout strong { color: var(--up-maroon); }
+
+        .venue-callout a { color: var(--up-maroon); font-weight: 700; }
+
+        /* ── CTA card: now full-width below the two camps ── */
+        .announce-cta {
+            background: linear-gradient(150deg, var(--up-maroon), #5a0000 60%, var(--up-green-dark));
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            box-shadow: 0 6px 30px rgba(139,0,0,0.3);
+        }
+
+        .announce-cta-body {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .announce-cta-icon { font-size: 2.8rem; line-height: 1; flex-shrink: 0; }
+
+        .announce-cta-text h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+        }
+
+        .announce-cta-text p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .announce-cta-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .announce-cta-actions .hint {
+            font-size: 0.78rem;
+            opacity: 0.65;
+            text-align: right;
+        }
+
+        .announce-cta-actions .hint a { color: var(--up-gold); }
+
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .detail-icon { font-size: 1.3rem; min-width: 1.8rem; text-align: center; margin-top: 0.1rem; }
+
+        .detail-label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--up-green);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.15rem;
+        }
+
+        .detail-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #222;
+            line-height: 1.4;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* Tuition highlight */
+        .tuition-highlight {
+            background: linear-gradient(135deg, #FFF9E6, #FFEFAB);
+            border: 2px solid var(--up-gold);
+            border-radius: 14px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .tuition-amount {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--up-maroon);
+            line-height: 1;
+        }
+
+        .tuition-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 600;
+            margin: 0.25rem 0;
+        }
+
+        .scholarship-note {
+            font-size: 0.85rem;
+            color: var(--up-green);
+            font-weight: 700;
+            margin-top: 0.4rem;
+        }
+
+
+
+        .btn-gold {
+            background: var(--up-gold);
+            color: var(--up-maroon-dark);
+            font-weight: 900;
+        }
+
+        .btn-gold:hover {
+            background: var(--up-gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--up-gold-glow);
+        }
+
+        /* ============================================================
+           ABOUT SECTION
+           ============================================================ */
+        .about-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .about-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            color: var(--up-maroon);
+            font-weight: 900;
+            margin-bottom: 0.4rem;
+        }
+
+        .about-tagline {
+            font-size: 1rem;
+            color: var(--up-green);
+            font-weight: 700;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .mission-block, .goal-block {
+            border-radius: 14px;
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1.25rem;
+            border-left: 5px solid transparent;
+        }
+
+        .mission-block {
+            background: #FFF5F5;
+            border-left-color: var(--up-maroon);
+        }
+
+        .goal-block {
+            background: #F0F7F0;
+            border-left-color: var(--up-green);
+        }
+
+        .block-label {
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .mission-block .block-label { color: var(--up-maroon); }
+        .goal-block .block-label { color: var(--up-green); }
+
+        .block-text {
+            font-size: 0.98rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .partner-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--up-green-light);
+            border-radius: 50px;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.75rem;
+            color: var(--up-green);
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        /* Photo area */
+        .about-photo-wrap { position: relative; }
+
+        .camp-photo {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.15);
+            display: block;
+        }
+
+        .photo-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .photo-year-badge {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: var(--up-gold);
+            color: var(--up-maroon-dark);
+            font-size: 0.78rem;
+            font-weight: 900;
+            padding: 0.5rem 1.1rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 16px rgba(255,215,0,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+           CORE PILLARS
+           ============================================================ */
+        .pillars-section {
+            padding: 6rem 5%;
+            background: #f8f9fa;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.75rem;
+            margin-top: 3.5rem;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 1.75rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-top: 5px solid transparent;
+        }
+
+        .pillar-card:nth-child(1) { border-top-color: var(--up-maroon); }
+        .pillar-card:nth-child(2) { border-top-color: var(--up-green); }
+        .pillar-card:nth-child(3) { border-top-color: var(--up-gold); }
+        .pillar-card:nth-child(4) { border-top-color: #C41E3A; }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+        }
+
+        .pillar-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+        .pillar-card h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar-card:nth-child(1) h4 { color: var(--up-maroon); }
+        .pillar-card:nth-child(2) h4 { color: var(--up-green); }
+        .pillar-card:nth-child(3) h4 { color: #8B6914; }
+        .pillar-card:nth-child(4) h4 { color: #C41E3A; }
+
+        .pillar-card p { font-size: 0.95rem; color: #666; line-height: 1.7; }
+
+        /* ============================================================
+           CURRICULUM
+           ============================================================ */
+        .curriculum-section {
+            padding: 6rem 5%;
+            background: linear-gradient(150deg, #1a0000 0%, var(--up-maroon-dark) 45%, var(--up-green-dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .curriculum-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='36' fill='none' stroke='rgba(255,255,255,0.025)' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        .curriculum-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Override shared section-header for dark background */
+        .curriculum-section .section-header h3 { color: white; }
+        .curriculum-section .section-header p { color: rgba(255,255,255,0.8); }
+        .curriculum-section .section-header h3::after {
+            background: linear-gradient(90deg, var(--up-gold) 0%, white 50%, var(--up-gold) 100%);
+        }
+
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
+            margin-top: 3rem;
+        }
+
+        .curriculum-item {
+            background: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(4px);
+            border-radius: 16px;
+            padding: 1.75rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .curriculum-item:hover {
+            background: rgba(255,215,0,0.15);
+            border-color: rgba(255,215,0,0.5);
+            transform: translateY(-5px);
+        }
+
+        .curriculum-emoji {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.7rem;
+        }
+
+        .curriculum-item span.label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.4;
+            display: block;
+        }
+
+        /* ============================================================
+           IMPACT STATS
+           ============================================================ */
+        .stats-bar {
+            padding: 4.5rem 5%;
+            background: var(--up-green);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 950px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item { padding: 1.5rem 1rem; }
+
+        .stat-number {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: var(--up-gold);
+            line-height: 1;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-number-no-animation {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: var(--up-gold);
+            line-height: 1;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================================
+           GALLERY
+           ============================================================ */
+        .gallery-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .gallery-container { max-width: 1300px; margin: 0 auto; }
+
+        .gallery-featured {
+            margin: 3rem 0 1.5rem;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.12);
+            position: relative;
+        }
+
+        .gallery-featured img {
+            width: 100%;
+            max-height: 520px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-featured-caption {
+            /*
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            */
+            background: linear-gradient(transparent, rgba(0,0,0,0.78));
+            color: white;
+            padding: 1rem 2rem 1.75rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .gallery-placeholder-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-placeholder {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #f5f5f5, #ebebeb);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            border: 2px dashed #ddd;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-placeholder:hover {
+            border-color: var(--up-gold);
+            background: #FFFBEA;
+        }
+
+        .gallery-placeholder .ph-icon { font-size: 2rem; }
+        .gallery-placeholder .ph-label {
+            font-size: 0.78rem;
+            color: #aaa;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================================
+           HISTORY / LEGACY TIMELINE
+           ============================================================ */
+        .history-section {
+            padding: 6rem 5%;
+            background: #f8f9fa;
+        }
+
+        .history-container { max-width: 800px; margin: 0 auto; }
+
+        .timeline {
+            margin-top: 3.5rem;
+            position: relative;
+        }
+
+        /* Vertical connector line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 94px;
+            top: 8px;
+            bottom: 8px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--up-gold), var(--up-maroon), var(--up-green));
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-year {
+            min-width: 88px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--up-maroon);
+            text-align: right;
+            padding-top: 0.7rem;
+            line-height: 1.2;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--up-gold);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--up-maroon);
+            flex-shrink: 0;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-dot.special {
+            background: var(--up-gold);
+            box-shadow: 0 0 0 3px #C41E3A;
+            width: 20px;
+            height: 20px;
+            margin-top: 0.85rem;
+        }
+
+        .timeline-dot.founding {
+            background: var(--up-maroon);
+            box-shadow: 0 0 0 3px var(--up-gold);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .timeline-content .year-label {
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.2rem;
+            display: block;
+            color: var(--up-green);
+        }
+
+        .timeline-item:first-child .timeline-content .year-label { color: var(--up-gold-dark); }
+        .timeline-item:last-child .timeline-content .year-label { color: var(--up-maroon); }
+
+        /* ============================================================
+           FAQ SECTION (uses shared faq-* from styles.css)
+           ============================================================ */
+
+        /* ============================================================
+           CONTACT / CTA SECTION
+           ============================================================ */
+        .camp-contact-section {
+            padding: 6rem 5%;
+            background: linear-gradient(150deg, var(--up-maroon), var(--up-maroon-dark) 50%, var(--up-green-dark));
+            color: white;
+            text-align: center;
+        }
+
+        .camp-contact-container { max-width: 960px; margin: 0 auto; }
+
+        .camp-contact-container h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .camp-contact-container > p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        /* Contact cards grid */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .contact-card:hover { background: rgba(255,255,255,0.15); }
+
+        .contact-name {
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-name::before {
+            content: '👤';
+            font-size: 0.9rem;
+        }
+
+        .contact-detail {
+            font-size: 0.88rem;
+            opacity: 0.85;
+            line-height: 2;
+            display: block;
+        }
+
+        .contact-detail a {
+            color: var(--up-gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-detail a:hover { text-decoration: underline; }
+
+        .camp-social-note {
+            margin-top: 3rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .camp-social-note a {
+            color: var(--up-gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (min-width: 900px) {
+            .gallery-featured-caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+        }
+        @media (max-width: 1024px) {
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .curriculum-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            /* Move photo before text on mobile */
+            .about-photo-wrap { order: -1; }
+        }
+
+        @media (max-width: 900px) {
+            .announce-cta { flex-direction: column; align-items: flex-start; }
+            .announce-cta-actions { align-items: flex-start; }
+            .announce-cta-actions .hint { text-align: left; }
+        }
+
+        @media (max-width: 768px) {
+            .camp-logo { width: 150px; height: 150px; }
+            /* Stack the two camp cards vertically on mobile */
+            .camps-row { flex-direction: column; }
+            .or-divider {
+                flex-direction: row;
+                padding: 1rem 0;
+            }
+            .or-divider-line {
+                flex: 1;
+                width: auto;
+                height: 2px;
+                max-height: none;
+                background: linear-gradient(to right, transparent, #ddd, transparent);
+            }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .curriculum-grid { grid-template-columns: repeat(2, 1fr); }
+            .contacts-grid { grid-template-columns: 1fr; }
+            .gallery-placeholder-grid { grid-template-columns: repeat(2, 1fr); }
+            .timeline::before { left: 68px; }
+            .timeline-year { min-width: 62px; font-size: 0.88rem; }
+        }
+
+        @media (max-width: 480px) {
+            .pillars-grid { grid-template-columns: 1fr; }
+            .curriculum-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-placeholder-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body data-page="programs">
+
+    <!-- ── Shared nav (injected by site.js) ── -->
+    <div id="site-header"></div>
+
+    <!-- ── Breadcrumb ── -->
+    <div class="breadcrumb" role="navigation" aria-label="Breadcrumb"></div>
+        <div class="breadcrumb-container">
+            <a href="./index.html">Home</a>
+            <span class="breadcrumb-sep" aria-hidden="true">›</span>
+            <a href="./programs.html">Programs</a>
+            <span class="breadcrumb-sep" aria-hidden="true">›</span>
+            <span>Filipino Cultural Immersion Summer Camp</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+
+            <!--
+            <div class="camp-logo-wrap">
+                <img
+                    src="./img/Summer Camp Logo.png"
+                    alt="UPAASF Filipino Cultural Immersion Summer Camp logo"
+                    class="camp-logo">
+            </div>
+            -->
+
+            <div class="hero-tag">🎉 13th Year Anniversary — 2026</div>
+            <h2>Filipino Cultural<br><em>Immersion</em> Summer Camp</h2>
+
+            <p class="hero-tagline">
+                <span>Celebrating Heritage.</span>&nbsp;
+                <span>Building Identity.</span>&nbsp;
+                <span>Strengthening Community.</span>
+            </p>
+
+            <div class="camp-meta-pills">
+                <span class="camp-meta-pill">📅 July 13–17, 2026 and July 20-24, 2026</span>
+                <span class="camp-meta-pill">⏰ 9:00 AM – 3:30 PM</span>
+                <span class="camp-meta-pill">👧👦 Ages 7–15</span>
+                <span class="camp-meta-pill">📍 2 Locations · Bay Area</span>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#announce" class="btn btn-gold">🏕️ 2026 Camp Details</a>
+                <a href="#contact" class="btn btn-outline-white">📧 Get in Touch</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Zigzag border transition -->
+    <div class="zigzag-bar maroon"></div>
+
+    <!-- ============================================================
+         2026 ANNOUNCEMENT
+         ============================================================ -->
+    <section class="announce-section" id="announce">
+        <div class="announce-container">
+
+            <div class="announce-header">
+                <span class="announce-eyebrow">🌟 Now Announcing</span>
+                <h2>Camp 2026 — 13th Annual!</h2>
+                <p>Mark your calendars and join the interest list — registration details coming soon!</p>
+            </div>
+
+            <!-- ── Two Camp Cards + OR Divider ── -->
+            <div class="camps-row">
+
+                <!-- Camp A: El Camino High School (South San Francisco) -->
+                <div class="announce-details fade-in">
+                    <h3>🏫 Camp A — El Camino High School</h3>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">📅</div>
+                        <div>
+                            <div class="detail-label">Dates</div>
+                            <div class="detail-value">July 13–17, 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">⏰</div>
+                        <div>
+                            <div class="detail-label">Daily Hours</div>
+                            <div class="detail-value">9:00 AM – 3:30 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">📍</div>
+                        <div>
+                            <div class="detail-label">Venue</div>
+                            <div class="detail-value">
+                                El Camino Real High School
+                                <span class="detail-badge">Pending Confirmation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">👧👦</div>
+                        <div>
+                            <div class="detail-label">Who Can Join</div>
+                            <div class="detail-value">Filipino-American Youth, Ages 7–15</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">📝</div>
+                        <div>
+                            <div class="detail-label">Registration</div>
+                            <div class="detail-value" style="color:#999; font-style:italic;">
+                                Coming Soon — <a href="#contact" style="color:var(--up-maroon);">Join the Interest List</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tuition-highlight">
+                        <div class="tuition-amount">$350</div>
+                        <div class="tuition-label">per camper (one week)</div>
+                        <div class="scholarship-note">🎓 Scholarships available upon request</div>
+                    </div>
+                </div>
+
+                <!-- OR divider -->
+                <div class="or-divider" aria-hidden="true">
+                    <div class="or-divider-line"></div>
+                    <div class="or-divider-pill">— OR —</div>
+                    <div class="or-divider-line"></div>
+                </div>
+
+                <!-- Camp B: St. Raymond's Church -->
+                <div class="announce-details fade-in">
+                    <h3>⛪ Camp B — St. Raymond's Church</h3>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">📅</div>
+                        <div>
+                            <div class="detail-label">Dates</div>
+                            <div class="detail-value">July 20-24, 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">⏰</div>
+                        <div>
+                            <div class="detail-label">Daily Hours</div>
+                            <div class="detail-value">9:00 AM – 3:30 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">📍</div>
+                        <div>
+                            <div class="detail-label">Venue</div>
+                            <div class="detail-value">
+                                St. Raymond's Church, Dublin CA
+                                <span class="detail-badge">Pending Confirmation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">👧👦</div>
+                        <div>
+                            <div class="detail-label">Who Can Join</div>
+                            <div class="detail-value">Filipino-American Youth, Ages 7–15</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-icon">📝</div>
+                        <div>
+                            <div class="detail-label">Registration</div>
+                            <div class="detail-value" style="color:#999; font-style:italic;">
+                                Coming Soon — <a href="#contact" style="color:var(--up-maroon);">Join the Interest List</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tuition-highlight">
+                        <div class="tuition-amount">$350</div>
+                        <div class="tuition-label">per camper (one week)</div>
+                        <div class="scholarship-note">🎓 Scholarships available upon request</div>
+                    </div>
+                </div>
+
+            </div><!-- /.camps-row -->
+
+            <!-- ── Venue pending callout note ── -->
+            <div class="venue-callout fade-in">
+                <span class="venue-callout-icon">📌</span>
+                <div>
+                    <strong>Venues & dates are pending final confirmation.</strong>
+                    Both camps may run simultaneously or on separate weeks — registration is the same for either location.
+                    <a href="#contact">Join the interest list</a> and we'll notify you as soon as details are confirmed!
+                </div>
+            </div>
+
+            <!-- ── CTA bar ── -->
+            <div class="announce-cta fade-in">
+                <div class="announce-cta-body">
+                    <div class="announce-cta-icon">🏕️</div>
+                    <div class="announce-cta-text">
+                        <h3>Registration Opening Soon!</h3>
+                        <p>Spaces fill up fast — be the first to know when 2026 registration opens. One sign-up covers both camp locations.</p>
+                    </div>
+                </div>
+                <div class="announce-cta-actions">
+                    <a href="mailto:soniadelen@gmail.com?subject=2026%20Summer%20Camp%20%E2%80%94%20Interest%20List"
+                       class="btn btn-gold"
+                       style="font-size:1rem; white-space:nowrap;">
+                        📧 Join the Interest List
+                    </a>
+                    <span class="hint">
+                        Questions? See our <a href="#faq">FAQ</a> or <a href="#contact">contact the camp team</a>.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zigzag border -->
+    <div class="zigzag-bar gold flip"></div>
+
+    <!-- ============================================================
+         ABOUT THE CAMP
+         ============================================================ -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="section-header">
+                <h3>About the Camp</h3>
+                <p>A beloved Bay Area tradition now in its 13th year — connecting Filipino-American youth to their roots through hands-on, immersive cultural learning.</p>
+            </div>
+
+            <div class="about-grid">
+
+                <!-- Text -->
+                <div class="about-text fade-in">
+                    <h3>More Than a Summer Camp</h3>
+                    <p class="about-tagline">Presented by UPAASF · Serving the San Francisco Bay Area since 2013</p>
+
+                    <div class="mission-block">
+                        <div class="block-label">🌟 Mission</div>
+                        <div class="block-text">
+                            To inspire Filipino-American youth to embrace their cultural heritage through immersive educational experiences that promote cultural pride, community connection, and a deeper understanding of Filipino traditions, values, and history.
+                        </div>
+                    </div>
+
+                    <div class="goal-block">
+                        <div class="block-label">🎯 Goal</div>
+                        <div class="block-text">
+                            To provide Filipino-American youth with an engaging and supportive environment where they can learn, experience, and celebrate Filipino culture while building pride in their identity and strengthening connections with their community.
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="partner-tag">🤝 In partnership with St. Raymond's Church and El Camino High School — Bay Area</span>
+                    </div>
+                </div>
+
+                <!-- Photo -->
+                <div class="about-photo-wrap fade-in">
+                    <span class="photo-year-badge">📸 Camp 2025</span>
+                    <img
+                        src="./img/Campers 2025.jpg"
+                        alt="Group photo of 2025 UPAASF Summer Camp campers and facilitators, all smiling"
+                        class="camp-photo">
+                    <p class="photo-caption">Our 2025 campers and volunteer facilitators — all smiles after an amazing week!</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CORE PILLARS
+         ============================================================ -->
+    <section class="pillars-section" id="pillars">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Four Core Pillars</h3>
+                <p>Every activity, lesson, and experience at camp is guided by these four principles.</p>
+            </div>
+
+            <div class="pillars-grid">
+
+                <div class="pillar-card fade-in">
+                    <span class="pillar-icon">🌺</span>
+                    <h4>Cultural Discovery</h4>
+                    <p>Introducing youth to Filipino language, arts, food, history, and traditions through hands-on, participatory learning.</p>
+                </div>
+
+                <div class="pillar-card fade-in">
+                    <span class="pillar-icon">🦅</span>
+                    <h4>Identity &amp; Pride</h4>
+                    <p>Helping Filipino-American youth develop confidence and pride in their heritage and cultural identity.</p>
+                </div>
+
+                <div class="pillar-card fade-in">
+                    <span class="pillar-icon">🤝</span>
+                    <h4>Community &amp; Belonging</h4>
+                    <p>Creating a supportive environment where youth build friendships, teamwork, and lasting connections with the Fil-Am community.</p>
+                </div>
+
+                <div class="pillar-card fade-in">
+                    <span class="pillar-icon">⭐</span>
+                    <h4>Leadership &amp; Service</h4>
+                    <p>Encouraging youth to become future leaders who carry forward Filipino culture and contribute positively to their communities.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CURRICULUM
+         ============================================================ -->
+    <section class="curriculum-section" id="curriculum">
+        <div class="curriculum-container">
+            <div class="section-header">
+                <h3>What You'll Learn</h3>
+                <p>
+                    A rich, fun-packed curriculum taught by respected Filipino educators
+                    and artists from the Bay Area — no prior knowledge required!
+                </p>
+            </div>
+
+            <div class="curriculum-grid">
+
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">🗣️</span>
+                    <span class="label">Tagalog Language</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">📚</span>
+                    <span class="label">Filipino History &amp; Literature</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">🍳</span>
+                    <span class="label">Culinary Traditions</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">💃</span>
+                    <span class="label">Dance &amp; Music</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">🥋</span>
+                    <span class="label">Martial Arts &amp; Visual Arts</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">👘</span>
+                    <span class="label">Traditional Attire &amp; Costumes</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">🧵</span>
+                    <span class="label">Weaves &amp; Crafts</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">🌱</span>
+                    <span class="label">Community Engagement</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">🏆</span>
+                    <span class="label">Leadership</span>
+                </div>
+                <div class="curriculum-item fade-in">
+                    <span class="curriculum-emoji">🚌</span>
+                    <span class="label">Field Trip Adventure</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         IMPACT STATS
+         ============================================================ -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="13">0</span>
+                <div class="stat-label">Years Running</div>
+            </div>
+
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="490+">0</span>
+                <div class="stat-label">Campers Served</div>
+            </div>
+
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="40">0</span>
+                <div class="stat-label">Average Per Year</div>
+            </div>
+
+            <div class="stat-item fade-in">
+                <span class="stat-number-no-animation">7–15</span>
+                <!-- <span class="stat-number">7–15</span> -->
+                <div class="stat-label">Ages Welcome</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         GALLERY
+         ============================================================ -->
+    <section class="gallery-section" id="gallery">
+        <div class="gallery-container">
+            <div class="section-header">
+                <h3>Camp in Action</h3>
+                <p>Snapshots of joy, learning, and cultural pride from past summer camps.</p>
+            </div>
+
+            <!-- Featured photo -->
+            <div class="gallery-featured fade-in">
+                <img
+                    src="./img/Campers 2024.jpeg"
+                    alt="UPAASF 2024 Summer Camp — group photo of campers and facilitators having a great time">
+                <div class="gallery-featured-caption">
+                    🌟 <strong>11th Annual UPAASF Filipino Cultural Immersion Summer Camp (2024) —
+                    37 amazing campers making memories, building friendships, and celebrating their Filipino heritage!
+                </div>
+            </div>
+
+            <!-- Placeholder slots for additional photos -->
+            <div class="gallery-placeholder-grid ">
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">📸</span>
+                    <span class="ph-label">Add Camp Photo</span>
+                </div>
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">📸</span>
+                    <span class="ph-label">Add Camp Photo</span>
+                </div>
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">📸</span>
+                    <span class="ph-label">Add Camp Photo</span>
+                </div>
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">📸</span>
+                    <span class="ph-label">Add Camp Photo</span>
+                </div>
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">📸</span>
+                    <span class="ph-label">Add Camp Photo</span>
+                </div>
+                <div class="gallery-placeholder">
+                    <span class="ph-icon">📸</span>
+                    <span class="ph-label">Add Camp Photo</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CAMP HISTORY / LEGACY TIMELINE
+         ============================================================ -->
+    <section class="history-section" id="history">
+        <div class="history-container">
+            <div class="section-header">
+                <h3>Our Camp Legacy</h3>
+                <p>Since 2013, we've brought Filipino cultural immersion to Bay Area families — growing stronger every year.</p>
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-dot special"></div>
+                    <div class="timeline-content">
+                        <span class="year-label">🎉 13th Year — Upcoming!</span>
+                        2 Locations (Pending Confirmation)
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2021–2025</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year-label">Years 8–12</span>
+                        Saint Raymond's Church, Dublin, CA
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year-label">Virtual Camp</span>
+                        Adapted to online learning via Zoom during COVID-19
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2017–2019</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year-label">Years 4–6</span>
+                        Saint Justin School, Santa Clara, CA
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2015–2016</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year-label">Years 2–3</span>
+                        Holy Child Saint Martin Church, Daly City, CA
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2014</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year-label">Year 1 — First Camp!</span>
+                        Bessie Carmichael School, San Francisco Unified School District
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-year">2013</div>
+                    <div class="timeline-dot founding"></div>
+                    <div class="timeline-content">
+                        <span class="year-label">🌟 Founded</span>
+                        UPAASF Filipino Cultural Immersion Summer Camp established in San Francisco — and a tradition was born.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FAQ  (uses shared .faq-* accordion from styles.css)
+         ============================================================ -->
+    <section class="faq-section" id="faq">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Frequently Asked Questions</h3>
+                <p>Everything families want to know before signing up.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Who can attend the Summer Camp?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>The camp is open to Filipino-American youth ages 7–15 in the San Francisco Bay Area. No prior knowledge of Filipino language or culture is required — just curiosity and enthusiasm! All skill levels are warmly welcome.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How much does it cost to attend?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Tuition is <strong>$350 per camper</strong> for the full week-long program. This covers teaching materials, instructors' honoraria, camp assistance, a fun field trip (including transportation), and a graduation celebration for campers and families.</p>
+                            <p style="margin-top:0.75rem;">Scholarships are available upon request — please contact our camp team to learn more. We believe no child should miss out due to financial constraints.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What does a typical camp day look like?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Camp runs <strong>Monday–Friday, 9:00 AM to 3:30 PM</strong>. Each day is packed with immersive classes and activities — from Tagalog language and Filipino history in the morning to dance, arts &amp; crafts, cooking, and martial arts in the afternoon. The week also includes a special field trip, usually to the Philippine Consulate in San Francisco, and closes with a graduation ceremony for campers and families!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Who are the instructors?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>All classes are led by respected Filipino educators, artists, and cultural practitioners from the Bay Area. UPAASF carefully selects instructors who are passionate about Filipino heritage and skilled at engaging with young learners.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can parents and grandparents get involved?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Absolutely! Family participation is a big part of what makes this camp special. Parents and grandparents are encouraged to attend the closing graduation ceremony and are welcome to volunteer as camp assistants. We also invite the whole family to the field trip day — it's a wonderful multi-generational experience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Where will the 2026 camp be held?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <ul style="list-style: none; padding-left: 0; margin: 1.5rem 0;">
+                                <li style="margin-bottom: 1rem; padding-left: 1.5rem; border-left: 3px solid var(--up-green);">
+                                    <strong>Peninsula (South San Francisco)</strong><br>
+                                    <span style="color: #555;">El Camino High School</span> — 
+                                    <span style="color: var(--up-maroon); font-weight: 700;">July 13 – July 17, 2026</span>
+                                </li>
+
+                                <li style="margin-bottom: 1rem; padding-left: 1.5rem; border-left: 3px solid var(--up-maroon);">
+                                    <strong>East Bay (Dublin, CA)</strong><br>
+                                    <span style="color: #555;">St. Raymond's Church</span> — 
+                                    <span style="color: var(--up-maroon); font-weight: 700;">July 20 – July 24, 2026</span>
+                                </li>                                
+                            </ul>
+                            <p style="font-style: italic; font-size: 0.95rem; color: #666;">
+                                <strong>Please note:</strong> While these dates and locations are currently scheduled, they remain pending final confirmation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        My child isn't Filipino — can they still attend?
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>The camp is primarily designed for Filipino-American youth, but we warmly welcome any child who is curious about and respectful of Filipino culture. The more diverse perspectives in the room, the richer the learning experience for everyone!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /.faq list -->
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT / REGISTER
+         ============================================================ -->
+    <section class="camp-contact-section" id="contact">
+        <div class="camp-contact-container">
+
+            <h2>Ready to Join Camp 2026?</h2>
+            <p>
+                Give your child the gift of cultural pride, lasting friendships, and a deeper connection
+                to their Filipino heritage. <em>Tara na!</em> — Let's go!
+            </p>
+
+            <div class="cta-buttons" style="justify-content:center;">
+                <a href="mailto:soniadelen@gmail.com?subject=2026%20UPAASF%20Summer%20Camp%20%E2%80%94%20Interest%20List"
+                   class="btn btn-gold"
+                   style="font-size:1.05rem; padding:1rem 2.5rem;">
+                    📧 Join the Interest List
+                </a>
+                <a href="./programs.html" class="btn btn-outline-white">← View All Programs</a>
+            </div>
+
+            <!-- Contact team -->
+            <div class="contacts-grid">
+
+                <div class="contact-card">
+                    <div class="contact-name">Sonia Delen</div>
+                    <span class="contact-detail">📞 (415) 203-8111</span>
+                    <span class="contact-detail">✉️ <a href="mailto:soniadelen@gmail.com">soniadelen@gmail.com</a></span>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-name">Letty Quizon</div>
+                    <span class="contact-detail">📞 (408) 455-4137</span>
+                    <span class="contact-detail">✉️ <a href="mailto:lettyquizon@gmail.com">lettyquizon@gmail.com</a></span>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-name">Tanya Cruz Duldulao</div>
+                    <span class="contact-detail">📞 (202) 212-9311</span>
+                    <span class="contact-detail">✉️ <a href="mailto:tanyamiren@gmail.com">tanyamiren@gmail.com</a></span>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-name">Venazir Martinez</div>
+                    <span class="contact-detail">📞 (415) 568-5113</span>
+                    <span class="contact-detail">✉️ <a href="mailto:vhanamartinez@gmail.com">vhanamartinez@gmail.com</a></span>
+                </div>
+
+            </div>
+
+            <div class="camp-social-note">
+                🌐 <a href="https://upaasf.org" target="_blank" rel="noopener">upaasf.org</a> &nbsp;|&nbsp;
+                📸 Follow us on Instagram: <a href="https://instagram.com/upaa_sf" target="_blank" rel="noopener">@upaa_sf</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── Shared footer (injected by site.js) ── -->
+    <div id="site-footer"></div>
+
+    <!-- ── Shared site scripts (nav, footer, fade-in, stat counters, FAQ) ── -->
+    <script src="./shared/site.js"></script>
+
+</body>
+</html>

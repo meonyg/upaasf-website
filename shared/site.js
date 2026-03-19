@@ -81,14 +81,12 @@
                             </a>
                         </li>
                         <li>
-                            <!-- <a href="./cultural-immersion-camp.html"> -->
-							<a href="./programs.html#cultural-camp">
+							<a href="./cultural-immersion-camp.html">
                                 <span class="submenu-icon">🎭</span>
                                 <span class="submenu-label">
                                     Filipino Cultural Immersion Camp
                                     <!-- <span>Heritage &amp; traditions for youth</span> -->
                                 </span>
-								<span class="badge-soon">Coming Soon</span>
                             </a>
                         </li>
                         <li>
@@ -237,7 +235,7 @@
                 <h4>Programs</h4>
                 <ul>
                     <li><a href="./alumni-mentoring-program.html">Alumni Mentoring</a></li>
-                    <li><a href="./programs.html#cultural-camp">Cultural Camp</a></li>
+                    <li><a href="./programs.html#cultural-immersion-camp">Cultural Camp</a></li>
                     <li><a href="./programs.html#speakers">Speakers' Series</a></li>
                     <li><a href="./programs.html#up-streets">UP in the Streets</a></li>
                 </ul>
