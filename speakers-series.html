@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPConnect Speakers' Series | UPAASF Programs</title>
+    <meta name="description" content="UPConnect Speakers' Series — UPAASF's quarterly forum bringing together Filipino and Filipino-American professionals, academics, and community leaders for engaging conversations on health, business, tech, and culture.">
+    <link rel="stylesheet" href="./shared/styles.css">
+    <style>
+        /* ─────────────────────────────────────────────────────────────
+           UPCONNECT SPEAKERS' SERIES — PAGE-SPECIFIC STYLES
+           All shared tokens (--up-maroon, --up-green, --up-gold, etc.),
+           nav, footer, breadcrumb, page-hero, section-header, .btn,
+           .fade-in, .faq-item, .cta-section come from shared/styles.css.
+        ───────────────────────────────────────────────────────────── */
+
+        /* ── Hero: replace tiled "UP" watermark with radial spotlight glows ── */
+        .page-hero::before {
+            content: '';
+            background:
+                radial-gradient(circle at 10% 60%, rgba(255,215,0,0.14) 0%, transparent 45%),
+                radial-gradient(circle at 85% 25%, rgba(255,255,255,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 55% 90%, rgba(10,59,26,0.25) 0%, transparent 50%);
+        }
+
+        /* Decorative microphone watermark — right side */
+        .page-hero::after {
+            content: '🎙️';
+            position: absolute;
+            right: 4%;
+            bottom: -2rem;
+            font-size: 22rem;
+            opacity: 0.05;
+            line-height: 1;
+            pointer-events: none;
+            transform: rotate(-8deg);
+        }
+
+        .page-hero h2 { font-size: 3.5rem; line-height: 1.15; }
+
+        @media (max-width: 768px) {
+            .page-hero h2 { font-size: 2.3rem; }
+        }
+
+        /* ── Hero tag ── */
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            color: var(--up-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hero CTA row */
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.2rem;
+        }
+
+        /* ── Stats bar ── */
+        .stats-bar {
+            background: white;
+            padding: 3rem 5%;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stats-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            border-right: 1px solid #f0f0f0;
+        }
+
+        .stat-item:last-child { border-right: none; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--up-maroon);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat-item { border-right: none; border-bottom: 1px solid #f0f0f0; }
+        }
+
+        /* ── About section ── */
+        .about-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-content h3 {
+            font-size: 2.4rem;
+            color: var(--up-maroon);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .about-content .tagline {
+            font-size: 1.1rem;
+            color: var(--up-green);
+            font-style: italic;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+        }
+
+        .about-content p {
+            font-size: 1.08rem;
+            color: #555;
+            line-height: 1.85;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Highlight callout box reusing shared .highlight-box */
+        .about-content .highlight-box { margin-top: 2rem; }
+
+        /* Visual: dark card with microphone + year badge */
+        .about-visual { position: relative; }
+
+        .series-emblem-block {
+            width: 100%;
+            background: linear-gradient(135deg, var(--up-maroon-dark), var(--up-maroon) 45%, var(--up-green-dark));
+            border-radius: 24px;
+            padding: 4rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(139,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .series-emblem-block::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.08) 0%, transparent 60%);
+        }
+
+        .emblem-mic {
+            font-size: 5.5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 16px rgba(255,215,0,0.3));
+        }
+
+        .emblem-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.4rem;
+        }
+
+        .emblem-subtitle {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.65);
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .emblem-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--up-gold);
+            color: var(--up-maroon);
+            font-size: 0.78rem;
+            font-weight: 900;
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            box-shadow: 0 3px 12px rgba(255,215,0,0.4);
+        }
+
+        /* Partner tags */
+        .partner-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 1.8rem;
+        }
+
+        .partner-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--up-green-light);
+            border-radius: 50px;
+            padding: 0.55rem 1.2rem;
+            font-size: 0.8rem;
+            color: var(--up-green);
+            font-weight: 700;
+        }
+
+        /* ── Topic pillars grid ── */
+        .topics-section {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 3.5rem;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-top: 5px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:nth-child(1) { border-top-color: var(--up-maroon); }
+        .topic-card:nth-child(2) { border-top-color: var(--up-green); }
+        .topic-card:nth-child(3) { border-top-color: #1a6b9a; }
+        .topic-card:nth-child(4) { border-top-color: var(--up-gold); }
+        .topic-card:nth-child(5) { border-top-color: #8B4513; }
+        .topic-card:nth-child(6) { border-top-color: #6b3fa0; }
+
+        .topic-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.11);
+        }
+
+        .topic-icon { font-size: 2.5rem; margin-bottom: 0.9rem; display: block; }
+
+        .topic-card h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 0.6rem;
+        }
+
+        .topic-card p { font-size: 0.9rem; color: #666; line-height: 1.6; }
+
+        /* ── 2026 Calendar section ── */
+        .calendar-section {
+            /* -- Background -- */
+            --cal-bg-from:          #1a0000;
+            --cal-bg-mid:           var(--up-maroon);
+            --cal-bg-to:            var(--up-green-dark);
+
+            /* -- H3 bar -- */
+            --h3-bar-bg-first:      var(--up-gold);
+            --h3-bar-bg-second:     white;
+            --h3-bar-bg-third:      var(--up-gold);
+
+            padding: 6rem 5%;
+            background: linear-gradient(150deg, var(--cal-bg-from) 0%, var(--cal-bg-mid) 45%, var(--cal-bg-to) 100%);
+
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+        /* Subtle circle texture */
+        .calendar-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='36' fill='none' stroke='rgba(255,255,255,0.025)' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        .calendar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .calendar-section .section-header h3 { color: white; }
+        .calendar-section .section-header p  { color: rgba(255,255,255,0.8); }
+        .calendar-section .section-header h3::after {
+            background: linear-gradient(
+                    90deg,
+                    var(--h3-bar-bg-first)     0%   33.3%,
+                    var(--h3-bar-bg-second)   33.3% 66.6%,
+                    var(--h3-bar-bg-third)    66.6% 100%
+                );
+            /*background: linear-gradient(90deg, var(--h3-bar-bg-first) 0%, white 50%, var(--up-gold) 100%);*/
+        }
+
+
+        .calendar-section--green {
+            --cal-bg-from:         var(--up-green-dark);
+            --cal-bg-mid:          var(--up-green);
+            --cal-bg-to:           #1e6035;
+        }
+
+        .calendar-section--green-maroon-split {
+            --h3-bar-bg-first:      var(--up-maroon);
+            --h3-bar-bg-second:     var(--up-green);
+            --h3-bar-bg-third:      var(--up-gold);
+
+            background: linear-gradient(135deg,
+                var(--up-green-dark)  0%,
+                var(--up-green-dark) 40%,
+                #6b0000 60%,
+                var(--up-maroon) 100%
+            );
+        }
+
+        .quarters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .quarter-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 2rem 1.6rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quarter-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--up-gold);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .quarter-card:hover {
+            background: rgba(255,255,255,0.14);
+            transform: translateY(-5px);
+        }
+
+        .quarter-card:hover::before { opacity: 1; }
+
+        /* Completed quarter */
+        .quarter-card.done {
+            background: rgba(255,215,0,0.08);
+            border-color: rgba(255,215,0,0.3);
+        }
+
+        .quarter-card.done::before { opacity: 1; }
+
+        .quarter-label {
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--up-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .quarter-theme {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .quarter-event {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .quarter-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .status-done {
+            background: rgba(255,215,0,0.18);
+            color: var(--up-gold);
+        }
+
+        .status-upcoming {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .status-announced {
+            background: rgba(10,59,26,0.4);
+            color: #6fdba0;
+        }
+
+        .quarter-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+
+        @media (max-width: 1024px) {
+            .quarters-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .quarters-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Past Events showcase ── */
+        .past-events-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .past-events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.2rem;
+            margin-top: 3.5rem;
+        }
+
+        .past-event-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 28px rgba(0,0,0,0.08);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .past-event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 45px rgba(0,0,0,0.13);
+            border-color: var(--up-gold);
+        }
+
+        /* Color-coded banner per event */
+        .event-banner {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        .event-banner.longevity {
+            background: linear-gradient(135deg, #0a2e4d, #1a6b9a);
+        }
+
+        .event-banner.business {
+            background: linear-gradient(135deg, var(--up-green-dark), var(--up-green));
+        }
+
+        .event-banner.loida {
+            background: linear-gradient(135deg, var(--up-maroon-dark), var(--up-maroon));
+        }
+
+        .event-banner.paint {
+            background: linear-gradient(135deg, #4a1a6b, #8e44ad);
+        }
+
+        .event-banner-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255,215,0,0.95);
+            color: var(--up-maroon);
+            font-size: 0.72rem;
+            font-weight: 900;
+            padding: 0.25rem 0.7rem;
+            border-radius: 12px;
+        }
+
+        .past-event-body { padding: 1.8rem; }
+
+        .past-event-body h4 {
+            font-size: 1.25rem;
+            color: #333;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.35;
+        }
+
+        .past-event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta-line {
+            font-size: 0.82rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-line strong { color: var(--up-maroon); }
+
+        .past-event-body p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.65;
+        }
+
+        /* Speaker chips */
+        .speaker-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .speaker-chip {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 0.3rem 0.85rem;
+            font-size: 0.78rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* ── Format / How It Works ── */
+        .format-section {
+            padding: 6rem 5%;
+            background: #f8f9fa;
+        }
+
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+            position: relative;
+        }
+
+        .format-grid::before {
+            content: '';
+            position: absolute;
+            top: 42px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--up-maroon), var(--up-green));
+            z-index: 0;
+        }
+
+        .format-step {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 1.8rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .format-step:hover {
+            border-color: var(--up-gold);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.11);
+        }
+
+        .step-num {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 15px rgba(139,0,0,0.3);
+        }
+
+        .format-step h4 {
+            font-size: 1.15rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .format-step p { font-size: 0.93rem; color: #666; line-height: 1.65; }
+
+        @media (max-width: 900px) {
+            .format-grid { grid-template-columns: 1fr 1fr; }
+            .format-grid::before { display: none; }
+        }
+
+        @media (max-width: 500px) {
+            .format-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Testimonial / quote block ── */
+        .testimonials-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--up-gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.09);
+        }
+
+        .quote-mark {
+            font-size: 5rem;
+            color: rgba(255,215,0,0.4);
+            line-height: 0.6;
+            margin-bottom: 1.5rem;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-card p {
+            font-size: 1.02rem;
+            color: #555;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .author-info strong {
+            display: block;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: var(--up-maroon);
+            font-weight: 600;
+        }
+
+        /* ── Get Involved ── */
+        .involve-section {
+            padding: 6rem 5%;
+            background: #f8f9fa;
+        }
+
+        .involve-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .involve-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.8rem 2.2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .involve-card:hover {
+            border-color: var(--up-gold);
+            transform: translateY(-7px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.11);
+        }
+
+        .involve-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--up-maroon), var(--up-green));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 6px 20px rgba(139,0,0,0.2);
+        }
+
+        .involve-card h4 {
+            font-size: 1.3rem;
+            color: var(--up-maroon);
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .involve-card p {
+            font-size: 0.96rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── FAQ section ── */
+        .faq-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .faq-list { max-width: 900px; margin: 0 auto; }
+
+        /* ── Responsive ── */
+        @media (max-width: 968px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-visual { order: -1; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .involve-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .past-events-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body data-page="programs">
+
+    <div id="site-header"></div>
+
+    <!-- ── Breadcrumb ── -->
+    <div class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="./index.html">Home</a>
+            <span class="breadcrumb-sep" aria-hidden="true">›</span>
+            <a href="./programs.html">Programs</a>
+            <span class="breadcrumb-sep" aria-hidden="true">›</span>
+            <span>UPConnect — Speakers' Series</span>
+        </div>
+    </div>
+
+    <!-- ── Page Hero ── -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <div class="hero-tag">✦ UPAASF Programs</div>
+            <h2>UPConnect<br>Speakers' Series</h2>
+            <p>Quarterly conversations with Filipino and Filipino-American professionals, academics, and community leaders — on health, business, technology, culture, and beyond.</p>
+            <div class="hero-actions">
+                <a href="#calendar" class="btn btn-gold">📅 2026 Program Calendar</a>
+                <a href="#past-events" class="btn btn-outline-white">View Past Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Stats Bar ── -->
+    <section class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <div class="stat-number">4+</div>
+                <div class="stat-label">Sessions Per Year</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">Topic Domains</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Free</div>
+                <div class="stat-label">Admission to All Events</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Community Partners</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── About the Program ── -->
+    <section class="about-section">
+        <div class="section-container">
+            <div class="about-grid">
+
+                <!-- Text -->
+                <div class="about-content fade-in">
+                    <h3>Where Filipino Voices Lead the Conversation</h3>
+                    <p class="tagline">"Education, inspiration, and connection — one forum at a time."</p>
+                    <p>The UPAASF Speakers' Series — branded as <strong>UPConnect</strong> — is an ongoing quarterly program that brings together professionals, academics, and community leaders for engaging conversations on topics that matter most to the Filipino and Filipino-American community.</p>
+                    <p>From the frontlines of health and longevity science to the realities of building a small business, from the evolving landscape of artificial intelligence to the art of forging cross-university networks across the Filipino diaspora, UP Connect provides a platform where Filipino voices lead — and the whole community gains.</p>
+                    <p>Every session is free, open to the community, and designed to foster meaningful dialogue, lasting connections, and the kind of insights that can change a career, a perspective, or a life.</p>
+                    <div class="highlight-box">
+                        <p><strong>Format:</strong> In-person forums with panelists and Q&amp;A, held quarterly at the <strong>Philippine Consulate General in San Francisco</strong> and community venues across the Bay Area.</p>
+                    </div>
+                    <div class="partner-tags">
+                        <span class="partner-tag">🤝 In partnership with the Philippine Consulate General, SF</span>
+                        <span class="partner-tag">🏛️ In collaboration with Sentro Filipino (SF Filipino Cultural Center)</span>
+                    </div>
+                </div>
+
+                <!-- Visual -->
+                <div class="about-visual fade-in">
+                    <div class="series-emblem-block">
+                        <span class="emblem-badge">Quarterly Series</span>
+                        <div class="emblem-mic">🎙️</div>
+                        <div class="emblem-title">UP Connect</div>
+                        <div class="emblem-subtitle">Speakers' Series · Est. 2023</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Topic Domains ── -->
+    <section class="topics-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>What We Talk About</h3>
+                <p>Each UPConnect session is anchored in one of six topic domains — all chosen for their direct relevance to the Filipino and Filipino-American experience.</p>
+            </div>
+
+            <div class="topics-grid">
+                <div class="topic-card fade-in">
+                    <span class="topic-icon">🏥</span>
+                    <h4>Health &amp; Longevity</h4>
+                    <p>Insights on healthy aging, mental wellness, medical breakthroughs, and living a longer, fuller life.</p>
+                </div>
+                <div class="topic-card fade-in">
+                    <span class="topic-icon">💼</span>
+                    <h4>Business &amp; Entrepreneurship</h4>
+                    <p>Pathways to business ownership, financial literacy, exit strategies, and sustaining growth.</p>
+                </div>
+                <div class="topic-card fade-in">
+                    <span class="topic-icon">💻</span>
+                    <h4>Technology &amp; Innovation</h4>
+                    <p>From AI and Silicon Valley trends to the tech opportunities shaping Filipino careers and communities.</p>
+                </div>
+                <div class="topic-card fade-in">
+                    <span class="topic-icon">💰</span>
+                    <h4>Finance &amp; Career</h4>
+                    <p>Personal finance, investment strategies, career development, and professional growth in the Bay Area.</p>
+                </div>
+                <div class="topic-card fade-in">
+                    <span class="topic-icon">🌏</span>
+                    <h4>Community &amp; Culture</h4>
+                    <p>Filipino-American identity, cultural preservation, advocacy, and cross-diaspora collaboration.</p>
+                </div>
+                <div class="topic-card fade-in">
+                    <span class="topic-icon">🎓</span>
+                    <h4>Education &amp; Leadership</h4>
+                    <p>Lifelong learning, mentorship, civic leadership, and empowering the next generation of Filipinos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 2026 Program Calendar ── -->
+    <section class="calendar-section calendar-section--green-maroon-split" id="calendar">
+        <div class="calendar-container">
+            <div class="section-header">
+                <h3>2026 Program Calendar</h3>
+                <p>Four quarterly events — one for each season of the year. Each session explores a distinct theme through expert panels, community dialogue, and networking.</p>
+            </div>
+
+            <div class="quarters-grid">
+
+                <div class="quarter-card done fade-in">
+                    <span class="quarter-icon">🏥</span>
+                    <div class="quarter-label">Q1 · Jan – Mar 2026</div>
+                    <div class="quarter-theme">Longevity &amp; Health</div>
+                    <div class="quarter-event">
+                        <strong style="color:var(--up-gold);">Longevity Reimagined</strong><br>
+                        February 25, 2026 · Kalayaan Hall, Philippine Consulate General, San Francisco<br><br>
+                        Featuring Dr. Minette Chan (Stanford Longevity Ambassador) and Dr. Jessica de Leon (UCSF) with multigenerational panelists on living longer, healthier, and happier.
+                    </div>
+                    <span class="quarter-status status-done">✅ Completed</span>
+                </div>
+
+                <div class="quarter-card fade-in">
+                    <span class="quarter-icon">🤝</span>
+                    <div class="quarter-label">Q2 · Apr – Jun 2026</div>
+                    <div class="quarter-theme">Philippine Independence &amp; Inter-University Collaboration</div>
+                    <div class="quarter-event">
+                        A landmark gathering convening alumni from Ateneo de Manila, De La Salle, UST, Assumption, Maryknoll, and other Philippine universities to discover and foster collaboration across diaspora networks.
+                    </div>
+                    <span class="quarter-status status-announced">📅 Announced</span>
+                </div>
+
+                <div class="quarter-card fade-in">
+                    <span class="quarter-icon">💰</span>
+                    <div class="quarter-label">Q3 · Jul – Sep 2026</div>
+                    <div class="quarter-theme">Finance, Career Development &amp; Wellness</div>
+                    <div class="quarter-event">
+                        Practical sessions on personal finance, investment fundamentals, career advancement in the Bay Area, and holistic approaches to professional and personal well-being.
+                    </div>
+                    <span class="quarter-status status-upcoming">🔔 Coming Soon</span>
+                </div>
+
+                <div class="quarter-card fade-in">
+                    <span class="quarter-icon">🤖</span>
+                    <div class="quarter-label">Q4 · Oct – Dec 2026</div>
+                    <div class="quarter-theme">Technology &amp; AI Summit</div>
+                    <div class="quarter-event">
+                        Artificial Intelligence and the Future of Work — a forward-looking summit on AI's impact on Filipino-American careers, communities, and the broader economy. Closes with holiday celebrations.
+                    </div>
+                    <span class="quarter-status status-upcoming">🔔 Coming Soon</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Past Events ── -->
+    <section class="past-events-section" id="past-events">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Past Sessions</h3>
+                <p>A growing archive of conversations that have informed, inspired, and connected the UPAASF community.</p>
+            </div>
+
+            <div class="past-events-grid">
+
+                <!-- Longevity Reimagined -->
+                <div class="past-event-card fade-in">
+                    <div class="event-banner longevity">
+                        <span class="event-banner-badge">Health &amp; Longevity</span>
+                        🏥
+                    </div>
+                    <div class="past-event-body">
+                        <h4>Longevity Reimagined</h4>
+                        <div class="past-event-meta">
+                            <div class="meta-line">📅 <span>February 25, 2025</span></div>
+                            <div class="meta-line">📍 <span>Kalayaan Hall, Philippine Consulate General, SF</span></div>
+                            <div class="meta-line">⏰ <span>5:00 PM – 8:00 PM</span></div>
+                            <div class="meta-line">🎟️ <span><strong>Free</strong> · Open to Community</span></div>
+                        </div>
+                        <p>An engaging, multigenerational forum on living longer, healthier, and happier lives — featuring Stanford and UCSF experts alongside panelists from the Baby Boomer, Gen X, and Millennial generations.</p>
+                        <div class="speaker-chips">
+                            <span class="speaker-chip">🎓 Dr. Minette Chan · Stanford Longevity</span>
+                            <span class="speaker-chip">🧠 Dr. Jessica de Leon · UCSF Neurology</span>
+                            <span class="speaker-chip">👥 Multigenerational Panelists</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pathways to Small Business Success -->
+                <div class="past-event-card fade-in">
+                    <div class="event-banner business">
+                        <span class="event-banner-badge">Entrepreneurship</span>
+                        💼
+                    </div>
+                    <div class="past-event-body">
+                        <h4>Pathways to Small Business Success</h4>
+                        <div class="past-event-meta">
+                            <div class="meta-line">📅 <span>Q4 2025 · Filipino American History Month</span></div>
+                            <div class="meta-line">📍 <span>Philippine Consulate General, San Francisco</span></div>
+                            <div class="meta-line">🎟️ <span><strong>Free</strong> · Open to Community</span></div>
+                        </div>
+                        <p>Business owners and experts shared practical knowledge on establishing and sustaining businesses, financial literacy, and strategic exit planning for Filipino-American entrepreneurs.</p>
+                        <div class="speaker-chips">
+                            <span class="speaker-chip">🏢 Business Owners &amp; Founders</span>
+                            <span class="speaker-chip">💡 Financial Literacy Experts</span>
+                            <span class="speaker-chip">📊 Exit Strategy Advisors</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loida Lewis Fireside Chat -->
+                <div class="past-event-card fade-in">
+                    <div class="event-banner loida">
+                        <span class="event-banner-badge">Leadership</span>
+                        📖
+                    </div>
+                    <div class="past-event-body">
+                        <h4>An Evening with Loida Lewis</h4>
+                        <div class="past-event-meta">
+                            <div class="meta-line">📅 <span>2023</span></div>
+                            <div class="meta-line">🎙️ <span>Fireside Chat &amp; Book Signing</span></div>
+                            <div class="meta-line">🎟️ <span>UPAASF Members &amp; Guests</span></div>
+                        </div>
+                        <p>An intimate fireside chat and book signing with Loida Nicolas Lewis — trailblazing Filipino-American attorney, businesswoman, and philanthropist — sharing her extraordinary life story and leadership wisdom.</p>
+                        <div class="speaker-chips">
+                            <span class="speaker-chip">⭐ Loida Nicolas Lewis</span>
+                            <span class="speaker-chip">📚 Author &amp; Book Signing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paint & Sip -->
+                <div class="past-event-card fade-in">
+                    <div class="event-banner paint">
+                        <span class="event-banner-badge">Culture &amp; Arts</span>
+                        🎨
+                    </div>
+                    <div class="past-event-body">
+                        <h4>Paint &amp; Sip with Venazir</h4>
+                        <div class="past-event-meta">
+                            <div class="meta-line">📅 <span>2025</span></div>
+                            <div class="meta-line">📍 <span>Philippine Consulate General, SF</span></div>
+                            <div class="meta-line">🎙️ <span>Community Arts &amp; UP in the Streets Kickoff</span></div>
+                        </div>
+                        <p>A creative community gathering that blended art, conversation, and Filipino cultural expression — launching UPAASF's innovative "UP in the Streets" public art initiative with artist Venazir Martinez.</p>
+                        <div class="speaker-chips">
+                            <span class="speaker-chip">🎨 Venazir Martinez · Visual Artist</span>
+                            <span class="speaker-chip">🖌️ Community Art Workshop</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Event Format ── -->
+    <section class="format-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>How Each Session Works</h3>
+                <p>Every UPConnect — Speakers' Series event follows a consistent format designed to maximize learning, engagement, and meaningful connection among attendees.</p>
+            </div>
+
+            <div class="format-grid">
+                <div class="format-step fade-in">
+                    <div class="step-num">1</div>
+                    <h4>Reception &amp; Networking</h4>
+                    <p>Arrive early for light refreshments and informal networking with fellow alumni, community members, and speakers.</p>
+                </div>
+                <div class="format-step fade-in">
+                    <div class="step-num">2</div>
+                    <h4>Expert Presentations</h4>
+                    <p>Two or more featured speakers — professionals, academics, or community leaders — share insights on the session theme.</p>
+                </div>
+                <div class="format-step fade-in">
+                    <div class="step-num">3</div>
+                    <h4>Panel Discussion</h4>
+                    <p>Speakers engage in moderated conversation, exploring diverse perspectives and the Filipino-American lens on the topic.</p>
+                </div>
+                <div class="format-step fade-in">
+                    <div class="step-num">4</div>
+                    <h4>Open Q&amp;A &amp; Connections</h4>
+                    <p>Attendees ask questions directly, then continue conversations informally in an open networking close.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Community Voices ── -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Community Voices</h3>
+                <p>What attendees say about the UP Connect experience.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>The Longevity Reimagined forum was unlike anything I've attended. Hearing from Dr. de Leon and the multigenerational panelists changed how I think about health — and my own future. And getting to connect with fellow Filipinos afterwards made it even more special.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TM</div>
+                        <div class="author-info">
+                            <strong>Theresa M.</strong>
+                            <span>UP Manila Alumna · Gen X Panelist Attendee</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>The Small Business panel gave me practical, real-world advice I could apply the very next week. I came in uncertain about my exit strategy. I left with clarity and confidence. This is exactly what our community needs more of.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RC</div>
+                        <div class="author-info">
+                            <strong>Ricky C.</strong>
+                            <span>UP Diliman '99 · Restaurant Owner, Bay Area</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>Meeting Loida Lewis in that intimate setting — hearing her speak, asking questions directly — it reminded me that Filipino-American leadership is not a ceiling but a launch pad. I walked out ready to do more.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <strong>Alma S.</strong>
+                            <span>UP Los Baños '03 · UPAASF Member</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Get Involved ── -->
+    <section class="involve-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Get Involved</h3>
+                <p>Whether you want to attend, speak, or help organize — there's a meaningful role for you in UP Connect.</p>
+            </div>
+
+            <div class="involve-grid">
+                <div class="involve-card fade-in">
+                    <div class="involve-icon">🙋</div>
+                    <h4>Attend an Event</h4>
+                    <p>All UP Connect events are <strong>free and open to the community</strong>. RSVP through our events page to secure your spot — seating at the Philippine Consulate is limited.</p>
+                    <a href="./events.html" class="btn btn-primary" style="font-size:0.9rem; padding:0.75rem 1.8rem;">View Upcoming Events</a>
+                </div>
+
+                <div class="involve-card fade-in">
+                    <div class="involve-icon">🎤</div>
+                    <h4>Become a Speaker</h4>
+                    <p>Are you a professional, academic, or community leader with insights worth sharing? We're always seeking dynamic Filipino-American voices to join our panels.</p>
+                    <a href="./contact.html" class="btn btn-primary" style="font-size:0.9rem; padding:0.75rem 1.8rem;">Suggest a Speaker</a>
+                </div>
+
+                <div class="involve-card fade-in">
+                    <div class="involve-icon">🤝</div>
+                    <h4>Partner or Sponsor</h4>
+                    <p>Organizations and community groups can partner with UPAASF to co-host or sponsor a session, expanding reach and deepening cross-community connections.</p>
+                    <a href="./contact.html" class="btn btn-primary" style="font-size:0.9rem; padding:0.75rem 1.8rem;">Explore Partnership</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="faq-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h3>Frequently Asked Questions</h3>
+                <p>Everything you need to know before attending your first UP Connect event.</p>
+            </div>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Who can attend UP Connect events?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            All UP Connect events are free and open to the broader Filipino and Filipino-American community — not just UP alumni or UPAASF members. We welcome anyone who is curious, eager to learn, and interested in connecting with our community. UPAASF members may receive priority registration for popular events.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I find out about upcoming events?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The best ways to stay informed: (1) check our Events page at upaasf.org/events, (2) follow us on Instagram @upaa_sf and Facebook, (3) subscribe to our monthly newsletter, or (4) become a UPAASF member and receive event notifications directly. We typically announce each session 4–6 weeks in advance.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Where are events held?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most UP Connect events are held at <strong>Kalayaan Hall, Philippine Consulate General, 447 Sutter St, San Francisco, CA</strong>, in partnership with the Consulate. Some sessions may also be held at community venues across the Bay Area or offered in a hybrid in-person/virtual format. Exact location details are always confirmed in the event announcement.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there a cost to attend?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            UP Connect events are <strong>free of charge</strong>. UPAASF is committed to making professional and community development accessible to all. Some sessions include a light reception or networking refreshments. While attendance is free, RSVP is typically required as space is limited at the Consulate venue.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I suggest a topic or speaker for a future session?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely — and we encourage it! UP Connect's programming is shaped by what matters to our community. Use the Contact page to submit a topic suggestion or speaker recommendation. If you are a professional with expertise to share, we'd love to hear from you directly.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need to be a UP alumnus to attend or speak?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No UP degree is required to attend — the series is open to the Filipino and Filipino-American community broadly. For speakers and panelists, we prioritize voices who bring relevant expertise and a connection to the Filipino diaspora experience, whether or not they are UP alumni. Our goal is to amplify the best Filipino voices on each topic.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h3>Join the Conversation</h3>
+            <p>Attend your first UP Connect session, suggest a speaker, or become a UPAASF member to stay connected with the full program calendar year-round.</p>
+            <div class="cta-buttons">
+                <a href="./events.html" class="btn btn-primary">View Upcoming Events</a>
+                <a href="./programs.html" class="btn btn-secondary">Explore All Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="site-footer"></div>
+
+    <script src="./shared/site.js"></script>
+
+</body>
+</html>
