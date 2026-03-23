@@ -32,7 +32,7 @@
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="./index.html"      data-page="index">Home</a></li>
+                <!-- <li><a href="./index.html"      data-page="index">Home</a></li> -->
                 <li><a href="./about.html"      data-page="about">About</a></li>
                 <li><a href="./programs.html"   data-page="programs">Programs</a></li>
                 <li><a href="./events.html"     data-page="events">Events</a></li>
@@ -54,14 +54,15 @@
     <nav id="nav">
         <div class="nav-container">
             <a href="./index.html" class="logo" aria-label="UPAASF Home">
-                <div class="logo-icon">UP</div>
+                <img src="./shared/images/upaasf-logo.png" class="logo-img" alt="UPAASF Seal">
+                <!-- <div class="logo-icon">UP</div> -->
                 <div class="logo-text">
                     <h1>UPAASF</h1>
                     <p>University of the Philippines Alumni Association of San Francisco</p>
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="./index.html"      data-page="index">Home</a></li>
+                <!-- <li><a href="./index.html"      data-page="index">Home</a></li> -->
                 <li><a href="./about.html"      data-page="about">About</a></li>
 
                 <!-- Programs with dropdown -->
@@ -406,6 +407,22 @@
 
                 var el       = entry.target;
                 var raw      = el.dataset.target || el.textContent.trim();
+
+                /* --- STRATEGIC GUARDS --- */
+                
+                // 1. Check for Numbers: If no digits exist, it's a label (e.g., "TBD"), don't animate.
+                var hasNumbers = /\d/.test(raw);
+                
+                // 2. Extended Range Detection: Checks for digit + separator + digit.
+                // Separators: hyphen (-), en-dash (–), em-dash (—), or the word "to".
+                var isRange = /\d\s*(\-|–|—|to)\s*\d/i.test(raw);
+
+                if (!hasNumbers || isRange) {
+                    observer.unobserve(el); // Stop watching this element
+                    return; // Exit early
+                }
+                /* ------------------------ */
+
                 var prefix   = validPrefixes.find(s => raw.startsWith(s)) || '';;
 				//var prefix   = raw.match(/^\$/)       ? '$'  : '';
 				var suffix   = validSuffixes.find(s => raw.endsWith(s)) || '';
