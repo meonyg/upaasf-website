@@ -28,7 +28,7 @@
                 <div class="logo-icon">UP</div>
                 <div class="logo-text">
                     <h1>UPAASF</h1>
-                    <p>University of the Philippines Alumni Association of San Francisco</p>
+                    <p>University of the Philippines Alumni<br>Association of San Francisco</p>
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -58,7 +58,7 @@
                 <!-- <div class="logo-icon">UP</div> -->
                 <div class="logo-text">
                     <h1>UPAASF</h1>
-                    <p>University of the Philippines Alumni Association of San Francisco</p>
+                    <p>University of the Philippines Alumni<br>Association of San Francisco</p>
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -92,13 +92,13 @@
                         </li>
                         <li>
                             <!-- <a href="./speakers-series.html"> -->
-							<a href="./programs.html#speakers">
+                            <a href="./programs.html#speakers">
                                 <span class="submenu-icon">💡</span>
                                 <span class="submenu-label">
                                     Speakers' Series
                                     <!-- <span>Inspiring conversations with leaders</span> -->
                                 </span>
-								<span class="badge-soon">Coming Soon</span>
+                                <span class="badge-soon">Coming Soon</span>
                             </a>
                         </li>
                         <li>
