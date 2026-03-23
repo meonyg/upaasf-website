@@ -66,12 +66,14 @@ nav.scrolled {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px; /* Minimum breathing room between logo and menu */
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0; /* CRITICAL: Prevents the logo from getting narrower */
     text-decoration: none;
 }
 
@@ -135,7 +137,9 @@ nav.scrolled .logo-img {
     color: var(--up-green);
     font-weight: 500;
     margin-top: 2px;
-	width: 65%;
+	/* width: 65%; */
+    /* Force the 2-line constraint */
+    white-space: nowrap;
 }
 
 .nav-links {
