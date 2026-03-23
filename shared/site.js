@@ -91,14 +91,12 @@
                             </a>
                         </li>
                         <li>
-                            <!-- <a href="./speakers-series.html"> -->
-                            <a href="./programs.html#speakers">
-                                <span class="submenu-icon">💡</span>
+                            <a href="./speakers-series.html">
+                                <span class="submenu-icon">🎙️</span>
                                 <span class="submenu-label">
-                                    Speakers' Series
+                                    UPConnect — Speakers' Series
                                     <!-- <span>Inspiring conversations with leaders</span> -->
                                 </span>
-                                <span class="badge-soon">Coming Soon</span>
                             </a>
                         </li>
                         <li>
