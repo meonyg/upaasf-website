@@ -85,20 +85,18 @@
 							<a href="./cultural-immersion-camp.html">
                                 <span class="submenu-icon">🎭</span>
                                 <span class="submenu-label">
-                                    Filipino Cultural Immersion Camp
+                                    Filipino Cultural Immersion Summer Camp
                                     <!-- <span>Heritage &amp; traditions for youth</span> -->
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <!-- <a href="./speakers-series.html"> -->
-                            <a href="./programs.html#speakers">
-                                <span class="submenu-icon">💡</span>
+                            <a href="./speakers-series.html">
+                                <span class="submenu-icon">🎙️</span>
                                 <span class="submenu-label">
-                                    Speakers' Series
+                                    UPConnect — Speakers' Series
                                     <!-- <span>Inspiring conversations with leaders</span> -->
                                 </span>
-                                <span class="badge-soon">Coming Soon</span>
                             </a>
                         </li>
                         <li>
@@ -236,8 +234,8 @@
                 <h4>Programs</h4>
                 <ul>
                     <li><a href="./alumni-mentoring-program.html">Alumni Mentoring</a></li>
-                    <li><a href="./programs.html#cultural-immersion-camp">Cultural Camp</a></li>
-                    <li><a href="./programs.html#speakers">Speakers' Series</a></li>
+                    <li><a href="./cultural-immersion-camp.html">Cultural Camp</a></li>
+                    <li><a href="./speakers-series.html">Speakers' Series</a></li>
                     <li><a href="./programs.html#up-streets">UP in the Streets</a></li>
                 </ul>
             </div>
